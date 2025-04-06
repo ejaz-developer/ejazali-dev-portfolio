@@ -3,89 +3,62 @@ import { motion } from "framer-motion";
 import { FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import emailjs from "@emailjs/browser";
 
+// EmailJS configuration
+// Environment variables:
+// - VITE_PUBLIC_EMAILJS_SERVICE_ID: service_sk29hlj
+// - VITE_PUBLIC_EMAILJS_TEMPLATE_ID: template_vyzeauc
+// - VITE_PUBLIC_EMAILJS_PUBLIC_KEY: Your EmailJS public key
+//
+// Make sure your EmailJS template has the following variables:
+// - user_name: The sender's name
+// - user_email: The sender's email
+// - subject: The email subject
+// - message: The email message
+
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: "",
-  });
-
-  // This function maps form field names to state properties
-  const getStateKey = (fieldName: string): string => {
-    switch (fieldName) {
-      case "user_name":
-        return "name";
-      case "user_email":
-        return "email";
-      default:
-        return fieldName;
-    }
-  };
-
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<null | "success" | "error">(
     null
   );
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    const stateKey = getStateKey(name);
-    setFormData((prev) => ({ ...prev, [stateKey]: value }));
-  };
-
-  const form = useRef<HTMLFormElement>(null);
-
-  // Initialize EmailJS
-  useEffect(() => {
-    emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY); // Replace with your EmailJS public key
-  }, []);
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    if (form.current) {
-      // Send email using EmailJS
-      emailjs
-        .sendForm(
-          import.meta.env.VITE_EMAILJS_SERVICE_ID, // Service ID
-          import.meta.env.VITE_EMAILJS_TEMPLATE_ID, // Template ID
-          form.current
-        )
-        .then((result) => {
-          console.log("Email sent successfully:", result.text);
-          setIsSubmitting(false);
-          setSubmitStatus("success");
+    if (!formRef.current) {
+      setIsSubmitting(false);
+      setSubmitStatus("error");
+      return;
+    }
 
-          // Reset form after successful submission
-          setFormData({
-            name: "",
-            email: "",
-            subject: "",
-            message: "",
-          });
+    try {
+      // Use the environment variables for service ID and template ID
+      const result = await emailjs.sendForm(
+        import.meta.env.VITE_PUBLIC_EMAILJS_SERVICE_ID || "service_sk29hlj",
+        import.meta.env.VITE_PUBLIC_EMAILJS_TEMPLATE_ID || "template_vyzeauc",
+        formRef.current,
+        import.meta.env.VITE_PUBLIC_EMAILJS_PUBLIC_KEY // Public key from environment variables
+      );
 
-          // Clear success message after 5 seconds
-          setTimeout(() => {
-            setSubmitStatus(null);
-          }, 5000);
-        })
-        .catch((error) => {
-          console.error("Error sending email:", error.text);
-          setIsSubmitting(false);
-          setSubmitStatus("error");
+      console.log("Email sent successfully:", result.text);
+      setIsSubmitting(false);
+      setSubmitStatus("success");
 
-          // Clear error message after 5 seconds
-          setTimeout(() => {
-            setSubmitStatus(null);
-          }, 5000);
-        });
+      // Reset form
+      formRef.current.reset();
+
+      setTimeout(() => setSubmitStatus(null), 5000);
+    } catch (error) {
+      console.error("Email send error:", error); // Helpful for debugging
+      setIsSubmitting(false);
+      setSubmitStatus("error");
+      setTimeout(() => setSubmitStatus(null), 5000);
     }
   };
-
+  useEffect(() => {
+    emailjs.init(import.meta.env.VITE_PUBLIC_EMAILJS_PUBLIC_KEY);
+  }, []);
   return (
     <section id="contact" className="py-20 bg-gray-900">
       <div className="container">
@@ -112,7 +85,6 @@ const Contact = () => {
               opportunities, or just to say hello. I'll get back to you as soon
               as possible.
             </p>
-
             <div className="space-y-6">
               <ContactInfo
                 icon={<FaEnvelope />}
@@ -157,40 +129,36 @@ const Contact = () => {
                 </div>
               )}
 
-              <form ref={form} onSubmit={handleSubmit}>
+              <form ref={formRef} onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
                   <div>
                     <label
-                      htmlFor="name"
+                      htmlFor="user_name"
                       className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                     >
                       Your Name
                     </label>
                     <input
                       type="text"
-                      id="name"
+                      id="user_name"
                       name="user_name"
-                      value={formData.name}
-                      onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                     />
                   </div>
                   <div>
                     <label
-                      htmlFor="email"
+                      htmlFor="user_email"
                       className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
                     >
                       Your Email
                     </label>
                     <input
                       type="email"
-                      id="email"
+                      id="user_email"
                       name="user_email"
-                      value={formData.email}
-                      onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                     />
                   </div>
                 </div>
@@ -206,10 +174,8 @@ const Contact = () => {
                     type="text"
                     id="subject"
                     name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                   />
                 </div>
 
@@ -223,11 +189,9 @@ const Contact = () => {
                   <textarea
                     id="message"
                     name="message"
-                    value={formData.message}
-                    onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white resize-none"
                   ></textarea>
                 </div>
 
