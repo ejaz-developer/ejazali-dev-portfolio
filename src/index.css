@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import "tailwindcss";
+
+:root {
+  --neon-blue: #00f3ff;
+  --neon-pink: #ff00ff;
+  --neon-green: #39ff14;
+  --neon-purple: #bc13fe;
+  --neon-yellow: #ffff00;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Adjust based on your header height */
+}
+
+body {
+  @apply bg-gray-900 text-white;
+  font-family: "Poppins", "Inter", sans-serif;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+/* Smooth anchor transitions */
+a[href^="#"] {
+  transition: all 0.3s ease;
+}
+
+.container {
+  @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12;
+}
+
+.btn {
+  @apply px-6 py-2 rounded-md font-medium transition-all duration-300;
+}
+
+.btn-primary {
+  @apply bg-blue-600 text-white hover:bg-blue-700;
+}
+
+.section-title {
+  @apply text-3xl md:text-4xl font-bold mb-8 text-center;
+  animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.neon-text {
+  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor,
+    0 0 30px currentColor;
+}
+
+.neon-border {
+  box-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+}
+
+.neon-blue {
+  color: var(--neon-blue);
+}
+
+.neon-pink {
+  color: var(--neon-pink);
+}
+
+.neon-green {
+  color: var(--neon-green);
+}
+
+.neon-purple {
+  color: var(--neon-purple);
+}
+
+.neon-yellow {
+  color: var(--neon-yellow);
+}

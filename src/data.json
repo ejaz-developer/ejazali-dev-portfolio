@@ -1,0 +1,155 @@
+{
+  "personalInfo": {
+    "name": "Ejaz Ali",
+    "title": "Software Developer & Student",
+    "bio": "I'm a passionate self-taught software developer learning coding from YouTube. I love building front-end and full-stack applications using modern tools like React and Appwrite.",
+    "age": 16,
+    "location": "Skardu, Pakistan",
+    "education": "High School Student, 9th Grade",
+    "email": "devpro.ejazali34@gmail.com",
+    "socialLinks": {
+      "github": "https://github.com/ejaz-developer",
+      "linkedin": "https://www.linkedin.com/in/ejaz-ali-dev/"
+    }
+  },
+  "skills": {
+    "technical": [
+      {
+        "name": "JavaScript",
+        "icon": "SiJavascript",
+        "level": "Intermediate"
+      },
+      {
+        "name": "React",
+        "icon": "FaReact",
+        "level": "Intermediate"
+      },
+      {
+        "name": "TypeScript",
+        "icon": "SiTypescript",
+        "level": "Beginner to Intermediate"
+      },
+      {
+        "name": "Appwrite",
+        "icon": "SiAppwrite",
+        "level": "Intermediate"
+      },
+      {
+        "name": "Git",
+        "icon": "FaGitAlt",
+        "level": "Intermediate"
+      },
+      {
+        "name": "HTML5",
+        "icon": "FaHtml5",
+        "level": "Advanced"
+      },
+      {
+        "name": "CSS3",
+        "icon": "FaCss3Alt",
+        "level": "Intermediate"
+      },
+      {
+        "name": "Linux",
+        "icon": "FaLinux",
+        "level": "Basic"
+      }
+    ],
+    "professional": [
+      {
+        "name": "Problem Solving",
+        "percentage": 90
+      },
+      {
+        "name": "Self-Learning",
+        "percentage": 95
+      },
+      {
+        "name": "Creativity",
+        "percentage": 85
+      },
+      {
+        "name": "Adaptability",
+        "percentage": 88
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": 1,
+      "title": "Bus Ticket Booking Website",
+      "description": "A MERN stack application with login/signup, profile management, bookings, admin dashboard, and role-based routing (User/Admin/Company Admin).",
+      "image": "/placeholder.jpg",
+      "tags": ["React", "Node.js", "MongoDB", "Express"],
+      "category": "fullstack",
+      "githubUrl": "https://github.com/ejaz-ali/bus-ticket-booking",
+      "liveUrl": "https://bustickfrontskardu.vercel.app/"
+    },
+    {
+      "id": 2,
+      "title": "Weather App",
+      "description": "A React and TypeScript application that displays current weather information using an external API.",
+      "image": "/placeholder.jpg",
+      "tags": ["React", "TypeScript", "API"],
+      "category": "frontend",
+      "githubUrl": "https://github.com/ejaz-developer/01_Weather_app",
+      "liveUrl": "https://sky-cast-skardu.vercel.app/"
+    },
+    {
+      "id": 3,
+      "title": "Task Tracker",
+      "description": "A React application for adding, editing, and deleting tasks with a responsive design.",
+      "image": "/placeholder.jpg",
+      "tags": ["React", "CSS", "JavaScript"],
+      "category": "frontend",
+      "githubUrl": "https://github.com/ejaz-ali/task-tracker",
+      "liveUrl": "https://ejaz-task-tracker.netlify.app"
+    },
+    {
+      "id": 4,
+      "title": "Todo List App",
+      "description": "A full-stack app with user authentication and real-time data using React and Appwrite.",
+      "image": "/placeholder.jpg",
+      "tags": ["React", "Appwrite", "CSS"],
+      "category": "fullstack",
+      "githubUrl": "https://github.com/ejaz-ali/todo-appwrite",
+      "liveUrl": "https://fast-todo-skd-student.vercel.app/"
+    },
+    {
+      "id": 5,
+      "title": "Portfolio Website",
+      "description": "A personal website showcasing my skills and projects built with React and Tailwind CSS.",
+      "image": "/placeholder.jpg",
+      "tags": ["React", "Tailwind CSS", "Framer Motion"],
+      "category": "frontend",
+      "githubUrl": "https://github.com/ejaz-ali/portfolio",
+      "liveUrl": "https://ejaz-ali.netlify.app"
+    }
+  ],
+  "contact": {
+    "email": "devpro.ejazali34@gmail.com",
+    "location": "Skardu, Pakistan",
+    "emailjs": {
+      "serviceId": "service_sk29hlj",
+      "templateId": "template_vyzeauc"
+    }
+  },
+  "expertise": [
+    {
+      "title": "Frontend Development",
+      "description": "Building responsive and interactive user interfaces with React, JavaScript, and modern CSS."
+    },
+    {
+      "title": "React Development",
+      "description": "Creating dynamic web applications with React, focusing on component-based architecture and state management."
+    },
+    {
+      "title": "Full Stack Development",
+      "description": "Building end-to-end applications with React for frontend and Appwrite for backend services."
+    },
+    {
+      "title": "Problem Solving",
+      "description": "Breaking down complex problems into manageable parts and implementing effective solutions."
+    }
+  ]
+}
