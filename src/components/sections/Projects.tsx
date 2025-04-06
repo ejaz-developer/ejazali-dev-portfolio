@@ -9,7 +9,7 @@ const projectsData = [
     title: "Bus Ticket Booking Website",
     description:
       "A MERN stack application with login/signup, profile management, bookings, admin dashboard, and role-based routing (User/Admin/Company Admin).",
-    image: "/placeholder.jpg",
+    image: "/src/assets/images/bus_ticket_app_screenshot.png",
     tags: ["React", "Node.js", "MongoDB", "Express"],
     category: "fullstack",
     githubUrl: "https://github.com/ejaz-ali/bus-ticket-booking",
@@ -20,7 +20,7 @@ const projectsData = [
     title: "Weather App",
     description:
       "A React and TypeScript application that displays current weather information using an external API.",
-    image: "/placeholder.jpg",
+    image: "/src/assets/images/weather_app_screenshot.png",
     tags: ["React", "TypeScript", "API"],
     category: "frontend",
     githubUrl: "https://github.com/ejaz-developer/01_Weather_app",
@@ -42,7 +42,7 @@ const projectsData = [
     title: "Todo List App",
     description:
       "A full-stack app with user authentication and real-time data using React and Appwrite.",
-    image: "/placeholder.jpg",
+    image: "/src/assets/images/todo_app_screenshot.png",
     tags: ["React", "Appwrite", "CSS"],
     category: "fullstack",
     githubUrl: "https://github.com/ejaz-ali/todo-appwrite",
@@ -53,7 +53,7 @@ const projectsData = [
     title: "Portfolio Website",
     description:
       "A personal website showcasing my skills and projects built with React and Tailwind CSS.",
-    image: "/placeholder.jpg",
+    image: "/src/assets/images/portfolio_app_screenshot.png",
     tags: ["React", "Tailwind CSS", "Framer Motion"],
     category: "frontend",
     githubUrl: "https://github.com/ejaz-ali/portfolio",
@@ -168,11 +168,12 @@ const ProjectCard = ({ project }: { project: any }) => (
       },
     }}
   >
-    <div className="h-48 bg-gray-600 relative">
-      {/* Replace with actual project image */}
-      <div className="w-full h-full flex items-center justify-center text-gray-500 dark:text-gray-400">
-        <span>Project Image</span>
-      </div>
+    <div className="h-48 bg-gray-600 relative overflow-hidden">
+      <img
+        src={project.image}
+        alt={project.title}
+        className="w-full h-full object-cover object-top transition-transform duration-500 hover:scale-110"
+      />
     </div>
 
     <div className="p-6">

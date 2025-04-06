@@ -1,4 +1,10 @@
 {
+  "meta": {
+    "title": "Ejaz Ali | Software Developer & Student",
+    "description": "Portfolio of Ejaz Ali, a 16-year-old software developer from Skardu, Pakistan. Specializing in React, JavaScript, and full-stack development.",
+    "keywords": "Ejaz Ali, Software Developer, React, JavaScript, TypeScript, Appwrite, Portfolio, Skardu, Pakistan",
+    "ogImage": "/src/assets/images/hero_image.png"
+  },
   "personalInfo": {
     "name": "Ejaz Ali",
     "title": "Software Developer & Student",
@@ -7,6 +13,7 @@
     "location": "Skardu, Pakistan",
     "education": "High School Student, 9th Grade",
     "email": "devpro.ejazali34@gmail.com",
+    "profileImage": "/src/assets/images/hero_image.png",
     "socialLinks": {
       "github": "https://github.com/ejaz-developer",
       "linkedin": "https://www.linkedin.com/in/ejaz-ali-dev/"
@@ -79,7 +86,7 @@
       "id": 1,
       "title": "Bus Ticket Booking Website",
       "description": "A MERN stack application with login/signup, profile management, bookings, admin dashboard, and role-based routing (User/Admin/Company Admin).",
-      "image": "/placeholder.jpg",
+      "image": "/src/assets/images/bus_ticket_app_screenshot.png",
       "tags": ["React", "Node.js", "MongoDB", "Express"],
       "category": "fullstack",
       "githubUrl": "https://github.com/ejaz-ali/bus-ticket-booking",
@@ -89,7 +96,7 @@
       "id": 2,
       "title": "Weather App",
       "description": "A React and TypeScript application that displays current weather information using an external API.",
-      "image": "/placeholder.jpg",
+      "image": "/src/assets/images/weather_app_screenshot.png",
       "tags": ["React", "TypeScript", "API"],
       "category": "frontend",
       "githubUrl": "https://github.com/ejaz-developer/01_Weather_app",
@@ -99,7 +106,7 @@
       "id": 3,
       "title": "Task Tracker",
       "description": "A React application for adding, editing, and deleting tasks with a responsive design.",
-      "image": "/placeholder.jpg",
+      "image": "/src/assets/images/todo_app_screenshot.png",
       "tags": ["React", "CSS", "JavaScript"],
       "category": "frontend",
       "githubUrl": "https://github.com/ejaz-ali/task-tracker",
@@ -109,7 +116,7 @@
       "id": 4,
       "title": "Todo List App",
       "description": "A full-stack app with user authentication and real-time data using React and Appwrite.",
-      "image": "/placeholder.jpg",
+      "image": "/src/assets/images/todo_app_screenshot.png",
       "tags": ["React", "Appwrite", "CSS"],
       "category": "fullstack",
       "githubUrl": "https://github.com/ejaz-ali/todo-appwrite",
@@ -119,7 +126,7 @@
       "id": 5,
       "title": "Portfolio Website",
       "description": "A personal website showcasing my skills and projects built with React and Tailwind CSS.",
-      "image": "/placeholder.jpg",
+      "image": "/src/assets/images/portfolio_app_screenshot.png",
       "tags": ["React", "Tailwind CSS", "Framer Motion"],
       "category": "frontend",
       "githubUrl": "https://github.com/ejaz-ali/portfolio",

@@ -65,11 +65,12 @@ const Hero = () => {
           >
             <div className="relative">
               <div className="absolute -inset-4 bg-blue-600/20 rounded-full blur-xl"></div>
-              <div className="relative bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden aspect-square">
-                {/* Replace with your profile image */}
-                <div className="w-full h-full flex items-center justify-center text-gray-500 dark:text-gray-400">
-                  <span className="text-lg">Your Profile Image</span>
-                </div>
+              <div className="relative  overflow-hidden aspect-square">
+                <img
+                  src="/src/assets/images/hero_image.png"
+                  alt="Ejaz Ali - Software Developer"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </motion.div>
