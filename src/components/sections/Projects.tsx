@@ -9,7 +9,7 @@ const projectsData = [
     title: "Bus Ticket Booking Website",
     description:
       "A MERN stack application with login/signup, profile management, bookings, admin dashboard, and role-based routing (User/Admin/Company Admin).",
-    image: "/src/assets/images/bus_ticket_app_screenshot.png",
+    image: "/images/bus_ticket_app_screenshot.png",
     tags: ["React", "Node.js", "MongoDB", "Express"],
     category: "fullstack",
     githubUrl: "https://github.com/ejaz-ali/bus-ticket-booking",
@@ -20,29 +20,19 @@ const projectsData = [
     title: "Weather App",
     description:
       "A React and TypeScript application that displays current weather information using an external API.",
-    image: "/src/assets/images/weather_app_screenshot.png",
+    image: "/images/weather_app_screenshot.png",
     tags: ["React", "TypeScript", "API"],
     category: "frontend",
     githubUrl: "https://github.com/ejaz-developer/01_Weather_app",
     liveUrl: "https://sky-cast-skardu.vercel.app/",
   },
-  {
-    id: 3,
-    title: "Task Tracker",
-    description:
-      "A React application for adding, editing, and deleting tasks with a responsive design.",
-    image: "/placeholder.jpg",
-    tags: ["React", "CSS", "JavaScript"],
-    category: "frontend",
-    githubUrl: "https://github.com/ejaz-ali/task-tracker",
-    liveUrl: "https://ejaz-task-tracker.netlify.app",
-  },
+
   {
     id: 4,
     title: "Todo List App",
     description:
       "A full-stack app with user authentication and real-time data using React and Appwrite.",
-    image: "/src/assets/images/todo_app_screenshot.png",
+    image: "/images/todo_app_screenshot.png",
     tags: ["React", "Appwrite", "CSS"],
     category: "fullstack",
     githubUrl: "https://github.com/ejaz-ali/todo-appwrite",
@@ -53,7 +43,7 @@ const projectsData = [
     title: "Portfolio Website",
     description:
       "A personal website showcasing my skills and projects built with React and Tailwind CSS.",
-    image: "/src/assets/images/portfolio_app_screenshot.png",
+    image: "/images/portfolio_app_screenshot.png",
     tags: ["React", "Tailwind CSS", "Framer Motion"],
     category: "frontend",
     githubUrl: "https://github.com/ejaz-ali/portfolio",

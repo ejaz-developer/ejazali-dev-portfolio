@@ -116,6 +116,17 @@ Edit the `projects` section in `src/data.json`:
 - Layout: Modify the components in `src/components/`
 - Add new sections: Create new components in `src/components/sections/`
 
+## Image Handling
+
+All images are stored in the `public/images` folder for better build compatibility. When referencing images in your code or data.json file, use paths like `/images/filename.png`.
+
+To add new images:
+
+1. Place the image file in the `public/images` folder
+2. Reference it in your code or data.json using the path `/images/filename.png`
+
+This approach ensures that images are properly served in both development and production environments.
+
 ## Email Configuration
 
 The contact form uses EmailJS to send emails. To configure it:

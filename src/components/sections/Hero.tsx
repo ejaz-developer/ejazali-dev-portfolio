@@ -67,7 +67,7 @@ const Hero = () => {
               <div className="absolute -inset-4 bg-blue-600/20 rounded-full blur-xl"></div>
               <div className="relative  overflow-hidden aspect-square">
                 <img
-                  src="/src/assets/images/hero_image.png"
+                  src="/images/hero_image.png"
                   alt="Ejaz Ali - Software Developer"
                   className="w-full h-full object-cover"
                 />
