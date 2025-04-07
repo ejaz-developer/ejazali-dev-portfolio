@@ -1,0 +1,21 @@
+{
+  "name": "Ejaz Ali - Software Developer Portfolio",
+  "short_name": "Ejaz Ali",
+  "description": "Portfolio of Ejaz Ali, a 16-year-old software developer from Skardu, Pakistan. Specializing in React, JavaScript, and full-stack development.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#111827",
+  "theme_color": "#111827",
+  "icons": [
+    {
+      "src": "/images/hero_image.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/images/hero_image.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

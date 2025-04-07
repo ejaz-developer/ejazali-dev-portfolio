@@ -144,3 +144,23 @@ Make sure your EmailJS template has the following variables:
 - `user_email`: Sender's email
 - `subject`: Email subject
 - `message`: Email message
+
+## SEO Configuration
+
+This portfolio is optimized for search engines with the following features:
+
+1. **Meta Tags**: Comprehensive meta tags including title, description, and keywords
+2. **Structured Data**: Schema.org markup for Person and WebSite entities
+3. **Sitemap**: XML sitemap at `/sitemap.xml`
+4. **Robots.txt**: Configuration for search engine crawlers
+5. **Canonical URLs**: Prevents duplicate content issues
+6. **Open Graph & Twitter Cards**: Optimized for social media sharing
+
+To update SEO settings for your domain:
+
+1. Replace all instances of `https://ejazali-dev-portfolio.vercel.app/` with your actual domain
+2. Update the meta description and keywords to match your skills and experience
+3. Update the structured data in `index.html` with your personal information
+4. Update the `lastmod` date in `sitemap.xml` when you make significant changes
+
+After deploying your site, submit your sitemap to Google Search Console to improve indexing.
