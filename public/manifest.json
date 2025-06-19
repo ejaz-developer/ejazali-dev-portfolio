@@ -17,5 +17,15 @@
       "sizes": "512x512",
       "type": "image/png"
     }
+  ],
+  "lang": "en-US",
+  "dir": "ltr",
+  "scope": "/",
+  "orientation": "any",
+  "categories": ["portfolio", "development", "technology"],
+  "related_applications": [
+    {
+      "platform": "web"
+    }
   ]
 }
