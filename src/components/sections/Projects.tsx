@@ -195,12 +195,12 @@ const ProjectCard = ({ project }: { project: any }) => (
           className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
           onError={(e) => {
             e.currentTarget.style.display = 'none';
-            e.currentTarget.nextElementSibling!.style.display = 'flex';
+            (e.currentTarget.nextElementSibling as HTMLElement)!.style.display = 'flex';
           }}
         />
 
         {/* Fallback gradient when image fails to load */}
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-purple-500 to-indigo-600 flex items-center justify-center hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-600 via-purple-500 to-indigo-600  items-center justify-center hidden">
           <FaCode className="text-6xl text-white/50" />
         </div>
 
