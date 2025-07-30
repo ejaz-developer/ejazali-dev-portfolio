@@ -3,28 +3,46 @@
 @import 'tailwindcss';
 
 :root {
-  --neon-blue: #00f3ff;
-  --neon-pink: #ff00ff;
-  --neon-green: #39ff14;
-  --neon-purple: #bc13fe;
-  --neon-yellow: #ffff00;
+  /* Blue color palette for the theme */
+  --color-blue-900: #03045e;
+  --color-blue-800: #023e8a;
+  --color-blue-700: #0077b6;
+  --color-blue-600: #0096c7;
+  --color-blue-500: #00b4d8;
+  --color-blue-400: #48cae4;
+  --color-blue-300: #90e0ef;
+  --color-blue-200: #ade8f4;
+  --color-blue-100: #caf0f8;
+  
+  /* Theme variables */
+  --bg-primary: #1f2937;
+  --bg-secondary: #111827;
+  --text-primary: #ffffff;
+  --text-secondary: #d1d5db;
+  --border-color: #374151;
+}
+
+/* Light theme */
+.light {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --border-color: #e5e7eb;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px; /* Adjust based on your header height */
+  scroll-padding-top: 80px;
 }
 
 body {
-  @apply bg-gray-900 text-white;
   font-family: 'Poppins', 'Inter', sans-serif;
   scroll-behavior: smooth;
   overflow-x: hidden;
-}
-
-/* Smooth anchor transitions */
-a[href^='#'] {
-  transition: all 0.3s ease;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -32,19 +50,31 @@ a[href^='#'] {
 }
 
 .btn {
-  @apply px-6 py-2 rounded-md font-medium transition-all duration-300;
+  @apply px-6 py-2 rounded-lg font-medium transition-all duration-300;
 }
 
 .btn-primary {
-  @apply bg-blue-600 text-white hover:bg-blue-700;
+  background: linear-gradient(135deg, var(--color-blue-600), var(--color-blue-500));
+  color: white;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--color-blue-700), var(--color-blue-600));
+  transform: translateY(-1px);
 }
 
 .section-title {
   @apply text-3xl md:text-4xl font-bold mb-8 text-center;
-  animation: fadeInUp 1s ease-out;
+  color: var(--text-primary);
 }
 
-@keyframes fadeInUp {
+/* Minimal animations for better performance */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -55,141 +85,15 @@ a[href^='#'] {
   }
 }
 
-.neon-text {
-  text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
 }
 
-.neon-border {
-  box-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+.animate-slideUp {
+  animation: slideUp 0.6s ease-out;
 }
 
-.neon-blue {
-  color: var(--neon-blue);
-}
-
-.neon-pink {
-  color: var(--neon-pink);
-}
-
-.neon-green {
-  color: var(--neon-green);
-}
-
-.neon-purple {
-  color: var(--neon-purple);
-}
-
-.neon-yellow {
-  color: var(--neon-yellow);
-}
-
-/* Add to your global CSS or Tailwind config */
-@keyframes gradient-x {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-gradient-x {
-  animation: gradient-x 3s ease infinite;
-  background-size: 200% 200%;
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.5s ease-out forwards;
-}
-
-/* Add to your global CSS */
-.animation-delay-300 {
-  animation-delay: 300ms;
-}
-.animation-delay-500 {
-  animation-delay: 500ms;
-}
-.animation-delay-700 {
-  animation-delay: 700ms;
-}
-.animation-delay-1000 {
-  animation-delay: 1000ms;
-}
-.animation-delay-1200 {
-  animation-delay: 1200ms;
-}
-
-@keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.animate-spin-slow {
-  animation: spin-slow 10s linear infinite;
-}
-
-/* Add to your global CSS */
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-.animate-shimmer {
-  animation: shimmer 2s infinite;
-}
-
-.animation-delay-300 {
-  animation-delay: 300ms;
-}
-.animation-delay-500 {
-  animation-delay: 500ms;
-}
-.animation-delay-700 {
-  animation-delay: 700ms;
-}
-
-/* Add to your global CSS */
-.animation-delay-300 {
-  animation-delay: 300ms;
-}
-.animation-delay-500 {
-  animation-delay: 500ms;
-}
-.animation-delay-700 {
-  animation-delay: 700ms;
-}
-
-@keyframes gradient-x {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-.animate-gradient-x {
-  animation: gradient-x 3s ease infinite;
-  background-size: 200% 200%;
+/* Smooth transitions for theme switching */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
