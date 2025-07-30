@@ -1,17 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./contexts/ThemeContext";
-import Layout from "./components/layout/Layout";
-import Home from "./pages/Home";
+import DashboardHome from "./pages/DashboardHome";
 
 function App() {
   return (
     <ThemeProvider>
       <Router>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </Layout>
+        <Routes>
+          <Route path="/" element={<DashboardHome />} />
+        </Routes>
       </Router>
     </ThemeProvider>
   );
