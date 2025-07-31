@@ -172,29 +172,3 @@ const DashboardLayout = ({ children, activeSection, onSectionChange }: Dashboard
 };
 
 export default DashboardLayout;
-        {/* Top Bar (Mobile) */}
-        <header className="lg:hidden bg-white dark:bg-slate-800 shadow-sm border-b border-slate-200 dark:border-slate-700 p-4">
-          <div className="flex items-center justify-between">
-            <button
-              onClick={toggleSidebar}
-              className="text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-white"
-            >
-              <FaBars size={20} />
-            </button>
-            <h1 className="text-lg font-semibold text-slate-800 dark:text-white">
-              {menuItems.find(item => item.id === activeSection)?.label || 'Dashboard'}
-            </h1>
-            <div className="w-8"></div> {/* Spacer for centering */}
-          </div>
-        </header>
-
-        {/* Page Content */}
-        <main className="min-h-screen p-6">
-          {children}
-        </main>
-      </div>
-    </div>
-  );
-};
-
-export default DashboardLayout;
