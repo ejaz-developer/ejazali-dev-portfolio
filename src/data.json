@@ -8,10 +8,14 @@
   "personalInfo": {
     "name": "Ejaz Ali",
     "title": "Software Developer & Student",
+    "subtitle": "MERN Developer & Full Stack Developer",
+    "greeting": "Hello, World!\nHi, I'm Ejaz Ali👋",
     "bio": "I'm a passionate self-taught software developer learning coding from YouTube. I love building front-end and full-stack applications using modern tools like React and Appwrite.",
+    "detailedBio": "I'm a 16-year-old software developer from Skardu, Pakistan, currently in 9th grade. My passion for coding started when I discovered the power of creating applications that can solve real-world problems.\n\nI've been teaching myself programming through YouTube tutorials and online resources. I'm particularly interested in front-end development with React and have been exploring full-stack development using modern tools like Appwrite.\n\nWhen I'm not coding, I focus on my studies and continue learning new technologies to improve my skills. I enjoy building projects that challenge me and help me grow as a developer.",
     "age": 16,
     "location": "Skardu, Pakistan",
-    "education": "High School Student, 10th Grade",
+    "education": "High School Student, 9th Grade",
+    "availability": "Available for remote work",
     "email": "devpro.ejazali34@gmail.com",
     "profileImage": "/images/hero_image.png",
     "socialLinks": {
@@ -57,9 +61,29 @@
         "level": "Intermediate"
       },
       {
+        "name": "Tailwind CSS",
+        "icon": "SiTailwindcss",
+        "level": "Intermediate"
+      },
+      {
         "name": "Linux",
         "icon": "FaLinux",
         "level": "Basic"
+      },
+      {
+        "name": "Node.js",
+        "icon": "FaNodeJs",
+        "level": "Intermediate"
+      },
+      {
+        "name": "MongoDB",
+        "icon": "SiMongodb",
+        "level": "Intermediate"
+      },
+      {
+        "name": "Express.js",
+        "icon": "SiExpress",
+        "level": "Intermediate"
       }
     ],
     "professional": [
@@ -139,6 +163,10 @@
     {
       "title": "React Development",
       "description": "Creating dynamic web applications with React, focusing on component-based architecture and state management."
+    },
+    {
+      "title": "MERN Stack Development",
+      "description": "Building end-to-end applications using MongoDB, Express.js, React, and Node.js for complete full-stack solutions."
     },
     {
       "title": "Full Stack Development",
