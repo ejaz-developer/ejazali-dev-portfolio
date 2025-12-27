@@ -2,6 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
+import { Button } from '@/components/ui/button';
+import { LayoutDashboard, LogIn } from 'lucide-react';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,7 +23,6 @@ const Header = () => {
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
-    { name: 'Blog', href: '#blog' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -63,6 +65,49 @@ const Header = () => {
                 <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[var(--orange-web)] to-[var(--platinum)] group-hover:w-full transition-all duration-300"></div>
               </Link>
             ))}
+
+            {/* Auth Buttons */}
+            <div className="flex items-center gap-3 ml-4 pl-4 border-l border-[var(--platinum)]/20">
+              <SignedOut>
+                <Link href="/sign-in">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-[var(--white)] hover:text-[var(--orange-web)] hover:bg-[var(--platinum)]/10"
+                  >
+                    <LogIn className="w-4 h-4 mr-2" />
+                    Sign In
+                  </Button>
+                </Link>
+                <Link href="/sign-up">
+                  <Button
+                    size="sm"
+                    className="bg-[var(--orange-web)] hover:bg-[var(--orange-web)]/90 text-[var(--black)] font-semibold"
+                  >
+                    Get Started
+                  </Button>
+                </Link>
+              </SignedOut>
+              <SignedIn>
+                <Link href="/dashboard">
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="text-[var(--white)] hover:text-[var(--orange-web)] hover:bg-[var(--platinum)]/10"
+                  >
+                    <LayoutDashboard className="w-4 h-4 mr-2" />
+                    Dashboard
+                  </Button>
+                </Link>
+                <UserButton
+                  appearance={{
+                    elements: {
+                      avatarBox: 'w-9 h-9 ring-2 ring-[var(--orange-web)]/30',
+                    },
+                  }}
+                />
+              </SignedIn>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
