@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import TypingEffect from '@/components/shared/TypingEffect';
-import Image from 'next/image';
+import GitHubStats from '@/components/shared/GitHubStats';
 import {
    Code2,
    Rocket,
@@ -288,93 +288,7 @@ export default function Home() {
                         My Coding Journey
                      </h2>
 
-                     {/* GitHub Stats Cards */}
-                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-                        {/* Stats Card */}
-                        <Card className="bg-zinc-900 border-zinc-800 overflow-hidden">
-                           <CardContent className="p-6">
-                              <img
-                                 src="https://github-readme-stats.vercel.app/api?username=ejaz-developer&show_icons=true&theme=tokyonight&hide_border=true&bg_color=18181B&title_color=3B82F6&icon_color=3B82F6&text_color=A1A1AA&count_private=true"
-                                 alt="GitHub Stats"
-                                 className="w-full"
-                              />
-                           </CardContent>
-                        </Card>
-
-                        {/* Streak Stats */}
-                        <Card className="bg-zinc-900 border-zinc-800 overflow-hidden">
-                           <CardContent className="p-6">
-                              <img
-                                 src="https://github-readme-streak-stats.herokuapp.com/?user=ejaz-developer&theme=tokyonight&hide_border=true&background=18181B&ring=3B82F6&fire=3B82F6&currStreakLabel=A1A1AA"
-                                 alt="GitHub Streak"
-                                 className="w-full"
-                              />
-                           </CardContent>
-                        </Card>
-                     </div>
-
-                     {/* Language Stats and Contribution Graph */}
-                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-                        {/* Top Languages */}
-                        <Card className="bg-zinc-900 border-zinc-800 overflow-hidden">
-                           <CardContent className="p-6">
-                              <img
-                                 src="https://github-readme-stats.vercel.app/api/top-langs/?username=ejaz-developer&layout=compact&theme=tokyonight&hide_border=true&bg_color=18181B&title_color=3B82F6&text_color=A1A1AA"
-                                 alt="Top Languages"
-                                 className="w-full"
-                              />
-                           </CardContent>
-                        </Card>
-
-                        {/* Activity Graph Preview */}
-                        <Card className="bg-zinc-900 border-zinc-800 overflow-hidden">
-                           <CardContent className="p-6 flex items-center justify-center">
-                              <div className="text-center">
-                                 <GitBranch className="h-12 w-12 text-blue-500 mx-auto mb-4" />
-                                 <h3 className="text-xl font-bold text-white mb-2">
-                                    Active Contributor
-                                 </h3>
-                                 <p className="text-zinc-400">
-                                    Consistently contributing to open-source
-                                    projects and personal repositories.
-                                 </p>
-                              </div>
-                           </CardContent>
-                        </Card>
-                     </div>
-
-                     {/* Contribution Graph */}
-                     <Card className="bg-zinc-900 border-zinc-800 overflow-hidden">
-                        <CardContent className="p-6">
-                           <h3 className="text-xl font-bold text-white mb-4 text-center">
-                              Contribution Activity
-                           </h3>
-                           <img
-                              src="https://github-readme-activity-graph.vercel.app/graph?username=ejaz-developer&theme=tokyo-night&hide_border=true&bg_color=18181B&color=3B82F6&line=3B82F6&point=A1A1AA"
-                              alt="Contribution Graph"
-                              className="w-full"
-                           />
-                        </CardContent>
-                     </Card>
-
-                     {/* GitHub Profile Link */}
-                     <div className="text-center mt-8">
-                        <Button
-                           size="lg"
-                           variant="outline"
-                           className="border-zinc-700 text-white hover:bg-zinc-800"
-                           asChild
-                        >
-                           <a
-                              href="https://github.com/ejaz-developer"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                           >
-                              <Github className="mr-2 h-5 w-5" />
-                              View Full GitHub Profile
-                           </a>
-                        </Button>
-                     </div>
+                     <GitHubStats username="ejaz-developer" />
                   </div>
                </div>
             </section>
