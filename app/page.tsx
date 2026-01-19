@@ -17,35 +17,25 @@ import {
    GitBranch,
    Workflow,
 } from 'lucide-react';
+import Image from 'next/image';
 
 export default function Home() {
    const projects = [
       {
-         title: 'E-Commerce Platform',
+         title: 'RecordKeeper App',
          description:
-            'A full-stack e-commerce solution with advanced features.',
-         tags: ['Next.js', 'TypeScript', 'Stripe', 'PostgreSQL'],
-         image: '🛍️',
+            'A full stack application for managing inventory and sales records with user authentication and data visualization.',
+         tags: ['React', 'Node.js', 'Appwrite', 'Chart.js'],
+         image: '/recordkeeper-image.png',
+         link: 'https://record-keeper-kappa.vercel.app/',
       },
       {
-         title: 'AI Content Generator',
+         title: 'BookMYGB App',
          description:
-            'AI-powered tool for generating marketing content and blogs.',
-         tags: ['React', 'OpenAI', 'Node.js', 'MongoDB'],
-         image: '🤖',
-      },
-      {
-         title: 'Task Management App',
-         description:
-            'Collaborative project management with real-time updates.',
-         tags: ['Vue.js', 'Firebase', 'Tailwind', 'PWA'],
-         image: '📋',
-      },
-      {
-         title: 'Portfolio CMS',
-         description: 'Headless CMS for managing portfolio content easily.',
-         tags: ['Strapi', 'GraphQL', 'React', 'Docker'],
-         image: '📝',
+            'A MERN based bus ticket booking application with real-time seat selection and payment integration.',
+         tags: ['MongoDB', 'Express', 'React', 'Node.js'],
+         image: '/bookmygb-image.png',
+         link: 'https://bookmygb.vercel.app/',
       },
    ];
 
@@ -94,7 +84,7 @@ export default function Home() {
                      />
                   </h1>
                   <p className="text-xl text-zinc-400 mb-8 max-w-2xl leading-relaxed mx-auto">
-                     I'm a passionate software developer specializing in
+                     I&apos;m a passionate software developer specializing in
                      building exceptional digital experiences. Currently focused
                      on creating accessible, human-centered products.
                   </p>
@@ -120,7 +110,7 @@ export default function Home() {
                   <div className="grid grid-cols-3 gap-8 mt-16 pt-8 border-t border-zinc-800">
                      <div>
                         <div className="text-3xl font-bold text-white mb-1">
-                           5+
+                           3+
                         </div>
                         <div className="text-sm text-zinc-400">
                            Years Experience
@@ -128,7 +118,7 @@ export default function Home() {
                      </div>
                      <div>
                         <div className="text-3xl font-bold text-white mb-1">
-                           50+
+                           20+
                         </div>
                         <div className="text-sm text-zinc-400">
                            Projects Completed
@@ -136,7 +126,7 @@ export default function Home() {
                      </div>
                      <div>
                         <div className="text-3xl font-bold text-white mb-1">
-                           30+
+                           10+
                         </div>
                         <div className="text-sm text-zinc-400">
                            Happy Clients
@@ -160,7 +150,7 @@ export default function Home() {
                         Crafting digital experiences that matter
                      </h2>
                      <p className="text-lg text-zinc-400 mb-6 leading-relaxed">
-                        With over 5 years of experience in software development,
+                        With over 3 years of experience in software development,
                         I've had the privilege of working on diverse projects
                         ranging from startups to enterprise solutions. My
                         approach combines technical excellence with
@@ -194,12 +184,17 @@ export default function Home() {
                      {projects.map((project, index) => (
                         <Card
                            key={index}
-                           className="bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-all duration-300 group"
+                           className="bg-zinc-900 border-zinc-800 hover:border-zinc-700 transition-all duration-300 group overflow-hidden"
                         >
+                           <div className="relative w-full h-48 bg-zinc-800">
+                              <Image
+                                 src={project.image}
+                                 fill
+                                 alt={project.title}
+                                 className="object-cover"
+                              />
+                           </div>
                            <CardContent className="p-6">
-                              <div className="text-5xl mb-4">
-                                 {project.image}
-                              </div>
                               <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-500 transition-colors">
                                  {project.title}
                               </h3>
@@ -226,14 +221,15 @@ export default function Home() {
                                     <Github className="h-4 w-4 mr-2" />
                                     Code
                                  </Button>
-                                 <Button
-                                    size="sm"
-                                    variant="ghost"
-                                    className="text-zinc-400 hover:text-white"
+                                 <a
+                                    href={project.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-zinc-400 hover:text-white flex items-center"
                                  >
                                     <ExternalLink className="h-4 w-4 mr-2" />
                                     Live Demo
-                                 </Button>
+                                 </a>
                               </div>
                            </CardContent>
                         </Card>

@@ -4,6 +4,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Github, Linkedin, Mail, Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import GitHubHeaderStats from './GitHubHeaderStats';
 
 function Header() {
    const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,8 +43,9 @@ function Header() {
 
                {/* Social Links & CTA */}
                <div className="hidden md:flex items-center gap-4">
+                  <GitHubHeaderStats username="ejaz-developer" />
                   <a
-                     href="https://github.com"
+                     href="https://github.com/ejaz-developer"
                      target="_blank"
                      rel="noopener noreferrer"
                      className="text-zinc-400 hover:text-white transition-colors"
@@ -51,7 +53,7 @@ function Header() {
                      <Github className="h-5 w-5" />
                   </a>
                   <a
-                     href="https://linkedin.com"
+                     href="https://www.linkedin.com/in/ejaz-developer/"
                      target="_blank"
                      rel="noopener noreferrer"
                      className="text-zinc-400 hover:text-white transition-colors"
@@ -97,7 +99,7 @@ function Header() {
                      ))}
                      <div className="flex items-center gap-4 pt-4 border-t border-zinc-800">
                         <a
-                           href="https://github.com"
+                           href="https://github.com/ejaz-developer"
                            target="_blank"
                            rel="noopener noreferrer"
                            className="text-zinc-400 hover:text-white transition-colors"
@@ -105,7 +107,7 @@ function Header() {
                            <Github className="h-5 w-5" />
                         </a>
                         <a
-                           href="https://linkedin.com"
+                           href="https://linkedin.com/in/ejaz-developer"
                            target="_blank"
                            rel="noopener noreferrer"
                            className="text-zinc-400 hover:text-white transition-colors"
