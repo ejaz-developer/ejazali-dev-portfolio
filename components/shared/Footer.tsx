@@ -1,18 +1,21 @@
 import React from 'react';
-import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 function Footer() {
    const currentYear = new Date().getFullYear();
 
    const socialLinks = [
-      { icon: Github, href: 'https://github.com', label: 'GitHub' },
+      {
+         icon: Github,
+         href: 'https://github.com/ejaz-developer',
+         label: 'GitHub',
+      },
       {
          icon: Linkedin,
-         href: 'https://linkedin.com',
+         href: 'https://www.linkedin.com/in/ejaz-developer/',
          label: 'LinkedIn',
       },
-      { icon: Twitter, href: 'https://twitter.com', label: 'Twitter' },
       { icon: Mail, href: 'mailto:contact@ejaz.dev', label: 'Email' },
    ];
 
@@ -23,10 +26,13 @@ function Footer() {
          { name: 'Skills', href: '#skills' },
          { name: 'Contact', href: '#contact' },
       ],
-      Resources: [
-         { name: 'Blog', href: '#blog' },
-         { name: 'Resume', href: '#resume' },
-         { name: 'Testimonials', href: '#testimonials' },
+      Connect: [
+         { name: 'GitHub', href: 'https://github.com/ejaz-developer' },
+         {
+            name: 'LinkedIn',
+            href: 'https://www.linkedin.com/in/ejaz-developer/',
+         },
+         { name: 'Email', href: 'mailto:contact@ejaz.dev' },
       ],
    };
 
