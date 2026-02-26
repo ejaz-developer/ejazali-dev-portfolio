@@ -1,121 +1,111 @@
-import React from 'react';
-import { Github, Linkedin, Mail } from 'lucide-react';
-import { Separator } from '@/components/ui/separator';
+'use client';
 
-function Footer() {
-   const currentYear = new Date().getFullYear();
+import React, { useRef } from 'react';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Button } from '@/components/ui/button';
+import { Heart, Linkedin, Github, Twitter, ArrowUp } from 'lucide-react';
 
-   const socialLinks = [
-      {
-         icon: Github,
-         href: 'https://github.com/ejaz-developer',
-         label: 'GitHub',
-      },
-      {
-         icon: Linkedin,
-         href: 'https://www.linkedin.com/in/ejaz-developer/',
-         label: 'LinkedIn',
-      },
-      { icon: Mail, href: 'mailto:contact@ejaz.dev', label: 'Email' },
-   ];
+gsap.registerPlugin(ScrollTrigger);
 
-   const footerLinks = {
-      Navigation: [
-         { name: 'About', href: '#about' },
-         { name: 'Projects', href: '#projects' },
-         { name: 'Skills', href: '#skills' },
-         { name: 'Contact', href: '#contact' },
-      ],
-      Connect: [
-         { name: 'GitHub', href: 'https://github.com/ejaz-developer' },
-         {
-            name: 'LinkedIn',
-            href: 'https://www.linkedin.com/in/ejaz-developer/',
-         },
-         { name: 'Email', href: 'mailto:contact@ejaz.dev' },
-      ],
+const Footer = () => {
+   const footerRef = useRef<HTMLDivElement>(null);
+   const contentRef = useRef<HTMLDivElement>(null);
+
+   const scrollToTop = () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
    };
 
+   useGSAP(
+      () => {
+         gsap.fromTo(
+            contentRef.current,
+            { opacity: 0, y: 30 },
+            {
+               opacity: 1,
+               y: 0,
+               duration: 0.8,
+               ease: 'power3.out',
+               scrollTrigger: {
+                  trigger: footerRef.current,
+                  start: 'top 90%',
+                  end: 'bottom bottom',
+                  toggleActions: 'play none none reverse',
+               },
+            }
+         );
+      },
+      { scope: footerRef }
+   );
+
    return (
-      <footer className="border-t border-zinc-800 bg-black">
-         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-               {/* Brand Section */}
-               <div className="md:col-span-2">
+      <footer
+         ref={footerRef}
+         className="relative py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 border-t border-gray-200 dark:border-gray-700"
+      >
+         <div className="max-w-7xl mx-auto">
+            <div
+               ref={contentRef}
+               className="flex flex-col items-center justify-center space-y-6"
+            >
+               {/* Social Links */}
+               <div className="flex items-center gap-4">
                   <a
-                     href="#"
-                     className="text-2xl font-bold text-white hover:text-zinc-300 transition-colors inline-block mb-4"
+                     href="https://linkedin.com/in/ejazali"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                     aria-label="LinkedIn"
                   >
-                     Ejaz<span className="text-blue-500">.</span>dev
+                     <Linkedin className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
                   </a>
-                  <p className="text-zinc-400 text-sm max-w-md mb-6">
-                     Passionate software developer dedicated to bringing ideas
-                     to life through elegant code and innovative solutions.
-                  </p>
-                  <div className="flex gap-4">
-                     {socialLinks.map((social) => {
-                        const Icon = social.icon;
-                        return (
-                           <a
-                              key={social.label}
-                              href={social.href}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="text-zinc-400 hover:text-white transition-colors"
-                              aria-label={social.label}
-                           >
-                              <Icon className="h-5 w-5" />
-                           </a>
-                        );
-                     })}
-                  </div>
+                  <a
+                     href="https://github.com/ejazali"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                     aria-label="GitHub"
+                  >
+                     <Github className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                  </a>
+                  <a
+                     href="https://twitter.com/ejazali"
+                     target="_blank"
+                     rel="noopener noreferrer"
+                     className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                     aria-label="Twitter"
+                  >
+                     <Twitter className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                  </a>
                </div>
 
-               {/* Links Sections */}
-               {Object.entries(footerLinks).map(([title, links]) => (
-                  <div key={title}>
-                     <h3 className="text-white font-semibold mb-4">{title}</h3>
-                     <ul className="space-y-2">
-                        {links.map((link) => (
-                           <li key={link.name}>
-                              <a
-                                 href={link.href}
-                                 className="text-zinc-400 hover:text-white text-sm transition-colors"
-                              >
-                                 {link.name}
-                              </a>
-                           </li>
-                        ))}
-                     </ul>
-                  </div>
-               ))}
-            </div>
-
-            <Separator className="my-8 bg-zinc-800" />
-
-            {/* Bottom Section */}
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-               <p className="text-zinc-400 text-sm">
-                  © {currentYear} Ejaz Developer. All rights reserved.
+               {/* Tagline */}
+               <p className="text-gray-600 dark:text-gray-400 text-center max-w-md">
+                  Crafting digital experiences with passion and precision.
                </p>
-               <div className="flex gap-6 text-sm">
-                  <a
-                     href="#privacy"
-                     className="text-zinc-400 hover:text-white transition-colors"
-                  >
-                     Privacy Policy
-                  </a>
-                  <a
-                     href="#terms"
-                     className="text-zinc-400 hover:text-white transition-colors"
-                  >
-                     Terms of Service
-                  </a>
-               </div>
+
+               {/* Copyright */}
+               <p className="text-sm text-gray-500 dark:text-gray-500 flex items-center gap-1">
+                  © {new Date().getFullYear()} Ejaz Ali. Made with
+                  <Heart className="w-4 h-4 fill-red-500 text-red-500 animate-pulse" />
+                  in Skardu.
+               </p>
+
+               {/* Back to top button */}
+               <Button
+                  onClick={scrollToTop}
+                  size="icon"
+                  variant="outline"
+                  className="rounded-full border-gray-300 dark:border-gray-600 hover:bg-indigo-50 dark:hover:bg-gray-700 hover:border-indigo-400 transition-all"
+                  aria-label="Back to top"
+               >
+                  <ArrowUp className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+               </Button>
             </div>
          </div>
       </footer>
    );
-}
+};
 
 export default Footer;
