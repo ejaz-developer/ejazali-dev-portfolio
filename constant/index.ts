@@ -46,7 +46,11 @@ export const socialLinks = [
       label: 'LinkedIn',
    },
    { icon: Github, href: 'https://github.com/ejaz-developer', label: 'GitHub' },
-   { icon: Twitter, href: 'https://twitter.com/', label: 'Twitter' },
+   {
+      icon: Twitter,
+      href: 'https://twitter.com/ejazdeveloper',
+      label: 'Twitter',
+   },
 ];
 
 export const services = [
