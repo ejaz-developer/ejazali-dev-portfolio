@@ -17,8 +17,8 @@ const FluidBackground = () => {
 
       const mouse = { x: width / 2, y: height / 2, active: false };
       const particles: Particle[] = [];
-      const particleCount = 200; // Increased for more "fluid" look
-      const connectionDistance = 150;
+      const particleCount = 150;
+      const connectionDistance = 120;
 
       class Particle {
          x: number;
@@ -58,7 +58,6 @@ const FluidBackground = () => {
                }
             }
 
-            // Friction to keep it smooth
             this.vx *= 0.98;
             this.vy *= 0.98;
          }
@@ -116,27 +115,42 @@ const FluidBackground = () => {
          init();
       };
 
-      const handleMouseMove = (e: MouseEvent) => {
-         mouse.x = e.clientX;
-         mouse.y = e.clientY;
+      const handleMove = (e: MouseEvent | TouchEvent) => {
+         const clientX =
+            'touches' in e ? e.touches[0].clientX : (e as MouseEvent).clientX;
+         const clientY =
+            'touches' in e ? e.touches[0].clientY : (e as MouseEvent).clientY;
+         mouse.x = clientX;
+         mouse.y = clientY;
          mouse.active = true;
       };
 
-      const handleMouseLeave = () => {
+      const handleEnd = () => {
          mouse.active = false;
       };
 
       window.addEventListener('resize', handleResize);
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseleave', handleMouseLeave);
+      window.addEventListener('mousemove', (e) => handleMove(e));
+      window.addEventListener('mouseleave', handleEnd);
+
+      window.addEventListener('touchmove', (e) => handleMove(e), {
+         passive: true,
+      });
+      window.addEventListener('touchstart', (e) => handleMove(e), {
+         passive: true,
+      });
+      window.addEventListener('touchend', handleEnd);
 
       init();
       animate();
 
       return () => {
          window.removeEventListener('resize', handleResize);
-         window.removeEventListener('mousemove', handleMouseMove);
-         window.removeEventListener('mouseleave', handleMouseLeave);
+         window.removeEventListener('mousemove', (e) => handleMove(e));
+         window.removeEventListener('mouseleave', handleEnd);
+         window.removeEventListener('touchmove', (e) => handleMove(e));
+         window.removeEventListener('touchstart', (e) => handleMove(e));
+         window.removeEventListener('touchend', handleEnd);
       };
    }, []);
 

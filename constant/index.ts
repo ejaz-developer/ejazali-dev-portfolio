@@ -2,6 +2,8 @@ import {
    Gauge,
    Github,
    Globe,
+   Home,
+   Instagram,
    Linkedin,
    Mail,
    MapPin,
@@ -19,8 +21,12 @@ export const navLinks = [
       href: '/',
    },
    {
-      name: 'About me',
+      name: 'About',
       href: '#about',
+   },
+   {
+      name: 'Experience',
+      href: '#experience',
    },
    {
       name: 'Work',
@@ -47,6 +53,25 @@ export const socialLinks = [
       icon: Twitter,
       href: 'https://twitter.com/ejazdeveloper',
       label: 'Twitter',
+   },
+];
+
+export const experience = [
+   {
+      company: 'Full Stack Developer at Codehub Skardu',
+      role: 'Full Stack Developer',
+      period: '2023 - Present',
+      description:
+         'Developing high-performance web applications for clients globally, specializing in Next.js, TypeScript, and scalable backend architectures. Delivering end-to-end solutions from UI/UX design to deployment.',
+      skills: ['Next.js', 'TypeScript', 'Node.js', 'Tailwind CSS'],
+   },
+   {
+      company: 'Frontend Developer at Codehub Skardu',
+      role: 'Frontend Developer',
+      period: '2022 - 2023',
+      description:
+         'Built interactive and responsive user interfaces for local tourism and event platforms. Optimized web performance and implemented complex animations using Framer Motion.',
+      skills: ['React', 'JavaScript', 'Framer Motion', 'REST APIs'],
    },
 ];
 
@@ -100,13 +125,13 @@ export const projects = [
       title: 'MERN based Bus Ticketing Web app',
       imageSource: '/bookmygb-image.png',
       preview: 'https://bookmygb.vercel.app/',
-      github: 'https://github.com/ejaz-developer/bookmygb', // optional, add if you have
+      github: 'https://github.com/yourusername/bookmygb', // optional, add if you have
    },
    {
       title: 'Next.js based Point of Sale System',
       imageSource: '/recordkeeper-image.png',
       preview: 'https://recordkeeper-pink.vercel.app/',
-      github: 'https://github.com/ejaz-developer/recordkeeper',
+      github: 'https://github.com/yourusername/recordkeeper',
    },
    // Add more projects as needed
 ];

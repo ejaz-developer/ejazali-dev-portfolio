@@ -6,50 +6,97 @@ import { useEffect, useState } from 'react';
 const CustomCursor = () => {
    const [isHovered, setIsHovered] = useState(false);
    const [clicked, setClicked] = useState(false);
+   const [isVisible, setIsVisible] = useState(false);
+
    const cursorX = useMotionValue(-100);
    const cursorY = useMotionValue(-100);
 
-   const springConfig = { damping: 30, stiffness: 500 };
+   const springConfig = { damping: 40, stiffness: 600 };
    const cursorXSpring = useSpring(cursorX, springConfig);
    const cursorYSpring = useSpring(cursorY, springConfig);
 
    useEffect(() => {
-      const moveCursor = (e: MouseEvent) => {
-         cursorX.set(e.clientX);
-         cursorY.set(e.clientY);
+      // General Move Handler (Mouse or Touch)
+      const handleMove = (e: MouseEvent | TouchEvent) => {
+         const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
+         const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+
+         cursorX.set(clientX);
+         cursorY.set(clientY);
+
+         if (!isVisible) setIsVisible(true);
       };
 
-      const handleMouseOver = (e: MouseEvent) => {
+      // Hover Detection for Interactables
+      const handleInteraction = (e: MouseEvent | TouchEvent) => {
          const target = e.target as HTMLElement;
-         const isPickable = !!(
+         const isInteractable = !!(
             target.tagName === 'A' ||
             target.tagName === 'BUTTON' ||
             target.closest('button') ||
             target.closest('a') ||
-            window.getComputedStyle(target).cursor === 'pointer'
+            (target instanceof HTMLElement &&
+               window.getComputedStyle(target).cursor === 'pointer')
          );
 
-         setIsHovered(isPickable);
+         setIsHovered(isInteractable);
       };
 
-      const handleMouseDown = () => setClicked(true);
-      const handleMouseUp = () => setClicked(false);
+      // Press Events
+      const handlePressStart = () => setClicked(true);
+      const handlePressEnd = () => setClicked(false);
+      const handleLeave = () => setIsVisible(false);
 
-      window.addEventListener('mousemove', moveCursor);
-      window.addEventListener('mouseover', handleMouseOver);
-      window.addEventListener('mousedown', handleMouseDown);
-      window.addEventListener('mouseup', handleMouseUp);
+      // Web Events
+      window.addEventListener('mousemove', handleMove);
+      window.addEventListener(
+         'mouseover',
+         handleInteraction as (e: Event) => void
+      );
+      window.addEventListener('mousedown', handlePressStart);
+      window.addEventListener('mouseup', handlePressEnd);
+      window.addEventListener('mouseleave', handleLeave);
+
+      // Mobile/Touch Events
+      window.addEventListener('touchmove', handleMove, { passive: true });
+      window.addEventListener(
+         'touchstart',
+         (e) => {
+            handleMove(e);
+            handlePressStart();
+            handleInteraction(e);
+         },
+         { passive: true }
+      );
+      window.addEventListener('touchend', handlePressEnd);
+      window.addEventListener('touchcancel', handlePressEnd);
 
       return () => {
-         window.removeEventListener('mousemove', moveCursor);
-         window.removeEventListener('mouseover', handleMouseOver);
-         window.removeEventListener('mousedown', handleMouseDown);
-         window.removeEventListener('mouseup', handleMouseUp);
+         // Cleanup Web
+         window.removeEventListener('mousemove', handleMove);
+         window.removeEventListener(
+            'mouseover',
+            handleInteraction as (e: Event) => void
+         );
+         window.removeEventListener('mousedown', handlePressStart);
+         window.removeEventListener('mouseup', handlePressEnd);
+         window.removeEventListener('mouseleave', handleLeave);
+
+         // Cleanup Touch
+         window.removeEventListener('touchmove', handleMove);
+         window.removeEventListener(
+            'touchstart',
+            handleMove as (e: Event) => void
+         );
+         window.removeEventListener('touchend', handlePressEnd);
+         window.removeEventListener('touchcancel', handlePressEnd);
       };
-   }, [cursorX, cursorY]);
+   }, [cursorX, cursorY, isVisible]);
+
+   if (!isVisible) return null;
 
    return (
-      <div className="fixed inset-0 pointer-events-none z-[100] overflow-hidden hidden md:block">
+      <div className="fixed inset-0 pointer-events-none z-[100] overflow-hidden">
          {/* Outer Ring */}
          <motion.div
             className="absolute w-10 h-10 border-2 border-blue-500 rounded-full"
@@ -75,14 +122,14 @@ const CustomCursor = () => {
             }}
          />
 
-         {/* Trailing Glow */}
+         {/* Trailing Glow - Optimized for performance */}
          <motion.div
-            className="absolute w-32 h-32 bg-blue-500/10 rounded-full blur-[40px]"
+            className="absolute w-24 h-24 bg-blue-400/10 rounded-full blur-[30px]"
             style={{
                translateX: cursorXSpring,
                translateY: cursorYSpring,
-               left: -64,
-               top: -64,
+               left: -48,
+               top: -48,
             }}
          />
       </div>
