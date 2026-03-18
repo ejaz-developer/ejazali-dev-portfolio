@@ -1,10 +1,7 @@
 import {
    Gauge,
    Github,
-   GithubIcon,
    Globe,
-   Home,
-   Instagram,
    Linkedin,
    Mail,
    MapPin,
@@ -103,13 +100,13 @@ export const projects = [
       title: 'MERN based Bus Ticketing Web app',
       imageSource: '/bookmygb-image.png',
       preview: 'https://bookmygb.vercel.app/',
-      github: 'https://github.com/yourusername/bookmygb', // optional, add if you have
+      github: 'https://github.com/ejaz-developer/bookmygb', // optional, add if you have
    },
    {
       title: 'Next.js based Point of Sale System',
       imageSource: '/recordkeeper-image.png',
       preview: 'https://recordkeeper-pink.vercel.app/',
-      github: 'https://github.com/yourusername/recordkeeper',
+      github: 'https://github.com/ejaz-developer/recordkeeper',
    },
    // Add more projects as needed
 ];

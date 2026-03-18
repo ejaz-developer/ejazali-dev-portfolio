@@ -1,10 +1,12 @@
+import CustomCursor from '@/components/shared/CustomCursor';
+import FluidBackground from '@/components/shared/FluidBackground';
+import Footer from '@/components/shared/Footer';
+import Header from '@/components/shared/Header';
+import { ThemeProvider } from '@/components/theme-provider';
 import type { Metadata } from 'next';
 import { Saira } from 'next/font/google';
-import './globals.css';
-import Header from '@/components/shared/Header';
-import Footer from '@/components/shared/Footer';
-import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from 'react-hot-toast';
+import './globals.css';
 
 const geistSans = Saira({
    variable: '--font-geist-sans',
@@ -94,9 +96,11 @@ export default function RootLayout({
                enableSystem
                disableTransitionOnChange
             >
+               <FluidBackground />
+               <CustomCursor />
                <Toaster position="top-center" reverseOrder={false} />
                <Header />
-               {children}
+               <main className="relative z-10">{children}</main>
                <Footer />
             </ThemeProvider>
          </body>

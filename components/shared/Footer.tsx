@@ -1,107 +1,73 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { useGSAP } from '@gsap/react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Button } from '@/components/ui/button';
-import { Heart, Linkedin, Github, Twitter, ArrowUp } from 'lucide-react';
-
-gsap.registerPlugin(ScrollTrigger);
+import React from 'react';
+import { motion } from 'framer-motion';
+import {
+   Github,
+   Linkedin,
+   Twitter,
+   Instagram,
+   ArrowUp,
+   MapPin,
+} from 'lucide-react';
+import { socialLinks } from '@/constant';
 
 const Footer = () => {
-   const footerRef = useRef<HTMLDivElement>(null);
-   const contentRef = useRef<HTMLDivElement>(null);
-
    const scrollToTop = () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
    };
 
-   useGSAP(
-      () => {
-         gsap.fromTo(
-            contentRef.current,
-            { opacity: 0, y: 30 },
-            {
-               opacity: 1,
-               y: 0,
-               duration: 0.8,
-               ease: 'power3.out',
-               scrollTrigger: {
-                  trigger: footerRef.current,
-                  start: 'top 90%',
-                  end: 'bottom bottom',
-                  toggleActions: 'play none none reverse',
-               },
-            }
-         );
-      },
-      { scope: footerRef }
-   );
-
    return (
-      <footer
-         ref={footerRef}
-         className="relative py-12 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 border-t border-gray-200 dark:border-gray-700"
-      >
+      <footer className="relative bg-white dark:bg-black py-12 px-4 sm:px-6 lg:px-8 border-t border-blue-500/10 overflow-hidden">
          <div className="max-w-7xl mx-auto">
-            <div
-               ref={contentRef}
-               className="flex flex-col items-center justify-center space-y-6"
-            >
-               {/* Social Links */}
-               <div className="flex items-center gap-4">
-                  <a
-                     href="https://linkedin.com/in/ejazali"
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-                     aria-label="LinkedIn"
-                  >
-                     <Linkedin className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
-                  </a>
-                  <a
-                     href="https://github.com/ejazali"
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-                     aria-label="GitHub"
-                  >
-                     <Github className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
-                  </a>
-                  <a
-                     href="https://twitter.com/ejazali"
-                     target="_blank"
-                     rel="noopener noreferrer"
-                     className="p-3 bg-white dark:bg-gray-800 rounded-full shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-                     aria-label="Twitter"
-                  >
-                     <Twitter className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
-                  </a>
+            <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+               {/* Brand */}
+               <div className="flex items-center gap-3 group cursor-default">
+                  <div className="w-10 h-10 rounded-xl bg-blue-600 flex items-center justify-center text-white font-black text-xl group-hover:rotate-12 transition-transform shadow-lg shadow-blue-500/20">
+                     E
+                  </div>
+                  <h2 className="text-2xl font-black tracking-tight">
+                     Ejaz <span className="text-blue-600">Ali</span>
+                  </h2>
                </div>
 
-               {/* Tagline */}
-               <p className="text-gray-600 dark:text-gray-400 text-center max-w-md">
-                  Crafting digital experiences with passion and precision.
-               </p>
+               {/* Location & Copyright */}
+               <div className="text-center md:text-left space-y-2">
+                  <p className="text-muted-foreground font-bold text-sm">
+                     © {new Date().getFullYear()} All Rights Reserved.
+                  </p>
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/5 border border-blue-500/10 text-xs font-bold text-blue-600">
+                     <MapPin className="w-3 h-3" />
+                     Skardu, Pakistan
+                  </div>
+               </div>
 
-               {/* Copyright */}
-               <p className="text-sm text-gray-500 dark:text-gray-500 flex items-center gap-1">
-                  © {new Date().getFullYear()} Ejaz Ali. Made with
-                  <Heart className="w-4 h-4 fill-red-500 text-red-500 animate-pulse" />
-                  in Skardu.
-               </p>
+               {/* Social & Back to Top */}
+               <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-2 border-r border-blue-500/10 pr-4">
+                     {socialLinks.map((social, idx) => (
+                        <a
+                           key={idx}
+                           href={social.href}
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           className="w-10 h-10 rounded-xl border border-blue-500/10 flex items-center justify-center text-muted-foreground hover:text-blue-600 hover:bg-blue-500/10 transition-all hover:scale-110"
+                           aria-label={social.label}
+                        >
+                           <social.icon className="w-5 h-5" />
+                        </a>
+                     ))}
+                  </div>
 
-               {/* Back to top button */}
-               <Button
-                  onClick={scrollToTop}
-                  size="icon"
-                  variant="outline"
-                  className="rounded-full border-gray-300 dark:border-gray-600 hover:bg-indigo-50 dark:hover:bg-gray-700 hover:border-indigo-400 transition-all"
-                  aria-label="Back to top"
-               >
-                  <ArrowUp className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
-               </Button>
+                  <motion.button
+                     whileHover={{ scale: 1.1 }}
+                     whileTap={{ scale: 0.9 }}
+                     onClick={scrollToTop}
+                     className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/20 transition-all"
+                  >
+                     <ArrowUp className="w-5 h-5" />
+                  </motion.button>
+               </div>
             </div>
          </div>
       </footer>
