@@ -4,23 +4,28 @@ import Footer from '@/components/shared/Footer';
 import Header from '@/components/shared/Header';
 import { ThemeProvider } from '@/components/theme-provider';
 import type { Metadata } from 'next';
-import { Saira } from 'next/font/google';
+import { Inter, DM_Sans } from 'next/font/google';
 import { Toaster } from 'react-hot-toast';
 import './globals.css';
 
-const geistSans = Saira({
-   variable: '--font-geist-sans',
+const inter = Inter({
+   variable: '--font-inter',
    subsets: ['latin'],
 });
 
+const dmSans = DM_Sans({
+   variable: '--font-dm-sans',
+   subsets: ['latin'],
+   weight: ['400', '500', '700'],
+});
+
 export const metadata: Metadata = {
-   // Basic metadata
    title: {
-      default: 'Ejaz Ali - Full Stack Developer | Portfolio',
+      default: 'Ejaz Ali - Full Stack MERN Developer | Portfolio',
       template: '%s | Ejaz Ali',
    },
    description:
-      'Ejaz Ali is a full-stack MERN and Next.js developer with 2+ years of experience. Explore his portfolio of web applications, projects, and skills. Based in Skardu, Pakistan.',
+      'Ejaz Ali is a Full Stack MERN Developer crafting scalable, pixel-perfect web experiences. Based in Skardu, Pakistan with 5+ years of experience.',
    keywords: [
       'Ejaz Ali',
       'full stack developer',
@@ -34,50 +39,23 @@ export const metadata: Metadata = {
       'Skardu',
       'Codehub Skardu',
    ],
-   authors: [{ name: 'Ejaz Ali', url: 'https://ejazali.dev' }],
+   authors: [{ name: 'Ejaz Ali' }],
    creator: 'Ejaz Ali',
    publisher: 'Ejaz Ali',
-
-   // Open Graph (for social media sharing)
    openGraph: {
       title: 'Ejaz Ali - Full Stack Developer',
       description:
-         'Bring your ideas to life with code. Explore the portfolio of Ejaz Ali, a passionate full-stack developer from Pakistan.',
+         'I build modern, high-performance web applications using the MERN stack. Explore my work and story.',
       url: 'https://ejazali.dev',
       siteName: 'Ejaz Ali Portfolio',
-      images: [
-         {
-            url: 'https://ejazali.dev/og-image.png', // Replace with your actual OG image path
-            width: 1200,
-            height: 630,
-            alt: 'Ejaz Ali - Full Stack Developer',
-         },
-      ],
       locale: 'en_US',
       type: 'website',
    },
-
-   // Twitter Card
    twitter: {
       card: 'summary_large_image',
       title: 'Ejaz Ali - Full Stack Developer',
       description:
-         'Bring your ideas to life with code. Explore the portfolio of Ejaz Ali, a passionate full-stack developer from Pakistan.',
-      images: ['https://ejazali.dev/twitter-image.png'], // Replace with your actual Twitter image path
-      creator: '@ejazali', // Replace with your Twitter handle
-   },
-
-   // Robots instructions
-   robots: {
-      index: true,
-      follow: true,
-      googleBot: {
-         index: true,
-         follow: true,
-         'max-video-preview': -1,
-         'max-image-preview': 'large',
-         'max-snippet': -1,
-      },
+         'Full Stack MERN Developer crafting scalable, pixel-perfect web experiences.',
    },
    category: 'technology',
 };
@@ -88,20 +66,23 @@ export default function RootLayout({
    children: React.ReactNode;
 }>) {
    return (
-      <html lang="en" className="dark">
-         <body className={`${geistSans.variable} antialiased`}>
+      <html lang="en" className="dark" style={{ scrollBehavior: 'smooth' }}>
+         <body
+            className={`${inter.variable} ${dmSans.variable} antialiased font-sans`}
+         >
             <ThemeProvider
                attribute="class"
-               defaultTheme="system"
+               defaultTheme="dark"
                enableSystem
                disableTransitionOnChange
             >
+               <div className="noise" />
                <FluidBackground />
                <CustomCursor />
-               <Toaster position="top-center" reverseOrder={false} />
                <Header />
-               <main className="relative z-10">{children}</main>
+               <main>{children}</main>
                <Footer />
+               <Toaster position="bottom-right" />
             </ThemeProvider>
          </body>
       </html>

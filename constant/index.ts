@@ -2,8 +2,6 @@ import {
    Gauge,
    Github,
    Globe,
-   Home,
-   Instagram,
    Linkedin,
    Mail,
    MapPin,
@@ -17,8 +15,8 @@ import {
 
 export const navLinks = [
    {
-      name: 'Home',
-      href: '/',
+      name: 'Work',
+      href: '#work',
    },
    {
       name: 'About',
@@ -27,14 +25,6 @@ export const navLinks = [
    {
       name: 'Experience',
       href: '#experience',
-   },
-   {
-      name: 'Work',
-      href: '#work',
-   },
-   {
-      name: 'Services',
-      href: '#services',
    },
    {
       name: 'Contact',
@@ -54,24 +44,62 @@ export const socialLinks = [
       href: 'https://twitter.com/ejazdeveloper',
       label: 'Twitter',
    },
+   {
+      icon: Mail,
+      href: 'mailto:devpro.ejazali34@gmail.com',
+      label: 'Email',
+   },
 ];
 
 export const experience = [
    {
-      company: 'Full Stack Developer at Codehub Skardu',
+      company: 'CodeHub Skardu',
       role: 'Full Stack Developer',
       period: '2023 - Present',
       description:
-         'Developing high-performance web applications for clients globally, specializing in Next.js, TypeScript, and scalable backend architectures. Delivering end-to-end solutions from UI/UX design to deployment.',
-      skills: ['Next.js', 'TypeScript', 'Node.js', 'Tailwind CSS'],
+         'Leading the development of high-performance web applications, specializing in Next.js, TypeScript, and scalable MERN stack architectures. Architecting end-to-end solutions from UI/UX design to cloud deployment.',
+      skills: ['Next.js', 'TypeScript', 'Node.js', 'Tailwind CSS', 'MongoDB'],
    },
    {
-      company: 'Frontend Developer at Codehub Skardu',
+      company: 'CodeHub Skardu',
       role: 'Frontend Developer',
       period: '2022 - 2023',
       description:
-         'Built interactive and responsive user interfaces for local tourism and event platforms. Optimized web performance and implemented complex animations using Framer Motion.',
-      skills: ['React', 'JavaScript', 'Framer Motion', 'REST APIs'],
+         'Collaborated on building interactive and responsive user interfaces for tourism and event platforms. Optimized web performance and implemented complex animations using Framer Motion to enhance user delight.',
+      skills: ['React', 'JavaScript', 'Framer Motion', 'REST APIs', 'Redux'],
+   },
+];
+
+export const statsData = [
+   {
+      label: 'Years Experience',
+      value: '5+',
+      icon: 'Sparkles',
+      color: 'text-indigo-500',
+   },
+   {
+      label: 'Projects Completed',
+      value: '20+',
+      icon: 'Rocket',
+      color: 'text-purple-500',
+   },
+   {
+      label: 'Technologies',
+      value: '10+',
+      icon: 'Palette',
+      color: 'text-pink-500',
+      technologies: [
+         'MERN',
+         'TypeScript',
+         'Next.js',
+         'Tailwind',
+         'Redux',
+         'Git',
+         'Docker',
+         'AWS',
+         'Firebase',
+         'Framer Motion',
+      ],
    },
 ];
 
@@ -122,18 +150,25 @@ export const services = [
 
 export const projects = [
    {
-      title: 'MERN based Bus Ticketing Web app',
+      title: 'Bus Ticketing Web App',
+      description:
+         'A comprehensive full-stack solution for streamlined bus seat reservations and management in Northern Pakistan.',
       imageSource: '/bookmygb-image.png',
       preview: 'https://bookmygb.vercel.app/',
-      github: 'https://github.com/yourusername/bookmygb', // optional, add if you have
+      github: 'https://github.com/ejaz-developer/bookmygb',
+      tags: ['React', 'Node.js', 'MongoDB', 'Express', 'Redux'],
+      featured: true,
    },
    {
-      title: 'Next.js based Point of Sale System',
+      title: 'Record Keeper POS',
+      description:
+         'A cloud-based point-of-sale system for small businesses to manage inventory, sales, and analytics with ease.',
       imageSource: '/recordkeeper-image.png',
       preview: 'https://recordkeeper-pink.vercel.app/',
-      github: 'https://github.com/yourusername/recordkeeper',
+      github: 'https://github.com/ejaz-developer/recordkeeper',
+      tags: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Tailwind'],
+      featured: false,
    },
-   // Add more projects as needed
 ];
 
 export const contactInfo = [

@@ -3,114 +3,153 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle2, Mail, Phone, MapPin } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import {
+   Send,
+   MapPin,
+   Phone,
+   Mail,
+   Github,
+   Linkedin,
+   Twitter,
+} from 'lucide-react';
 import { contactInfo, socialLinks } from '@/constant';
 
 const ContactSection = () => {
-   const features = [
-      'Custom Web Development',
-      'UI/UX Design Strategy',
-      'API & Database Architecture',
-      'Performance Optimization',
-   ];
-
    return (
       <section
          id="contact"
-         className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-blue-500/[0.02]"
+         className="py-24 px-4 bg-background relative overflow-hidden"
       >
-         {/* Background Elements */}
-         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/5 blur-[120px] rounded-full -z-10" />
-         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-purple-500/5 blur-[100px] rounded-full -z-10" />
+         {/* Decorative Background Elements */}
+         <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/5 rounded-full blur-[120px]" />
+         <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/5 rounded-full blur-[120px]" />
 
-         <div className="max-w-7xl mx-auto">
-            <div className="flex flex-col items-center text-center space-y-12">
-               {/* Header Content */}
-               <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="max-w-3xl"
+         <div className="max-w-7xl mx-auto relative z-10">
+            <div className="text-center mb-16">
+               <Badge
+                  variant="outline"
+                  className="px-4 py-1 border-indigo-500/30 text-indigo-400 mb-6 bg-indigo-500/5 backdrop-blur-sm"
                >
-                  <Badge
-                     variant="outline"
-                     className="px-4 py-1 border-blue-500/30 text-blue-600 mb-6 bg-blue-500/5 backdrop-blur-sm"
-                  >
-                     Let's Connect
-                  </Badge>
-                  <h2 className="text-4xl md:text-5xl lg:text-7xl font-black leading-tight mb-6">
-                     Ready to build <br />
-                     <span className="text-blue-600 dark:text-blue-400">
-                        something great?
-                     </span>
-                  </h2>
-                  <p className="text-muted-foreground text-lg md:text-xl font-medium">
-                     I'm currently available for freelance work and
-                     collaborations. Feel free to reach out through any of these
-                     channels.
-                  </p>
-               </motion.div>
+                  Get In Touch
+               </Badge>
+               <h2 className="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight">
+                  Ready to Build{' '}
+                  <span className="text-indigo-500">Something Great?</span>
+               </h2>
+               <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
+                  I'm currently available for freelance work and collaborations.
+                  Let's talk about your next project.
+               </p>
+            </div>
 
-               {/* Contact Cards Grid */}
-               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl">
-                  {contactInfo.map((item, idx) => (
-                     <motion.a
-                        key={idx}
-                        href={item.href}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: idx * 0.1 }}
-                        className="p-8 rounded-[32px] border border-blue-500/10 bg-white/40 dark:bg-black/40 backdrop-blur-xl hover:border-blue-500/30 hover:shadow-2xl hover:shadow-blue-500/10 transition-all group overflow-hidden relative"
-                     >
-                        <div className="absolute -right-8 -bottom-8 w-24 h-24 bg-blue-500/5 rounded-full group-hover:scale-150 transition-transform duration-700" />
-
-                        <div className="relative z-10 flex flex-col items-center">
-                           <div className="p-4 rounded-2xl bg-blue-600 text-white mb-6 group-hover:rotate-12 transition-transform shadow-lg shadow-blue-500/20">
-                              <item.icon className="w-6 h-6" />
-                           </div>
-                           <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-2">
-                              {item.label}
-                           </p>
-                           <p className="text-xl font-black break-all group-hover:text-blue-600 transition-colors">
-                              {item.value}
-                           </p>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+               {/* Contact Form */}
+               <motion.div
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  className="bg-card p-8 rounded-3xl border border-border shadow-2xl"
+               >
+                  <form className="space-y-6">
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                           <label className="text-sm font-medium text-white">
+                              Your Name
+                           </label>
+                           <Input
+                              placeholder="John Doe"
+                              className="bg-muted border-border focus:border-indigo-500 transition-colors py-6 rounded-xl"
+                           />
                         </div>
-                     </motion.a>
-                  ))}
-               </div>
-
-               {/* Social Icons Strip */}
-               <motion.div
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="flex justify-center items-center gap-6 pt-12"
-               >
-                  {socialLinks.map((social, idx) => (
-                     <a
-                        key={idx}
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-14 h-14 rounded-2xl border border-blue-500/10 bg-white/40 dark:bg-black/40 backdrop-blur-xl flex items-center justify-center text-muted-foreground hover:text-blue-600 hover:border-blue-500/30 transition-all hover:scale-110"
-                        aria-label={social.label}
+                        <div className="space-y-2">
+                           <label className="text-sm font-medium text-white">
+                              Your Email
+                           </label>
+                           <Input
+                              placeholder="john@example.com"
+                              className="bg-muted border-border focus:border-indigo-500 transition-colors py-6 rounded-xl"
+                           />
+                        </div>
+                     </div>
+                     <div className="space-y-2">
+                        <label className="text-sm font-medium text-white">
+                           Subject
+                        </label>
+                        <Input
+                           placeholder="Project Inquiry"
+                           className="bg-muted border-border focus:border-indigo-500 transition-colors py-6 rounded-xl"
+                        />
+                     </div>
+                     <div className="space-y-2">
+                        <label className="text-sm font-medium text-white">
+                           Your Message
+                        </label>
+                        <Textarea
+                           placeholder="Tell me about your project..."
+                           className="min-h-[150px] bg-muted border-border focus:border-indigo-500 transition-colors rounded-xl"
+                        />
+                     </div>
+                     <Button
+                        size="lg"
+                        className="w-full bg-indigo-600 hover:bg-indigo-700 text-white gap-2 h-14 rounded-xl transition-all hover:scale-105"
                      >
-                        <social.icon className="w-6 h-6" />
-                     </a>
-                  ))}
+                        Send Message
+                        <Send className="w-4 h-4" />
+                     </Button>
+                  </form>
                </motion.div>
 
-               {/* Features / Capabilities */}
-               <div className="flex flex-wrap justify-center gap-6 pt-8">
-                  {features.map((feature, idx) => (
-                     <div key={idx} className="flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-blue-600" />
-                        <span className="text-sm font-bold text-muted-foreground">
-                           {feature}
-                        </span>
+               {/* Contact Information */}
+               <div className="space-y-12">
+                  <div className="space-y-8">
+                     {contactInfo.map((info, index) => (
+                        <motion.div
+                           key={index}
+                           initial={{ opacity: 0, y: 20 }}
+                           whileInView={{ opacity: 1, y: 0 }}
+                           viewport={{ once: true }}
+                           transition={{ delay: index * 0.1 }}
+                           className="flex items-center gap-6 group"
+                        >
+                           <div className="p-4 rounded-2xl bg-indigo-500/10 text-indigo-500 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                              <info.icon className="w-6 h-6" />
+                           </div>
+                           <div>
+                              <p className="text-sm text-muted-foreground mb-1">
+                                 {info.label}
+                              </p>
+                              <a
+                                 href={info.href}
+                                 className="text-xl font-bold text-white hover:text-indigo-400 transition-colors"
+                              >
+                                 {info.value}
+                              </a>
+                           </div>
+                        </motion.div>
+                     ))}
+                  </div>
+
+                  <div className="pt-8 border-t border-border">
+                     <p className="text-sm font-medium text-muted-foreground mb-6 uppercase tracking-widest">
+                        Follow Me
+                     </p>
+                     <div className="flex flex-wrap gap-4">
+                        {socialLinks.map((social, index) => (
+                           <motion.a
+                              key={index}
+                              href={social.href}
+                              target="_blank"
+                              whileHover={{ scale: 1.1, y: -4 }}
+                              className="p-4 rounded-2xl bg-muted border border-border text-white hover:border-indigo-500 hover:text-indigo-500 transition-all shadow-md group"
+                           >
+                              <social.icon className="w-6 h-6" />
+                           </motion.a>
+                        ))}
                      </div>
-                  ))}
+                  </div>
                </div>
             </div>
          </div>
