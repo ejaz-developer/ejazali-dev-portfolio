@@ -26,7 +26,6 @@ const FluidBackground = () => {
          vx: number;
          vy: number;
          size: number;
-         baseColor: string;
          color: string;
 
          constructor() {
@@ -34,10 +33,8 @@ const FluidBackground = () => {
             this.y = Math.random() * height;
             this.vx = (Math.random() - 0.5) * 0.5;
             this.vy = (Math.random() - 0.5) * 0.5;
-            this.size = Math.random() * 2 + 1;
-            const hue = Math.random() * 40 + 200; // Blue to Purple range
-            this.baseColor = `hsla(${hue}, 70%, 50%, `;
-            this.color = `${this.baseColor}0.3)`;
+            this.size = Math.random() * 2 + 1.5; // Bigger, harder particles
+            this.color = `rgba(150, 150, 150, 0.4)`; // Neutral, mechanical monochrome
          }
 
          update() {
@@ -53,8 +50,8 @@ const FluidBackground = () => {
                const dist = Math.sqrt(dx * dx + dy * dy);
                if (dist < 200) {
                   const force = (200 - dist) / 200;
-                  this.vx += dx * force * 0.01;
-                  this.vy += dy * force * 0.01;
+                  this.vx += dx * force * 0.015;
+                  this.vy += dy * force * 0.015;
                }
             }
 
@@ -64,8 +61,9 @@ const FluidBackground = () => {
 
          draw() {
             if (!ctx) return;
+            // Brutalist square particles instead of round ones
             ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.rect(this.x, this.y, this.size, this.size);
             ctx.fillStyle = this.color;
             ctx.fill();
          }
@@ -87,12 +85,12 @@ const FluidBackground = () => {
                const dist = Math.sqrt(dx * dx + dy * dy);
 
                if (dist < connectionDistance) {
-                  const opacity = (1 - dist / connectionDistance) * 0.2;
+                  const opacity = (1 - dist / connectionDistance) * 0.25; // Increase strength
                   ctx.beginPath();
                   ctx.moveTo(particles[i].x, particles[i].y);
                   ctx.lineTo(particles[j].x, particles[j].y);
-                  ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`;
-                  ctx.lineWidth = 0.5;
+                  ctx.strokeStyle = `rgba(128, 128, 128, ${opacity})`;
+                  ctx.lineWidth = 1; // Thicker, more structural lines
                   ctx.stroke();
                }
             }
@@ -157,7 +155,7 @@ const FluidBackground = () => {
    return (
       <canvas
          ref={canvasRef}
-         className="fixed top-0 left-0 w-full h-full -z-10 bg-transparent opacity-80 pointer-events-none"
+         className="fixed top-0 left-0 w-full h-full -z-10 bg-transparent opacity-80 pointer-events-none hidden md:block"
       />
    );
 };

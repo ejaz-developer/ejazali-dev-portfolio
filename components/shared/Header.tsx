@@ -1,10 +1,10 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight } from 'lucide-react';
-import { cn } from '@/lib/utils';
 import { navLinks } from '@/constant';
+import { cn } from '@/lib/utils';
+import { AnimatePresence, motion } from 'framer-motion';
+import { ArrowRight, Menu, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 const Header = () => {
    const [isScrolled, setIsScrolled] = useState(false);
@@ -35,7 +35,7 @@ const Header = () => {
    }, []);
 
    return (
-      <header className="fixed top-0 left-0 right-0 z-[100] px-4 py-6 transition-all duration-500">
+      <header className="fixed top-0 left-0 right-0 z-100 px-4 py-6 transition-all duration-500">
          <div className="max-w-7xl mx-auto">
             <motion.nav
                initial={{ y: -100, opacity: 0 }}
@@ -43,7 +43,7 @@ const Header = () => {
                className={cn(
                   'flex items-center justify-between px-8 py-4 transition-all duration-500 rounded-full border',
                   isScrolled
-                     ? 'bg-black/80 backdrop-blur-xl border-indigo-500/20 shadow-2xl py-3'
+                     ? 'bg-black/80 backdrop-blur-xl border-primary/20 shadow-2xl py-3'
                      : 'bg-transparent border-transparent'
                )}
             >
@@ -54,11 +54,8 @@ const Header = () => {
                      window.scrollTo({ top: 0, behavior: 'smooth' })
                   }
                >
-                  <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold text-xl group-hover:rotate-[360deg] transition-transform duration-500 shadow-lg shadow-indigo-500/20">
+                  <span className="text-xl font-black tracking-tight text-white uppercase italic group-hover:underline decoration-white underline-offset-4 transition-all">
                      EA
-                  </div>
-                  <span className="text-xl font-bold tracking-tight text-white group-hover:text-indigo-400 transition-colors">
-                     Ejaz<span className="text-indigo-500">Ali</span>
                   </span>
                </div>
 
@@ -71,7 +68,7 @@ const Header = () => {
                         className={cn(
                            'px-6 py-2 rounded-full text-sm font-medium transition-all relative group',
                            activeSection === link.name
-                              ? 'text-indigo-400'
+                              ? 'text-primary'
                               : 'text-gray-400 hover:text-white'
                         )}
                      >
@@ -79,7 +76,7 @@ const Header = () => {
                         {activeSection === link.name && (
                            <motion.span
                               layoutId="activeSection"
-                              className="absolute inset-0 bg-indigo-500/10 rounded-full -z-10"
+                              className="absolute inset-0 bg-primary/10 rounded-full -z-10"
                               transition={{
                                  type: 'spring',
                                  bounce: 0.2,
@@ -99,9 +96,9 @@ const Header = () => {
                            .getElementById('contact')
                            ?.scrollIntoView({ behavior: 'smooth' })
                      }
-                     className="px-6 py-2.5 bg-indigo-600 text-white rounded-full font-bold text-sm hover:scale-105 active:scale-95 transition-all shadow-xl shadow-indigo-500/20 flex items-center gap-2 group"
+                     className="px-6 py-2.5 bg-foreground text-black rounded-none border-2 border-foreground font-black text-sm uppercase tracking-wider hover:translate-x-1 hover:-translate-y-1 transition-all shadow-[4px_4px_0px_0px_rgba(150,150,150,1)] flex items-center gap-2 group"
                   >
-                     Let's Talk
+                     [ INIT_COMMS ]
                      <ArrowRight
                         size={16}
                         className="group-hover:translate-x-1 transition-transform"
@@ -111,7 +108,7 @@ const Header = () => {
 
                {/* Mobile Toggle */}
                <button
-                  className="md:hidden w-10 h-10 rounded-full bg-indigo-500/10 flex items-center justify-center text-indigo-500"
+                  className="md:hidden w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary"
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                >
                   {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -126,9 +123,9 @@ const Header = () => {
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  className="fixed inset-x-4 top-24 z-[90] md:hidden"
+                  className="fixed inset-x-4 top-24 z-90 md:hidden"
                >
-                  <div className="bg-black/95 backdrop-blur-2xl rounded-3xl border border-indigo-500/20 p-8 shadow-2xl flex flex-col gap-4">
+                  <div className="bg-black/95 backdrop-blur-2xl rounded-3xl border border-primary/20 p-8 shadow-2xl flex flex-col gap-4">
                      {navLinks.map((link) => (
                         <a
                            key={link.name}
@@ -137,8 +134,8 @@ const Header = () => {
                            className={cn(
                               'text-2xl font-bold py-2 transition-colors',
                               activeSection === link.name
-                                 ? 'text-indigo-500'
-                                 : 'text-white hover:text-indigo-400'
+                                 ? 'text-primary'
+                                 : 'text-white hover:text-primary'
                            )}
                         >
                            {link.name}
@@ -151,7 +148,7 @@ const Header = () => {
                               .getElementById('contact')
                               ?.scrollIntoView({ behavior: 'smooth' });
                         }}
-                        className="mt-4 w-full py-4 bg-indigo-600 text-white rounded-2xl font-bold text-lg"
+                        className="mt-4 w-full py-4 bg-primary text-white rounded-2xl font-bold text-lg"
                      >
                         Get Started
                      </button>

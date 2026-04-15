@@ -73,13 +73,13 @@ export const experience = [
 export const statsData = [
    {
       label: 'Years Experience',
-      value: '5+',
+      value: '3+',
       icon: 'Sparkles',
       color: 'text-indigo-500',
    },
    {
       label: 'Projects Completed',
-      value: '20+',
+      value: '10+',
       icon: 'Rocket',
       color: 'text-purple-500',
    },
