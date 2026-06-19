@@ -3,9 +3,11 @@ import { ReactNode, useEffect, useRef } from "react";
 export const FadeIn = ({
   children,
   delay = 0,
+  className = "",
 }: {
   children: ReactNode;
   delay?: number;
+  className?: string;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -33,7 +35,7 @@ export const FadeIn = ({
   return (
     <div
       ref={ref}
-      className="opacity-0 translate-y-8 transition-all duration-1000 ease-out"
+      className={`opacity-0 translate-y-8 transition-all duration-1000 ease-out ${className}`}
       style={{ transitionDelay: `${delay}s` }}
     >
       {children}
