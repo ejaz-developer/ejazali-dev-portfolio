@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import { ArrowDown } from "lucide-react";
 
-const titleChars = "Builds web applications from Skardu.".split("");
+const titleWords = "Builds web applications from Skardu.".split(" ");
 
 export default function Hero() {
   return (
@@ -27,13 +27,13 @@ export default function Hero() {
         </motion.p>
 
         <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground leading-[1.1] mb-4 overflow-hidden">
-          {titleChars.map((char, i) => (
+          {titleWords.map((word, i) => (
             <motion.span
               key={i}
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
-                delay: 0.2 + i * 0.015,
+                delay: 0.2 + i * 0.08,
                 duration: 0.4,
                 ease: "easeOut",
               }}
@@ -44,7 +44,8 @@ export default function Hero() {
                 transition: { duration: 0.15 },
               }}
             >
-              {char === " " ? "\u00A0" : char}
+              {word}
+              {i < titleWords.length - 1 && "\u00A0"}
             </motion.span>
           ))}
         </h1>
