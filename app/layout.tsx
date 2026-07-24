@@ -1,22 +1,21 @@
-import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
-import { EB_Garamond, Inter } from "next/font/google";
-import React from "react";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const ebGaramond = EB_Garamond({
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
-  variable: "--font-heading",
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-  title: "Ejaz Ali - Full Stack MERN Developer | Portfolio",
+  title: "helloejaz | Full Stack Developer",
   description:
-    "Ejaz Ali is a Full Stack MERN Developer crafting scalable, pixel-perfect web experiences. Based in Skardu, Pakistan with 5+ years of experience.",
-  keywords: [
-    "Ejaz Ali,full stack developer,MERN developer,Next.js developer,web developer Pakistan,portfolio,React developer,Node.js,TypeScript,Skardu,Codehub Skardu",
-  ],
+    "Full-stack developer based in Skardu, Pakistan. Specializing in React, Next.js, TypeScript, and modern web applications.",
 };
 
 export default function RootLayout({
@@ -27,15 +26,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(
-        "h-full",
-        "antialiased",
-        "font-sans",
-        inter.variable,
-        ebGaramond.variable,
-      )}
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body>{children}</body>
     </html>
   );
 }
