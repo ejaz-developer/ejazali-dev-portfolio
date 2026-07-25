@@ -2,135 +2,118 @@
 
 import { projects } from "@/data/data";
 import { motion } from "motion/react";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ArrowUpRight } from "lucide-react";
 import { Github } from "@/components/icons";
-
-function FadeUp({
-  children,
-  delay = 0,
-}: {
-  children: React.ReactNode;
-  delay?: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.4, delay, ease: "easeOut" }}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-const rotations = [-1, 0.5, -0.5];
-const alignments = ["self-start", "self-center", "self-end"] as const;
+import SplitText from "@/components/reactbits/SplitText";
+import SpotlightCard from "@/components/reactbits/SpotlightCard";
+import GridScan from "@/components/reactbits/GridScan";
 
 export default function Projects() {
   return (
     <section
       id="projects"
-      className="min-h-screen flex flex-col justify-center items-center px-6 sm:px-10 py-24"
+      className="relative min-h-screen flex flex-col justify-center items-center px-6 sm:px-10 py-24 overflow-hidden"
     >
-      <div className="max-w-3xl w-full">
-        <FadeUp>
-          <motion.h2
-            className="text-2xl sm:text-3xl font-semibold tracking-tight mb-2 text-center"
-            whileHover="hover"
-          >
-            <motion.span
-              className="inline-block bg-gradient-to-r from-foreground via-accent to-foreground bg-[length:200%_100%] bg-clip-text text-transparent"
-              variants={{
-                hover: {
-                  backgroundPosition: ["0% 0%", "100% 0%"],
-                  transition: { duration: 0.8, ease: "easeInOut" },
-                },
-              }}
-            >
-              Projects
-            </motion.span>
-          </motion.h2>
-          <div className="w-8 h-0.5 bg-accent mx-auto mb-8" />
-        </FadeUp>
+      <div className="absolute inset-0 pointer-events-none">
+        <GridScan
+          lineThickness={0.8}
+          linesColor="#2a1f3a"
+          scanColor="#a855f7"
+          scanOpacity={0.3}
+          gridScale={0.12}
+          lineStyle="dashed"
+          lineJitter={0.15}
+          scanDirection="pingpong"
+          scanDuration={3}
+          scanDelay={1.5}
+          scanGlow={0.6}
+          scanSoftness={2.5}
+          bloomIntensity={0.15}
+          chromaticAberration={0.001}
+          noiseIntensity={0.008}
+          scanOnClick
+          enablePost
+          enableWebcam={false}
+        />
+      </div>
 
-        <div className="flex flex-col items-center gap-5">
+      <div className="relative z-10 max-w-4xl w-full">
+        <SplitText
+          text="Projects"
+          tag="h2"
+          className="text-3xl sm:text-4xl font-semibold tracking-tight mb-4"
+          textAlign="center"
+          splitType="chars"
+          delay={40}
+          duration={0.8}
+          from={{ opacity: 0, y: 30 }}
+          to={{ opacity: 1, y: 0 }}
+        />
+
+        <div className="w-12 h-0.5 bg-gradient-to-r from-accent to-accent-2 mx-auto mb-12 rounded-full" />
+
+        <div className="flex flex-col gap-6">
           {projects.map((project, i) => (
-            <FadeUp key={project.title} delay={0.08 * i}>
-              <div className={`${alignments[i]} w-auto`}>
-                <motion.div
-                  animate={{ y: [0, -5, 0] }}
-                  transition={{
-                    duration: 3.5 + i * 0.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: i * 0.5,
-                  }}
-                  whileHover={{ scale: 1.04, y: -8 }}
-                  style={{ rotate: rotations[i] }}
-                >
-                <motion.div
-                  className="w-72 p-5 rounded-xl bg-surface border border-border hover:shadow-[0_0_20px_rgba(229,72,77,0.08)] transition-shadow duration-300"
-                  whileHover={{ borderColor: "rgba(229,72,77,0.3)" }}
-                >
-                  <div className="flex items-center justify-between gap-3 mb-3">
-                    <h3 className="text-sm font-medium text-foreground">
-                      {project.title}
-                    </h3>
-                    <div className="flex items-center gap-1.5 shrink-0">
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
+            >
+              <SpotlightCard
+                className="w-full"
+                spotlightColor="rgba(168, 85, 247, 0.08)"
+              >
+                <div className="flex flex-col sm:flex-row sm:items-start gap-5">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-3 mb-3">
+                      <h3 className="text-lg font-medium text-foreground">
+                        {project.title}
+                      </h3>
                       {project.featured && (
-                        <span className="text-[10px] px-1.5 py-0.5 rounded bg-accent/10 text-accent border border-accent/20">
+                        <span className="text-[10px] px-2.5 py-0.5 rounded-full bg-accent/10 text-accent border border-accent/20">
                           Featured
                         </span>
                       )}
-                      <motion.a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-1.5 rounded text-muted hover:text-foreground hover:bg-border transition-all"
-                        aria-label={`${project.title} source`}
-                        whileHover={{ scale: 1.15 }}
-                        transition={{ duration: 0.15 }}
-                      >
-                        <Github size={13} />
-                      </motion.a>
-                      <motion.a
-                        href={project.preview}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-1.5 rounded text-muted hover:text-foreground hover:bg-border transition-all"
-                        aria-label={`${project.title} live`}
-                        whileHover={{ scale: 1.15 }}
-                        transition={{ duration: 0.15 }}
-                      >
-                        <ExternalLink size={13} />
-                      </motion.a>
+                    </div>
+                    <p className="text-sm text-muted/80 leading-relaxed mb-4">
+                      {project.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="text-[11px] px-3 py-1 rounded-full bg-white/5 text-muted border border-white/5"
+                        >
+                          {tag}
+                        </span>
+                      ))}
                     </div>
                   </div>
-
-                  <p className="text-[11px] text-muted leading-relaxed mb-3">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.tags.map((tag) => (
-                      <motion.span
-                        key={tag}
-                        className="text-[10px] px-1.5 py-0.5 rounded bg-background text-muted inline-block"
-                        whileHover={{
-                          color: "#e5484d",
-                          backgroundColor: "rgba(229,72,77,0.08)",
-                        }}
-                        transition={{ duration: 0.15 }}
-                      >
-                        {tag}
-                      </motion.span>
-                    ))}
+                  <div className="flex sm:flex-col gap-2 shrink-0">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs text-muted hover:text-foreground hover:bg-white/10 hover:border-accent/30 transition-all duration-200"
+                    >
+                      <Github size={14} />
+                      Source
+                    </a>
+                    <a
+                      href={project.preview}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-accent/10 text-accent text-xs font-medium hover:bg-accent/20 transition-all duration-200"
+                    >
+                      Live
+                      <ArrowUpRight size={12} />
+                    </a>
                   </div>
-                </motion.div>
-              </motion.div>
-              </div>
-            </FadeUp>
+                </div>
+              </SpotlightCard>
+            </motion.div>
           ))}
         </div>
       </div>

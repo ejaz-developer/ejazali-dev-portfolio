@@ -1,90 +1,58 @@
 "use client";
 
-import { motion } from "motion/react";
-import { ArrowDown } from "lucide-react";
-
-const titleWords = "Builds web applications from Skardu.".split(" ");
+import BlurText from "@/components/reactbits/BlurText";
+import DotField from "@/components/reactbits/DotField";
 
 export default function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex flex-col justify-center items-center px-6 sm:px-10"
+      className="relative min-h-screen flex flex-col justify-center items-center px-6 sm:px-10 overflow-hidden"
     >
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="max-w-xl w-full text-center"
-      >
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.4 }}
-          className="text-accent font-mono text-sm mb-5 tracking-wide"
-        >
+      <DotField
+        gradientFrom="rgba(168, 85, 247, 0.5)"
+        gradientTo="rgba(217, 70, 239, 0.25)"
+        glowColor="#120F17"
+        dotRadius={2}
+        dotSpacing={20}
+        bulgeStrength={80}
+        cursorRadius={350}
+      />
+
+      <div className="relative z-10 max-w-3xl w-full text-center">
+        <p className="text-accent font-mono text-sm mb-6 tracking-[0.2em] uppercase">
           Full-stack developer
-        </motion.p>
+        </p>
 
-        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight text-foreground leading-[1.1] mb-4 overflow-hidden">
-          {titleWords.map((word, i) => (
-            <motion.span
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.2 + i * 0.08,
-                duration: 0.4,
-                ease: "easeOut",
-              }}
-              className="inline-block"
-              whileHover={{
-                color: "#e5484d",
-                y: -3,
-                transition: { duration: 0.15 },
-              }}
-            >
-              {word}
-              {i < titleWords.length - 1 && "\u00A0"}
-            </motion.span>
-          ))}
-        </h1>
+        <BlurText
+          text="Builds web applications from Skardu."
+          delay={80}
+          animateBy="words"
+          direction="top"
+          className="text-4xl sm:text-6xl font-semibold tracking-tight text-foreground leading-[1.1] mb-6 justify-center"
+          stepDuration={0.3}
+        />
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.4 }}
-          className="text-muted text-base leading-relaxed max-w-lg mx-auto mb-10"
-        >
+        <p className="text-muted text-base sm:text-lg leading-relaxed max-w-xl mx-auto mb-12">
           React, Next.js, TypeScript, Node.js — I turn requirements into
           working software that ships fast and holds up under real use.
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.4 }}
-          className="flex flex-wrap gap-3 justify-center"
-        >
-          <motion.a
+        <div className="flex flex-wrap gap-4 justify-center">
+          <a
             href="#projects"
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-accent text-white text-sm font-medium transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-accent text-white text-sm font-medium hover:opacity-90 transition-all duration-300 shadow-lg shadow-accent/20"
           >
             See the work
-            <ArrowDown size={14} />
-          </motion.a>
-          <motion.a
+          </a>
+          <a
             href="#contact"
-            whileHover={{ scale: 1.04 }}
-            whileTap={{ scale: 0.97 }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border text-muted text-sm font-medium hover:border-accent/50 hover:text-accent transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border text-muted text-sm font-medium hover:border-accent/50 hover:text-accent transition-all duration-300"
           >
             Get in touch
-          </motion.a>
-        </motion.div>
-      </motion.div>
+          </a>
+        </div>
+      </div>
     </section>
   );
 }

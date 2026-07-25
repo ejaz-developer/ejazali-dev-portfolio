@@ -1,114 +1,106 @@
 "use client";
 
 import { experience } from "@/data/data";
-import { motion } from "motion/react";
+import SplitText from "@/components/reactbits/SplitText";
+import LineSidebar from "@/components/reactbits/LineSidebar";
+import DotField from "@/components/reactbits/DotField";
+import { useState } from "react";
 
-function FadeUp({
-  children,
-  delay = 0,
-}: {
-  children: React.ReactNode;
-  delay?: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.4, delay, ease: "easeOut" }}
-    >
-      {children}
-    </motion.div>
-  );
-}
+const experienceLabels = experience.map((e) => e.company);
 
 export default function Experience() {
+  const [activeExp, setActiveExp] = useState(0);
+
   return (
     <section
       id="experience"
-      className="min-h-screen flex flex-col justify-center items-center px-6 sm:px-10 py-24"
+      className="relative min-h-screen flex flex-col justify-center items-center px-6 sm:px-10 py-24 overflow-hidden"
     >
-      <div className="max-w-lg w-full">
-        <FadeUp>
-          <motion.h2
-            className="text-2xl sm:text-3xl font-semibold tracking-tight mb-2 text-center"
-            whileHover="hover"
-          >
-            <motion.span
-              className="inline-block bg-gradient-to-r from-foreground via-accent to-foreground bg-[length:200%_100%] bg-clip-text text-transparent"
-              variants={{
-                hover: {
-                  backgroundPosition: ["0% 0%", "100% 0%"],
-                  transition: { duration: 0.8, ease: "easeInOut" },
-                },
-              }}
-            >
-              Experience
-            </motion.span>
-          </motion.h2>
-          <div className="w-8 h-0.5 bg-accent mx-auto mb-8" />
-        </FadeUp>
+      <DotField
+        gradientFrom="rgba(168, 85, 247, 0.35)"
+        gradientTo="rgba(217, 70, 239, 0.15)"
+        glowColor="#0c0c12"
+        dotRadius={1.5}
+        dotSpacing={20}
+        bulgeStrength={45}
+        cursorRadius={280}
+      />
 
-        <div className="space-y-6">
-          {experience.map((exp, i) => (
-            <FadeUp key={`${exp.company}-${exp.role}`} delay={0.1 * i}>
-              <motion.div
-                className="relative pl-8"
-                whileHover={{ x: 4 }}
-                transition={{ duration: 0.2 }}
+      <div className="relative z-10 max-w-4xl w-full">
+        <SplitText
+          text="Experience"
+          tag="h2"
+          className="text-3xl sm:text-4xl font-semibold tracking-tight mb-4"
+          textAlign="center"
+          splitType="chars"
+          delay={40}
+          duration={0.8}
+          from={{ opacity: 0, y: 30 }}
+          to={{ opacity: 1, y: 0 }}
+        />
+
+        <div className="w-12 h-0.5 bg-gradient-to-r from-accent to-accent-2 mx-auto mb-12 rounded-full" />
+
+        <div className="flex flex-col lg:flex-row gap-10 items-start">
+          <div className="lg:w-64 shrink-0">
+            <LineSidebar
+              items={experienceLabels}
+              accentColor="#a855f7"
+              textColor="#8a8a9a"
+              markerColor="#2a2a3a"
+              showIndex
+              showMarker
+              markerLength={80}
+              markerGap={16}
+              proximityRadius={100}
+              maxShift={20}
+              defaultActive={0}
+              fontSize={1}
+              onItemClick={(index) => setActiveExp(index)}
+            />
+          </div>
+
+          <div className="flex-1 min-w-0">
+            {experience.map((exp, i) => (
+              <div
+                key={`${exp.company}-${exp.role}`}
+                className={`transition-all duration-500 ${
+                  i === activeExp
+                    ? "opacity-100 translate-y-0"
+                    : "opacity-0 translate-y-4 hidden"
+                }`}
               >
-                <div className="absolute left-0 top-1.5 bottom-0 flex flex-col items-center">
-                  <motion.div
-                    className="w-2 h-2 rounded-full bg-accent shrink-0 mt-1.5"
-                    whileHover={{ scale: 1.5 }}
-                    transition={{ duration: 0.2 }}
-                  />
-                  {i < experience.length - 1 && (
-                    <div className="w-px flex-1 bg-border mt-1.5" />
-                  )}
-                </div>
-
-                <motion.div
-                  className="p-4 rounded-lg bg-surface border border-border"
-                  whileHover={{
-                    borderColor: "rgba(229,72,77,0.3)",
-                    y: -2,
-                  }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <div className="flex items-start justify-between gap-3 mb-1">
-                    <div>
-                      <h3 className="text-sm font-medium text-foreground">
-                        {exp.role}
-                      </h3>
-                      <p className="text-xs text-accent">{exp.company}</p>
+                {i === activeExp && (
+                  <div className="p-8 rounded-2xl bg-surface/60 border border-border/50 backdrop-blur-sm">
+                    <div className="flex items-start justify-between gap-4 mb-1">
+                      <div>
+                        <h3 className="text-xl font-medium text-foreground">
+                          {exp.role}
+                        </h3>
+                        <p className="text-sm text-accent mt-1">{exp.company}</p>
+                      </div>
+                      <span className="text-xs text-muted whitespace-nowrap px-3 py-1 rounded-full bg-white/5">
+                        {exp.period}
+                      </span>
                     </div>
-                    <span className="text-[11px] text-muted whitespace-nowrap">
-                      {exp.period}
-                    </span>
+                    <p className="text-sm text-muted/80 leading-relaxed mt-4 mb-5">
+                      {exp.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {exp.skills.map((skill) => (
+                        <span
+                          key={skill}
+                          className="text-xs px-3 py-1 rounded-full bg-accent/10 text-accent"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <p className="text-xs text-muted leading-relaxed mt-2 mb-3">
-                    {exp.description}
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {exp.skills.map((skill) => (
-                      <motion.span
-                        key={skill}
-                        className="text-[10px] px-1.5 py-0.5 rounded bg-background text-muted inline-block"
-                        whileHover={{
-                          color: "#e5484d",
-                          backgroundColor: "rgba(229,72,77,0.08)",
-                        }}
-                        transition={{ duration: 0.15 }}
-                      >
-                        {skill}
-                      </motion.span>
-                    ))}
-                  </div>
-                </motion.div>
-              </motion.div>
-            </FadeUp>
-          ))}
+                )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
