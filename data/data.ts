@@ -1,4 +1,5 @@
 import { Github, Twitter } from "@/components/icons";
+import type { LucideIcon } from "lucide-react";
 import {
   Gauge,
   Globe,
@@ -52,9 +53,9 @@ export const experience = [
   {
     company: "CodeHub Skardu",
     role: "Full Stack Developer",
-    period: "2024 - Present",
+    period: "2024 - 2025",
     description:
-      "Building scalable web applications from front to back using modern technologies. I work on everything from creating responsive user interfaces to designing APIs, managing databases, and deploying production-ready applications.",
+      "Built scalable web applications from front to back using modern technologies. Worked on everything from responsive user interfaces to APIs, databases, and production deployments.",
     skills: ["Next.js", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS"],
   },
   {
@@ -69,34 +70,16 @@ export const experience = [
 
 export const statsData = [
   {
-    label: "Years of Experience",
-    value: "3+",
-    icon: "Sparkles",
-    color: "text-indigo-500",
+    label: "Years of experience",
+    value: "3.5+",
   },
   {
-    label: "Projects Built",
-    value: "15+",
-    icon: "Rocket",
-    color: "text-purple-500",
+    label: "Projects shipped",
+    value: "15",
   },
   {
-    label: "Technologies",
-    value: "10+",
-    icon: "Palette",
-    color: "text-pink-500",
-    technologies: [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "Node.js",
-      "MongoDB",
-      "Tailwind CSS",
-      "Redux",
-      "Git",
-      "Supabase",
-      "Firebase",
-    ],
+    label: "Technologies used",
+    value: "12+",
   },
 ];
 
@@ -104,55 +87,57 @@ export const services = [
   {
     name: "Web Development",
     description:
-      "I build fast, responsive, and modern websites using React, Next.js, and the MERN stack.",
+      "Fast, responsive websites and web apps built with React, Next.js, and the MERN stack.",
     icon: Globe,
-    color: "from-blue-500 to-cyan-500",
   },
   {
     name: "Mobile App Development",
     description:
-      "Cross-platform mobile applications built with React Native that deliver a smooth experience on both Android and iOS.",
+      "Cross-platform mobile applications built with React Native for both Android and iOS.",
     icon: Smartphone,
-    color: "from-purple-500 to-pink-500",
   },
   {
     name: "UI Development",
     description:
       "Clean, responsive, and accessible interfaces with attention to detail, usability, and performance.",
     icon: PenTool,
-    color: "from-pink-500 to-rose-500",
   },
   {
     name: "Backend Development",
     description:
-      "Secure APIs, authentication systems, and scalable backend services built with Node.js, Express, and MongoDB.",
+      "Secure APIs, authentication systems, and scalable backend services built with Node.js and MongoDB.",
     icon: Server,
-    color: "from-indigo-500 to-blue-500",
   },
   {
     name: "SEO & Performance",
     description:
-      "Optimizing websites for faster load times, better search rankings, and an improved user experience.",
+      "Faster load times, better search rankings, and an improved experience on every device.",
     icon: Search,
-    color: "from-green-500 to-emerald-500",
   },
   {
     name: "Performance Optimization",
     description:
-      "Improving Core Web Vitals, reducing load times, and making applications feel fast and reliable.",
+      "Improving Core Web Vitals and making applications feel fast and reliable.",
     icon: Gauge,
-    color: "from-yellow-500 to-orange-500",
   },
 ];
 
-export const projects = [
+interface Project {
+  title: string;
+  description: string;
+  preview?: string;
+  github: string;
+  tags: string[];
+  featured: boolean;
+}
+
+export const projects: Project[] = [
   {
-    title: "BookMyGB",
+    title: "AudioThought",
     description:
-      "An online bus booking platform that makes traveling across Gilgit-Baltistan simple and convenient. Passengers can search routes, reserve seats, and manage bookings, while operators can efficiently handle schedules and reservations.",
-    preview: "https://bookmygb.vercel.app/",
-    github: "https://github.com/ejaz-developer/bookmygb",
-    tags: ["React", "Node.js", "MongoDB", "Express", "Redux"],
+      "AudioThought is a productivity application that transforms unstructured, rambling voice recordings into polished, structured text and actionable tasks.",
+    github: "https://github.com/ejaz-developer/AudioThought",
+    tags: ["Next.js", "TypeScript", "Node.js"],
     featured: true,
   },
   {
@@ -182,7 +167,14 @@ export const projects = [
   },
 ];
 
-export const contactInfo = [
+interface ContactInfoItem {
+  icon: LucideIcon;
+  label: string;
+  value: string;
+  href?: string;
+}
+
+export const contactInfo: ContactInfoItem[] = [
   {
     icon: Mail,
     label: "Email",
@@ -199,6 +191,5 @@ export const contactInfo = [
     icon: MapPin,
     label: "Location",
     value: "Skardu, Gilgit-Baltistan, Pakistan",
-    href: "#",
   },
 ];

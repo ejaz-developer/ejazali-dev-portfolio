@@ -49,13 +49,13 @@ export default function SplitText({
   }, [onLetterAnimationComplete]);
 
   useEffect(() => {
-    if (document.fonts.status === "loaded") {
-      setFontsLoaded(true);
-    } else {
-      document.fonts.ready.then(() => {
-        setFontsLoaded(true);
-      });
-    }
+    let mounted = true;
+    document.fonts.ready.then(() => {
+      if (mounted) setFontsLoaded(true);
+    });
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   useGSAP(
@@ -69,7 +69,7 @@ export default function SplitText({
       if (el._rbsplitInstance) {
         try {
           el._rbsplitInstance.revert();
-        } catch (_) {}
+        } catch {}
         el._rbsplitInstance = undefined;
       }
 
@@ -130,7 +130,7 @@ export default function SplitText({
         });
         try {
           splitInstance.revert();
-        } catch (_) {}
+        } catch {}
         el._rbsplitInstance = undefined;
       };
     },

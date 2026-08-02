@@ -1,10 +1,12 @@
 "use client";
 
 import { experience } from "@/data/data";
+import { motion } from "motion/react";
 import SplitText from "@/components/reactbits/SplitText";
 import LineSidebar from "@/components/reactbits/LineSidebar";
-import DotField from "@/components/reactbits/DotField";
 import { useState } from "react";
+
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const experienceLabels = experience.map((e) => e.company);
 
@@ -14,40 +16,39 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="relative min-h-screen flex flex-col justify-center items-center px-6 sm:px-10 py-24 overflow-hidden"
+      className="relative px-4 py-24 sm:px-6 sm:py-32"
     >
-      <DotField
-        gradientFrom="rgba(168, 85, 247, 0.35)"
-        gradientTo="rgba(217, 70, 239, 0.15)"
-        glowColor="#0c0c12"
-        dotRadius={1.5}
-        dotSpacing={20}
-        bulgeStrength={45}
-        cursorRadius={280}
-      />
+      <div className="mx-auto max-w-7xl">
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: EASE }}
+          className="eyebrow mb-3 flex items-center gap-4"
+        >
+          Experience
+          <span aria-hidden className="h-px w-14 bg-border" />
+        </motion.p>
 
-      <div className="relative z-10 max-w-4xl w-full">
         <SplitText
-          text="Experience"
+          text="Where I've worked."
           tag="h2"
-          className="text-3xl sm:text-4xl font-semibold tracking-tight mb-4"
-          textAlign="center"
-          splitType="chars"
+          className="mb-14 max-w-2xl font-serif text-4xl leading-[1.08] tracking-[-0.01em] text-foreground sm:text-5xl"
+          textAlign="left"
+          splitType="words"
           delay={40}
           duration={0.8}
-          from={{ opacity: 0, y: 30 }}
+          from={{ opacity: 0, y: 28 }}
           to={{ opacity: 1, y: 0 }}
         />
 
-        <div className="w-12 h-0.5 bg-gradient-to-r from-accent to-accent-2 mx-auto mb-12 rounded-full" />
-
-        <div className="flex flex-col lg:flex-row gap-10 items-start">
-          <div className="lg:w-64 shrink-0">
+        <div className="flex flex-col gap-10 lg:flex-row lg:items-start">
+          <div className="lg:w-64 lg:shrink-0">
             <LineSidebar
               items={experienceLabels}
-              accentColor="#a855f7"
-              textColor="#8a8a9a"
-              markerColor="#2a2a3a"
+              accentColor="#e11d48"
+              textColor="#6b7280"
+              markerColor="#e5e7eb"
               showIndex
               showMarker
               markerLength={80}
@@ -60,43 +61,52 @@ export default function Experience() {
             />
           </div>
 
-          <div className="flex-1 min-w-0">
+          <div className="min-w-0 flex-1">
             {experience.map((exp, i) => (
               <div
                 key={`${exp.company}-${exp.role}`}
                 className={`transition-all duration-500 ${
                   i === activeExp
                     ? "opacity-100 translate-y-0"
-                    : "opacity-0 translate-y-4 hidden"
+                    : "hidden opacity-0 translate-y-4"
                 }`}
               >
                 {i === activeExp && (
-                  <div className="p-8 rounded-2xl bg-surface/60 border border-border/50 backdrop-blur-sm">
-                    <div className="flex items-start justify-between gap-4 mb-1">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, ease: EASE }}
+                    className="card p-7 sm:p-10"
+                  >
+                    <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                       <div>
-                        <h3 className="text-xl font-medium text-foreground">
+                        <h3 className="font-serif text-2xl tracking-tight text-foreground sm:text-3xl">
                           {exp.role}
                         </h3>
-                        <p className="text-sm text-accent mt-1">{exp.company}</p>
+                        <p className="mt-2 font-ui text-sm font-semibold tracking-tight text-accent">
+                          {exp.company}
+                        </p>
                       </div>
-                      <span className="text-xs text-muted whitespace-nowrap px-3 py-1 rounded-full bg-white/5">
+                      <span className="w-fit rounded-full border border-border bg-white/80 px-3.5 py-1.5 font-ui text-xs font-medium text-muted whitespace-nowrap">
                         {exp.period}
                       </span>
                     </div>
-                    <p className="text-sm text-muted/80 leading-relaxed mt-4 mb-5">
+
+                    <p className="mt-6 max-w-prose text-sm leading-relaxed text-muted sm:text-[15px]">
                       {exp.description}
                     </p>
-                    <div className="flex flex-wrap gap-2">
+
+                    <ul className="mt-6 flex flex-wrap gap-2">
                       {exp.skills.map((skill) => (
-                        <span
+                        <li
                           key={skill}
-                          className="text-xs px-3 py-1 rounded-full bg-accent/10 text-accent"
+                          className="rounded-full bg-accent/10 px-3 py-1 font-ui text-xs font-medium text-accent"
                         >
                           {skill}
-                        </span>
+                        </li>
                       ))}
-                    </div>
-                  </div>
+                    </ul>
+                  </motion.div>
                 )}
               </div>
             ))}
