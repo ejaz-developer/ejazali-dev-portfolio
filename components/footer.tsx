@@ -8,11 +8,10 @@ export default function Footer() {
         <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-sm">
             <p className="font-serif text-2xl tracking-tight text-foreground">
-              hello<span className="italic text-accent">ejaz</span>
+              Ejaz <span className="italic text-accent">Ali</span>
             </p>
             <p className="mt-3 text-sm leading-relaxed text-muted">
-              Full-stack developer building web applications from Skardu,
-              Pakistan.
+              Full-stack developer building software that ships.
             </p>
           </div>
 

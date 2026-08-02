@@ -4,6 +4,7 @@ import { contactInfo } from "@/data/data";
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
 import SplitText from "@/components/reactbits/SplitText";
+import { cn } from "@/lib/utils";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -43,9 +44,8 @@ export default function Contact() {
               transition={{ duration: 0.7, ease: EASE }}
               className="mt-6 max-w-md text-base leading-relaxed text-muted"
             >
-              Open to work and always happy to connect. If you have a project,
-              a question, or just want to say hello — reach out. I usually
-              reply within a day.
+              Open to work. If you have a project, a question, or just want
+              to talk shop, reach out. I usually reply within a day.
             </motion.p>
 
             <motion.a
@@ -76,7 +76,7 @@ export default function Contact() {
               <span aria-hidden className="h-px w-14 bg-border" />
             </motion.p>
 
-            <ul className="mt-6 border-y border-border">
+            <ul className="mt-6 space-y-1.5 rounded-[2rem] border border-border bg-surface p-3 sm:p-4">
               {contactInfo.map((info, i) => {
                 const Icon = info.icon;
                 const content = (
@@ -88,9 +88,9 @@ export default function Contact() {
                       <span className="block font-ui text-[11px] font-medium tracking-[0.14em] text-muted-2 uppercase">
                         {info.label}
                       </span>
-                      <span className="mt-1 block truncate font-ui text-sm font-semibold tracking-tight text-foreground">
-                        {info.value}
-                      </span>
+<span className={cn("mt-1 block truncate font-ui text-sm font-semibold tracking-tight text-foreground", info.label === "Email" && "italic")}>
+  {info.value}
+</span>
                     </span>
                     {info.href && (
                       <ArrowUpRight
@@ -115,12 +115,12 @@ export default function Contact() {
                     {info.href ? (
                       <a
                         href={info.href}
-                        className="group flex items-center gap-5 border-b border-border py-5 transition-colors duration-300 last:border-b-0 hover:bg-white focus-visible:bg-white focus-visible:outline-none"
+                        className="group flex items-center gap-5 rounded-xl px-4 py-3.5 transition-colors duration-300 hover:bg-surface-2 focus-visible:bg-surface-2 focus-visible:ring-2 focus-visible:ring-accent/40 focus-visible:outline-none"
                       >
                         {content}
                       </a>
                     ) : (
-                      <div className="flex items-center gap-5 border-b border-border py-5 last:border-b-0">
+                      <div className="flex items-center gap-5 rounded-xl px-4 py-3.5">
                         {content}
                       </div>
                     )}

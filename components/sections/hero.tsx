@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import { ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import {
   siFirebase,
   siGit,
@@ -23,11 +23,8 @@ import type { LogoItem } from "@/components/reactbits/LogoLoop";
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const headlineWords = [
-  { text: "Builds", accent: false },
-  { text: "web", accent: false },
-  { text: "applications", accent: false },
-  { text: "from", accent: false },
-  { text: "Skardu.", accent: true },
+  { text: "Ejaz", accent: false },
+  { text: "Ali", accent: false },
 ];
 
 const techStack = [
@@ -83,7 +80,7 @@ export default function Hero() {
       className="relative flex min-h-dvh items-center px-4 pt-28 pb-12 sm:px-6"
     >
       <div className="mx-auto w-full max-w-7xl">
-        <div className="relative overflow-hidden rounded-[3rem] border border-border bg-white shadow-[0_24px_80px_-32px_rgba(17,24,39,0.18)]">
+        <div className="relative overflow-hidden rounded-[3rem] border border-border bg-surface shadow-[0_24px_80px_-32px_rgba(17,24,39,0.18)]">
           <div
             aria-hidden
             className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[length:24px_24px]"
@@ -101,7 +98,7 @@ export default function Hero() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, ease: EASE }}
                 >
-                  <span className="inline-flex items-center gap-2.5 rounded-full border border-border bg-white/80 px-3.5 py-1.5">
+                  <span className="inline-flex items-center gap-2.5 rounded-full border border-border bg-surface/80 px-3.5 py-1.5">
                     <span className="relative flex size-2">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
                       <span className="relative inline-flex size-2 rounded-full bg-accent" />
@@ -118,7 +115,7 @@ export default function Hero() {
                   transition={{ duration: 0.8, delay: 0.08, ease: EASE }}
                   className="mt-8 font-ui text-xs font-medium tracking-[0.22em] text-muted uppercase"
                 >
-                  Full-stack developer — Skardu, Pakistan
+                  Full-stack developer
                 </motion.p>
 
                 <h1 className="mt-4 max-w-3xl font-serif text-5xl leading-[1.04] tracking-[-0.02em] text-foreground sm:text-6xl lg:text-7xl">
@@ -142,8 +139,9 @@ export default function Hero() {
                   transition={{ duration: 0.8, delay: 0.5, ease: EASE }}
                   className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg"
                 >
-                  React, Next.js, TypeScript, Node.js — I turn requirements into
-                  working software that ships fast and holds up under real use.
+                  I turn requirements into working software. React, Next.js,
+                  TypeScript, and Node.js apps that ship fast and hold up under
+                  real use.
                 </motion.p>
 
                 <motion.div
@@ -153,14 +151,14 @@ export default function Hero() {
                   className="mt-10 flex flex-wrap items-center gap-4"
                 >
                   <a href="#projects" className="btn-primary group">
-                    See the work
+                    See my work
                     <ArrowUpRight
                       size={16}
                       className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5"
                     />
                   </a>
                   <a href="#contact" className="btn-secondary">
-                    Get in touch
+                    Say hello
                   </a>
                 </motion.div>
               </div>
@@ -171,34 +169,17 @@ export default function Hero() {
                 transition={{ duration: 0.9, delay: 0.55, ease: EASE }}
                 className="relative lg:col-span-5"
               >
-                <div className="relative mx-auto w-fit rotate-1 rounded-[2rem] border border-border bg-white p-3 pb-5 shadow-[0_24px_64px_-24px_rgba(17,24,39,0.25)]">
+                <div className="relative mx-auto w-fit rotate-1 rounded-[2rem] border border-border bg-surface p-3 pb-5 shadow-[0_24px_64px_-24px_rgba(17,24,39,0.25)]">
                   <div className="overflow-hidden rounded-[1.5rem]">
                     <Image
                       src="/my-hero-image.avif"
-                      alt="Ejaz Ali, full-stack developer from Skardu"
+                      alt="Ejaz Ali, full-stack developer"
                       width={960}
                       height={1080}
                       sizes="(min-width: 1024px) 38vw, 90vw"
                       className="h-auto w-full max-w-80 object-cover sm:max-w-96 lg:max-w-none"
                     />
                   </div>
-                  <p className="mt-4 text-center font-serif text-sm text-muted italic">
-                    ejaz — skardu, gilgit-baltistan
-                  </p>
-                </div>
-
-                <div className="glass absolute -bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-3 rounded-2xl p-4 lg:-left-8 lg:top-1/2 lg:bottom-auto lg:translate-x-0 lg:-translate-y-1/2">
-                  <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-accent/10 text-accent">
-                    <MapPin size={16} />
-                  </span>
-                  <span>
-                    <span className="block font-ui text-[11px] font-medium tracking-[0.14em] text-muted-2 uppercase">
-                      Based in
-                    </span>
-                    <span className="block font-ui text-sm font-semibold tracking-tight text-foreground">
-                      Skardu, Gilgit-Baltistan
-                    </span>
-                  </span>
                 </div>
               </motion.div>
             </div>
@@ -215,7 +196,7 @@ export default function Hero() {
               logoHeight={20}
               gap={48}
               fadeOut
-              fadeOutColor="#ffffff"
+              fadeOutColor="var(--color-surface)"
               className="py-1"
               ariaLabel="Technologies"
             />

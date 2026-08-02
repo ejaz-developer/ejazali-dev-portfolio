@@ -1,8 +1,7 @@
 "use client";
 
-import { statsData, services } from "@/data/data";
+import { statsData } from "@/data/data";
 import { motion } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
 import SplitText from "@/components/reactbits/SplitText";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -35,34 +34,39 @@ export default function About() {
         />
 
         <div className="mt-14 grid gap-14 lg:grid-cols-12 lg:gap-20">
-          <div className="lg:col-span-5">
-            <motion.p
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.7, ease: EASE }}
-              className="text-base leading-relaxed text-muted sm:text-lg"
-            >
-              Full-stack developer based in Skardu, Pakistan. I build web
-              applications — booking platforms, POS systems, AI tools — that
-              solve real problems for real people. I care about code that&apos;s
-              maintainable, interfaces that are usable, and products that ship
-              on time.
-            </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, ease: EASE }}
+            className="text-base leading-relaxed text-muted lg:col-span-7 sm:text-lg"
+          >
+            I build web applications — booking platforms, POS systems, AI
+            tools. Things that solve real problems for real people. I care
+            about code that&apos;s maintainable, interfaces that are usable,
+            and products that ship on time.
+          </motion.p>
 
-            <dl className="mt-12 border-t border-border">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.7, delay: 0.12, ease: EASE }}
+            className="lg:col-span-5"
+          >
+            <dl className="rounded-[2rem] border border-border bg-surface px-6 sm:px-8">
               {statsData.map((stat, i) => (
                 <motion.div
                   key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-80px" }}
                   transition={{
-                    duration: 0.6,
-                    delay: i * 0.08,
+                    duration: 0.5,
+                    delay: i * 0.08 + 0.15,
                     ease: EASE,
                   }}
-                  className="flex items-baseline justify-between gap-6 border-b border-border py-5"
+                  className="flex items-baseline justify-between gap-6 border-b border-border py-5 last:border-b-0"
                 >
                   <dt className="font-ui text-xs font-medium tracking-wide text-muted uppercase">
                     {stat.label}
@@ -73,57 +77,7 @@ export default function About() {
                 </motion.div>
               ))}
             </dl>
-          </div>
-
-          <div className="lg:col-span-7">
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, ease: EASE }}
-              className="eyebrow mb-2 flex items-center gap-4"
-            >
-              What I do
-              <span aria-hidden className="h-px w-14 bg-border" />
-            </motion.p>
-
-            <ul className="mt-6 border-y border-border">
-              {services.map((service, i) => (
-                <motion.li
-                  key={service.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{
-                    duration: 0.5,
-                    delay: i * 0.05,
-                    ease: EASE,
-                  }}
-                >
-                  <a
-                    href="#contact"
-                    className="group flex items-center gap-5 border-b border-border py-5 transition-colors duration-300 last:border-b-0 hover:bg-white focus-visible:bg-white focus-visible:outline-none"
-                  >
-                    <span className="flex size-11 shrink-0 items-center justify-center rounded-2xl bg-accent/10 text-accent transition-colors duration-300 group-hover:bg-accent group-hover:text-white">
-                      <service.icon size={17} />
-                    </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block font-ui text-sm font-semibold tracking-tight text-foreground">
-                        {service.name}
-                      </span>
-                      <span className="mt-1 block text-sm leading-relaxed text-muted">
-                        {service.description}
-                      </span>
-                    </span>
-                    <ArrowUpRight
-                      size={17}
-                      className="shrink-0 text-muted-2 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-accent"
-                    />
-                  </a>
-                </motion.li>
-              ))}
-            </ul>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -3,6 +3,7 @@
 import { navLinks, socialLinks } from "@/data/data";
 import { useCallback, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { useLenis } from "lenis/react";
 import { cn } from "@/lib/utils";
 
 function useActiveSection(ids: string[]) {
@@ -34,23 +35,44 @@ export default function Navbar() {
   const isHome = pathname === "/";
   const sectionIds = navLinks.map((l) => l.href.replace("#", ""));
   const active = useActiveSection(isHome ? sectionIds : []);
+  const [scrolled, setScrolled] = useState(false);
+  const lenis = useLenis();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const handleNav = useCallback(
     (href: string) => {
       if (isHome) {
-        document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+        if (lenis) {
+          lenis.scrollTo(href, { offset: -88 });
+        } else {
+          document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+        }
       } else {
         router.push(`/${href}`);
       }
     },
-    [isHome, router],
+    [isHome, router, lenis],
   );
 
   return (
-    <header className="fixed inset-x-0 top-4 z-50 flex justify-center px-4">
+    <header
+      className={cn(
+        "fixed inset-x-0 z-50 flex justify-center px-4 transition-all duration-300",
+        scrolled ? "top-1.5" : "top-4",
+      )}
+    >
       <nav
         aria-label="Main"
-        className="glass no-scrollbar flex max-w-full items-center gap-1 overflow-x-auto rounded-full py-2 pr-2 pl-4"
+        className={cn(
+          "glass no-scrollbar flex w-full items-center justify-between gap-2 overflow-x-auto rounded-full pr-2 pl-4 transition-all duration-300",
+          scrolled ? "max-w-3xl py-1.5" : "max-w-7xl py-2",
+        )}
       >
         <a
           href="#hero"
@@ -58,12 +80,13 @@ export default function Navbar() {
             e.preventDefault();
             handleNav("#hero");
           }}
-          className="font-serif text-lg tracking-tight text-foreground transition-colors hover:text-accent focus-visible:rounded focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none"
+          className={cn(
+            "flex shrink-0 items-center font-serif tracking-tight text-foreground transition-colors hover:text-accent focus-visible:rounded focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none",
+            scrolled ? "text-base" : "text-lg",
+          )}
         >
-          hello<span className="italic text-accent">ejaz</span>
+          Ejaz <span className="italic text-accent">Ali</span>
         </a>
-
-        <span aria-hidden className="mx-2 h-4 w-px shrink-0 bg-border" />
 
         <ul className="flex items-center gap-0.5">
           {navLinks.map((link) => {
@@ -79,7 +102,8 @@ export default function Navbar() {
                   }}
                   aria-current={isActive ? "true" : undefined}
                   className={cn(
-                    "rounded-full px-3.5 py-2 font-ui text-[13px] font-medium tracking-tight whitespace-nowrap transition-colors duration-200 focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none",
+                    "rounded-full font-ui font-medium tracking-tight transition-colors duration-200 whitespace-nowrap focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none",
+                    scrolled ? "px-3 py-1.5 text-[12px]" : "px-3.5 py-2 text-[13px]",
                     isActive
                       ? "bg-accent/10 text-accent"
                       : "text-muted hover:text-foreground",
@@ -91,8 +115,6 @@ export default function Navbar() {
             );
           })}
         </ul>
-
-        <span aria-hidden className="mx-2 h-4 w-px shrink-0 bg-border" />
 
         <ul className="flex items-center gap-0.5">
           {socialLinks.map((link) => {
@@ -106,7 +128,7 @@ export default function Navbar() {
                   aria-label={link.label}
                   className="flex size-8 items-center justify-center rounded-full text-muted transition-colors duration-200 hover:bg-accent/10 hover:text-accent focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none"
                 >
-                  <Icon size={15} />
+                  <Icon size={scrolled ? 14 : 15} />
                 </a>
               </li>
             );

@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <div className="flex min-h-dvh items-center justify-center px-4 pt-24 pb-16">
       <div className="w-full max-w-7xl">
-        <div className="relative overflow-hidden rounded-[3rem] border border-border bg-white px-6 py-20 text-center shadow-[0_24px_80px_-32px_rgba(17,24,39,0.18)] sm:px-14 sm:py-28">
+        <div className="relative overflow-hidden rounded-[3rem] border border-border bg-surface px-6 py-20 text-center shadow-[0_24px_80px_-32px_rgba(17,24,39,0.18)] sm:px-14 sm:py-28">
           <div
             aria-hidden
             className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[length:24px_24px]"

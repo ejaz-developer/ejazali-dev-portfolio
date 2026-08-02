@@ -46,9 +46,9 @@ export default function Experience() {
           <div className="lg:w-64 lg:shrink-0">
             <LineSidebar
               items={experienceLabels}
-              accentColor="#e11d48"
-              textColor="#6b7280"
-              markerColor="#e5e7eb"
+              accentColor="var(--color-accent)"
+              textColor="var(--color-muted)"
+              markerColor="var(--color-border)"
               showIndex
               showMarker
               markerLength={80}
@@ -87,7 +87,7 @@ export default function Experience() {
                           {exp.company}
                         </p>
                       </div>
-                      <span className="w-fit rounded-full border border-border bg-white/80 px-3.5 py-1.5 font-ui text-xs font-medium text-muted whitespace-nowrap">
+                      <span className="w-fit rounded-full border border-border bg-surface/80 px-3.5 py-1.5 font-ui text-xs font-medium text-muted whitespace-nowrap">
                         {exp.period}
                       </span>
                     </div>

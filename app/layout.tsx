@@ -5,6 +5,8 @@ import {
   Montserrat,
   Geist_Mono,
 } from "next/font/google";
+import { ReactLenis } from "lenis/react";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -42,42 +44,41 @@ const siteUrl = "https://helloejaz.dev";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "helloejaz — Full Stack Developer",
-    template: "%s · helloejaz",
+    default: "Ejaz Ali — Full Stack Developer",
+    template: "%s · Ejaz Ali",
   },
   description:
-    "Full-stack developer based in Skardu, Pakistan. Building booking platforms, POS systems, and AI tools with React, Next.js, and TypeScript.",
+    "Full-stack developer building software that ships. React, Next.js, TypeScript, and Node.js apps that hold up under real use.",
   keywords: [
     "full stack developer",
     "Next.js",
     "React",
     "TypeScript",
-    "Skardu",
-    "Pakistan",
+    "Node.js",
   ],
   authors: [{ name: "Ejaz Ali", url: siteUrl }],
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "helloejaz",
-    title: "helloejaz — Full Stack Developer",
+    siteName: "Ejaz Ali",
+    title: "Ejaz Ali — Full Stack Developer",
     description:
-      "Full-stack developer based in Skardu, Pakistan. Building booking platforms, POS systems, and AI tools.",
+      "Full-stack developer building software that ships. React, Next.js, TypeScript, and Node.js apps that hold up under real use.",
     images: [
       {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "helloejaz — full-stack developer from Skardu",
+        alt: "Ejaz Ali — full-stack developer",
       },
     ],
   },
   twitter: {
     card: "summary",
-    title: "helloejaz — Full Stack Developer",
+    title: "Ejaz Ali — Full Stack Developer",
     description:
-      "Full-stack developer based in Skardu, Pakistan. Building booking platforms, POS systems, and AI tools.",
+      "Full-stack developer building software that ships. React, Next.js, TypeScript, and Node.js apps that hold up under real use.",
     creator: "@helloejazoff",
   },
   robots: { index: true, follow: true },
@@ -92,7 +93,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn(
-        "antialiased",
+        "dark antialiased",
         instrumentSerif.variable,
         montserrat.variable,
         geistMono.variable,
@@ -106,11 +107,13 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <TooltipProvider>
-          <Navbar />
-          <main id="main">{children}</main>
-          <Footer />
-        </TooltipProvider>
+        <ReactLenis root options={{ anchors: true, lerp: 0.09 }}>
+          <TooltipProvider>
+            <Navbar />
+            <main id="main">{children}</main>
+            <Footer />
+          </TooltipProvider>
+        </ReactLenis>
       </body>
     </html>
   );

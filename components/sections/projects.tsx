@@ -71,8 +71,8 @@ export default function Projects() {
               transition={{ duration: 0.7, ease: EASE }}
               style={{ top: `calc(6.5rem + ${i * 20}px)` }}
               className={cn(
-                "card group flex w-full flex-col gap-7 p-6 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_32px_80px_-32px_rgba(225,29,72,0.25)] sm:p-9",
-                "lg:sticky lg:flex-row lg:gap-10 lg:transition-transform lg:duration-300"
+                "card group flex w-full flex-col gap-7 p-6 transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2 hover:shadow-[0_32px_80px_-32px_rgba(225,29,72,0.25)] sm:p-9",
+                "lg:sticky lg:flex-row lg:gap-10 lg:transition-transform lg:duration-700"
               )}
             >
               <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-surface-2 sm:aspect-[16/9] lg:w-[54%] lg:aspect-auto lg:self-stretch">
@@ -86,18 +86,7 @@ export default function Projects() {
               </div>
 
                 <div className="flex flex-1 flex-col">
-                  <div className="flex items-baseline gap-3">
-                    <span className="font-serif text-2xl text-muted italic tabular-nums">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    {project.featured && (
-                      <span className="font-serif text-sm text-accent italic">
-                        featured
-                      </span>
-                    )}
-                  </div>
-
-                  <h3 className="mt-3 font-serif text-3xl tracking-tight text-foreground sm:text-4xl">
+                  <h3 className="font-serif text-3xl tracking-tight text-foreground sm:text-4xl">
                     {project.title}
                   </h3>
 
@@ -116,7 +105,7 @@ export default function Projects() {
                     ))}
                   </ul>
 
-                  <div className="mt-8 flex flex-wrap items-center gap-3 lg:mt-auto">
+                  <div className="mt-12 flex flex-wrap items-center gap-3 lg:mt-auto lg:pt-6">
                     {project.preview && (
                       <a
                         href={project.preview}
