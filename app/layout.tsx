@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import WavesBg from "@/components/waves-bg";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -101,19 +102,22 @@ export default function RootLayout({
       )}
     >
       <body>
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-full focus:bg-accent focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-white"
-        >
-          Skip to content
-        </a>
-        <ReactLenis root options={{ anchors: true, lerp: 0.09 }}>
-          <TooltipProvider>
-            <Navbar />
-            <main id="main">{children}</main>
-            <Footer />
-          </TooltipProvider>
-        </ReactLenis>
+        <WavesBg />
+        <div className="relative z-10">
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-full focus:bg-accent focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-white"
+          >
+            Skip to content
+          </a>
+          <ReactLenis root options={{ anchors: true, lerp: 0.09 }}>
+            <TooltipProvider>
+              <Navbar />
+              <main id="main">{children}</main>
+              <Footer />
+            </TooltipProvider>
+          </ReactLenis>
+        </div>
       </body>
     </html>
   );

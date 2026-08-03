@@ -33,7 +33,7 @@ export default function About() {
           to={{ opacity: 1, y: 0 }}
         />
 
-        <div className="mt-14 grid gap-14 lg:grid-cols-12 lg:gap-20">
+        <div className="mt-14 grid items-center gap-14 lg:grid-cols-12 lg:gap-20">
           <motion.p
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}

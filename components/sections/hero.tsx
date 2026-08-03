@@ -80,18 +80,8 @@ export default function Hero() {
       className="relative flex min-h-dvh items-center px-4 pt-28 pb-12 sm:px-6"
     >
       <div className="mx-auto w-full max-w-7xl">
-        <div className="relative overflow-hidden rounded-[3rem] border border-border bg-surface shadow-[0_24px_80px_-32px_rgba(17,24,39,0.18)]">
-          <div
-            aria-hidden
-            className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[length:24px_24px]"
-          />
-          <div
-            aria-hidden
-            className="absolute -top-44 left-1/2 h-96 w-[42rem] -translate-x-1/2 rounded-full bg-accent/5 blur-[120px]"
-          />
-
-          <div className="relative px-6 py-16 sm:px-14 sm:py-20 lg:px-20 lg:py-24">
-            <div className="grid items-center gap-14 lg:grid-cols-12">
+        <div className="px-6 py-16 sm:px-14 sm:py-20 lg:px-20 lg:py-24">
+          <div className="grid items-center gap-14 lg:grid-cols-12">
               <div className="lg:col-span-7">
                 <motion.div
                   initial={{ opacity: 0, y: 24 }}
@@ -182,25 +172,24 @@ export default function Hero() {
                   </div>
                 </div>
               </motion.div>
-            </div>
           </div>
+        </div>
 
-          <div className="relative border-t border-border px-6 py-5 sm:px-10">
-            <p className="mb-3 font-ui text-[10px] font-medium tracking-[0.22em] text-muted-2 uppercase">
-              Tech I work with
-            </p>
-            <LogoLoop
-              logos={techLogos}
-              speed={60}
-              direction="left"
-              logoHeight={20}
-              gap={48}
-              fadeOut
-              fadeOutColor="var(--color-surface)"
-              className="py-1"
-              ariaLabel="Technologies"
-            />
-          </div>
+        <div className="relative border-t border-border px-6 py-5 sm:px-10">
+          <p className="mb-3 font-ui text-[10px] font-medium tracking-[0.22em] text-muted-2 uppercase">
+            Tech I work with
+          </p>
+          <LogoLoop
+            logos={techLogos}
+            speed={60}
+            direction="left"
+            logoHeight={20}
+            gap={48}
+            fadeOut
+            fadeOutColor="var(--color-surface)"
+            className="py-1"
+            ariaLabel="Technologies"
+          />
         </div>
       </div>
     </section>
