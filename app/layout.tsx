@@ -1,10 +1,5 @@
 import type { Metadata } from "next";
-import {
-  Instrument_Serif,
-  Inter,
-  Montserrat,
-  Geist_Mono,
-} from "next/font/google";
+import { Instrument_Serif, Inter, Montserrat, Geist_Mono } from "next/font/google";
 import { ReactLenis } from "lenis/react";
 import "lenis/dist/lenis.css";
 import "./globals.css";
@@ -12,7 +7,6 @@ import { cn } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import WavesBg from "@/components/waves-bg";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -94,7 +88,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={cn(
-        "dark antialiased",
+        "antialiased",
         instrumentSerif.variable,
         montserrat.variable,
         geistMono.variable,
@@ -102,7 +96,11 @@ export default function RootLayout({
       )}
     >
       <body>
-        <WavesBg />
+        {/* THESIS: A field guide to shipped software, refusing the floating-card portfolio default.
+        OWN-WORLD: Chalk paper, ink typography, thin rules, and an iridescent signal band as the only color language.
+        STORY: Visitors see the work doing its job, understand the full-stack range behind it, and know how to start a conversation.
+        FIRST VIEWPORT: A project-led statement sits left of the portrait, with the first proof image and primary work action visible below.
+        FORM: Editorial observation sheet, position 5, seed ceae1f94. FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md */}
         <div className="relative z-10">
           <a
             href="#main"

@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Legacy experimental effects are not part of the current surface.
+    "components/reactbits/DecayCard.jsx",
+    "components/reactbits/Waves.jsx",
   ]),
 ]);
 

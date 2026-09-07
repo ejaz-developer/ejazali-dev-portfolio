@@ -3,87 +3,20 @@ import { ArrowUpRight } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-border bg-surface/60">
-      <div className="mx-auto flex max-w-7xl flex-col gap-10 px-6 py-14 sm:px-10">
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-          <div className="max-w-sm">
-            <p className="font-serif text-2xl tracking-tight text-foreground">
-              Ejaz <span className="italic text-accent">Ali</span>
-            </p>
-            <p className="mt-3 text-sm leading-relaxed text-muted">
-              Full-stack developer building software that ships.
-            </p>
-          </div>
-
-          <nav aria-label="Footer">
-            <p className="eyebrow mb-4">Navigate</p>
-            <ul className="flex flex-col gap-2.5">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={`/${link.href}`}
-                    className="text-sm text-muted transition-colors hover:text-accent focus-visible:rounded focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div>
-            <p className="eyebrow mb-4">Elsewhere</p>
-            <ul className="flex flex-col gap-2.5">
-              {socialLinks.map((link) => {
-                const Icon = link.icon;
-                return (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group inline-flex items-center gap-1.5 text-sm text-muted transition-colors hover:text-accent focus-visible:rounded focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none"
-                    >
-                      <Icon size={13} />
-                      {link.label}
-                      <ArrowUpRight
-                        size={11}
-                        className="text-muted-2 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
-                      />
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+    <footer className="border-t border-border bg-background px-5 py-10 sm:px-8">
+      <div className="mx-auto flex max-w-[90rem] flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="font-serif text-2xl tracking-[-0.03em] text-foreground">Ejaz Ali</p>
+          <p className="mt-2 font-ui text-[9px] font-semibold tracking-[0.16em] text-muted uppercase">Full-stack developer / software that ships</p>
         </div>
-
-        <div className="flex flex-col gap-4 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-muted-2">
-            © {new Date().getFullYear()} Ejaz Ali. All rights reserved.
-          </p>
-          <div className="flex items-center gap-5">
-            <a
-              href="/privacy"
-              className="text-xs text-muted-2 transition-colors hover:text-accent focus-visible:rounded focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none"
-            >
-              Privacy
-            </a>
-            <a
-              href="/terms"
-              className="text-xs text-muted-2 transition-colors hover:text-accent focus-visible:rounded focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none"
-            >
-              Terms
-            </a>
-            <a
-              href="#hero"
-              className="text-xs text-muted-2 transition-colors hover:text-accent focus-visible:rounded focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none"
-            >
-              Back to top ↑
-            </a>
-          </div>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+          {navLinks.map((link) => <a key={link.href} href={`/${link.href}`} className="editorial-link font-ui text-[9px] font-semibold tracking-[0.14em] text-muted uppercase transition-colors hover:text-accent">{link.name}</a>)}
+          {socialLinks.slice(0, 2).map((link) => <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className="editorial-link inline-flex items-center gap-1 font-ui text-[9px] font-semibold tracking-[0.14em] text-muted uppercase transition-colors hover:text-accent">{link.label} <ArrowUpRight size={11} /></a>)}
+          <a href="/privacy" className="font-ui text-[9px] font-semibold tracking-[0.14em] text-muted-2 uppercase hover:text-accent">Privacy</a>
+          <a href="/terms" className="font-ui text-[9px] font-semibold tracking-[0.14em] text-muted-2 uppercase hover:text-accent">Terms</a>
         </div>
       </div>
+      <div className="mx-auto mt-8 flex max-w-[90rem] justify-between border-t border-border pt-4 font-ui text-[9px] font-semibold tracking-[0.12em] text-muted-2 uppercase"><span>© {new Date().getFullYear()} Ejaz Ali</span><a href="#hero" className="hover:text-accent">Back to top ↑</a></div>
     </footer>
   );
 }

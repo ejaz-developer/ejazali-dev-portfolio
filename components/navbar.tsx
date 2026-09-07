@@ -35,15 +35,7 @@ export default function Navbar() {
   const isHome = pathname === "/";
   const sectionIds = navLinks.map((l) => l.href.replace("#", ""));
   const active = useActiveSection(isHome ? sectionIds : []);
-  const [scrolled, setScrolled] = useState(false);
   const lenis = useLenis();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   const handleNav = useCallback(
     (href: string) => {
@@ -61,34 +53,21 @@ export default function Navbar() {
   );
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 z-50 flex justify-center px-4 transition-all duration-300",
-        scrolled ? "top-1.5" : "top-4",
-      )}
-    >
-      <nav
-        aria-label="Main"
-        className={cn(
-          "glass no-scrollbar flex w-full items-center justify-between gap-2 overflow-x-auto rounded-full pr-2 pl-4 transition-all duration-300",
-          scrolled ? "max-w-3xl py-1.5" : "max-w-7xl py-2",
-        )}
-      >
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-border/80 bg-background/95 px-5 backdrop-blur-md sm:px-8">
+      <nav aria-label="Main" className="mx-auto flex h-[4.5rem] w-full max-w-[90rem] items-center justify-between gap-8">
         <a
           href="#hero"
           onClick={(e) => {
             e.preventDefault();
             handleNav("#hero");
           }}
-          className={cn(
-            "flex shrink-0 items-center font-serif tracking-tight text-foreground transition-colors hover:text-accent focus-visible:rounded focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none",
-            scrolled ? "text-base" : "text-lg",
-          )}
+          className="flex shrink-0 items-center gap-2 font-serif text-[1.35rem] tracking-tight text-foreground transition-colors hover:text-accent focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none"
         >
-          Ejaz <span className="italic text-accent">Ali</span>
+          <span className="flex size-7 items-center justify-center bg-foreground font-ui text-[10px] font-bold text-background">EA</span>
+          Ejaz Ali
         </a>
 
-        <ul className="flex items-center gap-0.5">
+        <ul className="hidden items-center gap-7 md:flex">
           {navLinks.map((link) => {
             const id = link.href.replace("#", "");
             const isActive = active === id;
@@ -101,12 +80,11 @@ export default function Navbar() {
                     handleNav(link.href);
                   }}
                   aria-current={isActive ? "true" : undefined}
-                  className={cn(
-                    "rounded-full font-ui font-medium tracking-tight transition-colors duration-200 whitespace-nowrap focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none",
-                    scrolled ? "px-3 py-1.5 text-[12px]" : "px-3.5 py-2 text-[13px]",
-                    isActive
-                      ? "bg-accent/10 text-accent"
-                      : "text-muted hover:text-foreground",
+                    className={cn(
+                      "editorial-link font-ui text-[10px] font-semibold tracking-[0.16em] uppercase transition-colors duration-200 whitespace-nowrap focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none",
+                      isActive
+                        ? "text-accent"
+                        : "text-muted hover:text-foreground",
                   )}
                 >
                   {link.name}
@@ -116,7 +94,7 @@ export default function Navbar() {
           })}
         </ul>
 
-        <ul className="flex items-center gap-0.5">
+        <ul className="flex items-center gap-1">
           {socialLinks.map((link) => {
             const Icon = link.icon;
             return (
@@ -126,14 +104,15 @@ export default function Navbar() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.label}
-                  className="flex size-8 items-center justify-center rounded-full text-muted transition-colors duration-200 hover:bg-accent/10 hover:text-accent focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none"
-                >
-                  <Icon size={scrolled ? 14 : 15} />
+                    className="flex size-9 items-center justify-center border border-transparent text-muted transition-colors duration-200 hover:border-border hover:text-accent focus-visible:ring-2 focus-visible:ring-accent/50 focus-visible:outline-none"
+                  >
+                  <Icon size={15} />
                 </a>
               </li>
             );
           })}
         </ul>
+        <a href="#contact" onClick={(e) => { e.preventDefault(); handleNav("#contact"); }} className="hidden border border-foreground bg-foreground px-3 py-2 font-ui text-[9px] font-semibold tracking-[0.14em] text-background uppercase transition-colors hover:border-accent hover:bg-accent sm:inline-flex md:hidden">Start a project</a>
       </nav>
     </header>
   );
