@@ -1,17 +1,17 @@
-import About from "@/components/sections/about";
-import Contact from "@/components/sections/contact";
-import Experience from "@/components/sections/experience";
 import Hero from "@/components/sections/hero";
+import ThingsIBuild from "@/components/sections/things-i-build";
 import Projects from "@/components/sections/projects";
-import Services from "@/components/sections/services";
+import About from "@/components/sections/about";
+import Experience from "@/components/sections/experience";
+import Contact from "@/components/sections/contact";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <About />
+      <ThingsIBuild />
       <Projects />
-      <Services />
+      <About />
       <Experience />
       <Contact />
     </>
