@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import LegalPage from "@/components/legal-page";
 
 export const metadata: Metadata = {
-  title: "Terms of Service",
+  title: "Terms of service",
 };
 
 export default function TermsPage() {
   return (
-    <LegalPage title="Terms of Service" updated="August 2026">
+    <LegalPage title="Terms of service" updated="August 2026">
       <h2>Content</h2>
       <p>
         All content on this site — text, code examples, and design — is my own

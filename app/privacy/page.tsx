@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
   return (
-    <LegalPage title="Privacy Policy" updated="August 2026">
+    <LegalPage title="Privacy policy" updated="August 2026">
       <h2>What this site collects</h2>
       <p>
         This portfolio is a static site. It does not use cookies, analytics

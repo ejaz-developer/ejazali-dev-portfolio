@@ -1,6 +1,13 @@
-import { Github, Twitter } from "@/components/icons";
-import { Mail, Globe, Briefcase, Sparkles } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import {
+  Github,
+  Twitter,
+  Mail,
+  WindowApp,
+  Receipt,
+  Chip,
+} from "@/components/icons";
+import type { IconProps } from "@/components/icons";
+import type { ComponentType } from "react";
 
 export const navLinks = [
   { name: "Home", href: "#hero" },
@@ -27,24 +34,28 @@ export const socialLinks = [
   },
 ];
 
-export const thingsIBuild: { title: string; description: string; icon: LucideIcon }[] = [
+export const thingsIBuild: {
+  title: string;
+  description: string;
+  icon: ComponentType<IconProps>;
+}[] = [
   {
     title: "Web applications",
     description:
       "SaaS products, dashboards, internal tools, and business applications.",
-    icon: Globe,
+    icon: WindowApp,
   },
   {
     title: "Business systems",
     description:
       "POS, booking, inventory, and workflow software built around real business needs.",
-    icon: Briefcase,
+    icon: Receipt,
   },
   {
     title: "AI-powered products",
     description:
       "Web applications where AI genuinely improves the product.",
-    icon: Sparkles,
+    icon: Chip,
   },
 ];
 
@@ -54,6 +65,8 @@ export interface Project {
   preview?: string;
   github: string;
   tags: string[];
+  image: string;
+  imageAlt: string;
 }
 
 export const projects: Project[] = [
@@ -63,6 +76,9 @@ export const projects: Project[] = [
       "Turns rambling voice recordings into structured notes and actionable tasks.",
     github: "https://github.com/ejaz-developer/AudioThought",
     tags: ["Next.js", "TypeScript", "Node.js"],
+    image: "/project-images/AudioThought.avif",
+    imageAlt:
+      "AudioThought interface turning a voice recording into structured notes",
   },
   {
     title: "Record Keeper",
@@ -71,6 +87,9 @@ export const projects: Project[] = [
     preview: "https://recordkeeper-pink.vercel.app/",
     github: "https://github.com/ejaz-developer/recordkeeper",
     tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
+    image: "/project-images/RecordKeeper-.avif",
+    imageAlt:
+      "Record Keeper point-of-sale screen listing products and daily sales",
   },
   {
     title: "CogniClick",
@@ -79,16 +98,8 @@ export const projects: Project[] = [
     preview: "https://cogniclick-three.vercel.app/",
     github: "https://github.com/ejaz-developer/cogniclick",
     tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
-  },
-];
-
-export const experience = [
-  {
-    role: "Full-stack Developer",
-    company: "CodeHub Skardu",
-    period: "2024–2025",
-    description:
-      "Built and shipped web applications across the frontend, backend, database, and deployment stack.",
-    technologies: ["Next.js", "TypeScript", "Node.js", "MongoDB"],
+    image: "/project-images/CogniClick.avif",
+    imageAlt:
+      "CogniClick comparing YouTube thumbnail and title variants side by side",
   },
 ];

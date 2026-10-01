@@ -17,7 +17,9 @@ function useActiveSection(ids: string[]) {
         ([entry]) => {
           if (entry.isIntersecting) setActive(id);
         },
-        { threshold: 0.3, rootMargin: "-60px 0px -50% 0px" },
+        // activate whichever section crosses a band below the floating nav,
+        // independent of how tall the section is
+        { threshold: 0, rootMargin: "-100px 0px -60% 0px" },
       );
       observer.observe(el);
       observers.push(observer);
@@ -40,10 +42,10 @@ export default function Navbar() {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border/60 bg-background/90 backdrop-blur-sm">
+    <header className="fixed inset-x-0 top-3 z-50 px-3">
       <nav
         aria-label="Main"
-        className="mx-auto flex h-14 max-w-[680px] items-center justify-between px-5"
+        className="mx-auto flex w-fit max-w-full items-center gap-1 rounded-full border border-white/70 bg-white/60 px-2 py-1.5 backdrop-blur-xl shadow-[inset_0_1px 0_rgba(255,255,255,0.85),0_10px_30px_-12px_rgba(43,39,31,0.28)]"
       >
         <a
           href="#hero"
@@ -51,19 +53,19 @@ export default function Navbar() {
             e.preventDefault();
             handleNav("#hero");
           }}
-          className="flex items-center gap-2.5 text-sm font-medium tracking-tight text-foreground transition-colors hover:text-muted"
+          className="flex items-center gap-2 rounded-full py-1 pl-1 pr-2.5 text-sm font-medium tracking-tight text-foreground transition-colors hover:text-accent"
         >
           <Image
             src="/my-hero-image.avif"
             alt="Ejaz Ali"
             width={28}
             height={28}
-            className="size-7 rounded-full object-cover grayscale"
+            className="size-7 rounded-[9px] object-cover grayscale transition-[filter,transform] duration-300 hover:grayscale-0"
           />
           Ejaz Ali
         </a>
 
-        <ul className="flex items-center gap-5">
+        <ul className="flex items-center gap-0.5">
           {navLinks.slice(1).map((link) => {
             const id = link.href.replace("#", "");
             const isActive = active === id;
@@ -75,11 +77,10 @@ export default function Navbar() {
                     e.preventDefault();
                     handleNav(link.href);
                   }}
+                  data-active={isActive ? "true" : undefined}
                   className={cn(
-                    "text-[13px] transition-colors duration-200",
-                    isActive
-                      ? "text-foreground"
-                      : "text-muted hover:text-foreground",
+                    "seg",
+                    isActive ? "text-foreground" : undefined,
                   )}
                 >
                   {link.name}
@@ -89,7 +90,7 @@ export default function Navbar() {
           })}
         </ul>
 
-        <ul className="flex items-center gap-3">
+        <ul className="ml-1 hidden items-center gap-1 border-l border-black/5 pl-2 sm:flex">
           {socialLinks.map((link) => {
             const Icon = link.icon;
             return (
@@ -99,7 +100,7 @@ export default function Navbar() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.label}
-                  className="flex items-center text-muted transition-colors duration-200 hover:text-foreground"
+                  className="flex items-center rounded-full p-1.5 text-muted transition-[color,transform] duration-200 hover:text-accent active:scale-90"
                 >
                   <Icon size={15} />
                 </a>
