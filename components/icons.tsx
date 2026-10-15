@@ -145,3 +145,12 @@ export function Chip(props: IconProps) {
     </Stroke>
   );
 }
+
+export function Layers(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="m12 3 9 5-9 5-9-5 9-5Z" />
+      <path d="m3 13 9 5 9-5" />
+    </Stroke>
+  );
+}

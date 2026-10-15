@@ -3,7 +3,6 @@
 import { navLinks, socialLinks } from "@/data/data";
 import { useCallback, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 
 function useActiveSection(ids: string[]) {
   const [active, setActive] = useState("");
@@ -17,7 +16,7 @@ function useActiveSection(ids: string[]) {
         ([entry]) => {
           if (entry.isIntersecting) setActive(id);
         },
-        // activate whichever section crosses a band below the floating nav,
+        // activate whichever section crosses a band below the fixed nav,
         // independent of how tall the section is
         { threshold: 0, rootMargin: "-100px 0px -60% 0px" },
       );
@@ -36,16 +35,18 @@ export default function Navbar() {
 
   const handleNav = useCallback((href: string) => {
     const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
+    if (!el) return;
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    el.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-3 z-50 px-3">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-rule bg-paper/85 backdrop-blur-sm">
       <nav
         aria-label="Main"
-        className="mx-auto flex w-fit max-w-full items-center gap-1 rounded-full border border-white/70 bg-white/60 px-2 py-1.5 backdrop-blur-xl shadow-[inset_0_1px 0_rgba(255,255,255,0.85),0_10px_30px_-12px_rgba(43,39,31,0.28)]"
+        className="mx-auto flex h-16 max-w-[1000px] items-center justify-between gap-3 px-4 sm:px-6"
       >
         <a
           href="#hero"
@@ -53,20 +54,16 @@ export default function Navbar() {
             e.preventDefault();
             handleNav("#hero");
           }}
-          className="flex items-center gap-2 rounded-full py-1 pl-1 pr-2.5 text-sm font-medium tracking-tight text-foreground transition-colors hover:text-accent"
+          className="flex shrink-0 items-baseline gap-2.5"
         >
-          <Image
-            src="/my-hero-image.avif"
-            alt="Ejaz Ali"
-            width={28}
-            height={28}
-            className="size-7 rounded-[9px] object-cover grayscale transition-[filter,transform] duration-300 hover:grayscale-0"
-          />
-          Ejaz Ali
+          <span className="font-display text-[16px] font-semibold tracking-[-0.01em] text-ink">
+            Ejaz Ali
+          </span>
+          <span className="mono-label hidden md:inline">Web Developer</span>
         </a>
 
-        <ul className="flex items-center gap-0.5">
-          {navLinks.slice(1).map((link) => {
+        <ul className="flex items-center gap-0.5 sm:gap-1">
+          {navLinks.map((link) => {
             const id = link.href.replace("#", "");
             const isActive = active === id;
             return (
@@ -77,32 +74,40 @@ export default function Navbar() {
                     e.preventDefault();
                     handleNav(link.href);
                   }}
-                  data-active={isActive ? "true" : undefined}
+                  aria-current={isActive ? "true" : undefined}
                   className={cn(
-                    "seg",
-                    isActive ? "text-foreground" : undefined,
+                    "relative inline-block px-2 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors sm:px-2.5 sm:text-[12px]",
+                    isActive ? "text-ink" : "text-muted hover:text-ink",
                   )}
                 >
                   {link.name}
+                  <span
+                    aria-hidden="true"
+                    className={cn(
+                      "absolute inset-x-2 -bottom-px h-px bg-terracotta transition-transform duration-200",
+                      isActive ? "scale-x-100" : "scale-x-0",
+                    )}
+                  />
                 </a>
               </li>
             );
           })}
         </ul>
 
-        <ul className="ml-1 hidden items-center gap-1 border-l border-black/5 pl-2 sm:flex">
+        <ul className="hidden items-center gap-0.5 sm:flex">
           {socialLinks.map((link) => {
             const Icon = link.icon;
+            const external = !link.href.startsWith("mailto:");
             return (
               <li key={link.label}>
                 <a
                   href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noopener noreferrer" : undefined}
                   aria-label={link.label}
-                  className="flex items-center rounded-full p-1.5 text-muted transition-[color,transform] duration-200 hover:text-accent active:scale-90"
+                  className="flex items-center rounded-[3px] p-1.5 text-muted transition-colors hover:text-ink"
                 >
-                  <Icon size={15} />
+                  <Icon size={16} />
                 </a>
               </li>
             );

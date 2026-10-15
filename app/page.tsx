@@ -1,16 +1,18 @@
 import Hero from "@/components/sections/hero";
-import ThingsIBuild from "@/components/sections/things-i-build";
-import Projects from "@/components/sections/projects";
+import WhatIDo from "@/components/sections/what-i-do";
+import SelectedWork from "@/components/sections/selected-work";
 import About from "@/components/sections/about";
+import HowIWork from "@/components/sections/how-i-work";
 import Contact from "@/components/sections/contact";
 
 export default function Home() {
   return (
-    <div className="mx-auto grid w-full max-w-[1000px] grid-cols-1 gap-3 px-4 pt-28 pb-8 sm:px-6 sm:pt-36 lg:grid-cols-12">
+    <div className="mx-auto w-full max-w-[1000px] space-y-24 px-4 pt-24 pb-20 sm:px-6 sm:space-y-28 sm:pt-28">
       <Hero />
-      <ThingsIBuild />
+      <WhatIDo />
+      <SelectedWork />
       <About />
-      <Projects />
+      <HowIWork />
       <Contact />
     </div>
   );

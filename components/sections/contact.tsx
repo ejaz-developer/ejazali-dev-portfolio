@@ -1,37 +1,63 @@
-"use client";
-
-import { motion } from "motion/react";
+import { contact } from "@/lib/site";
+import { DashedRule, LedgerRow } from "@/components/primitives";
 import { ArrowUpRight } from "@/components/icons";
+import Reveal from "./reveal";
 
 export default function Contact() {
   return (
-    <section
-      id="contact"
-      className="panel px-6 py-8 sm:px-9 sm:py-10 lg:col-span-12"
-    >
-      <h2 className="font-display text-[17px] italic text-sage-ink">
-        Work with me
-      </h2>
+    <section id="contact" className="scroll-mt-24">
+      <Reveal>
+        <div className="rounded-[3px] border border-rule bg-paper-2 px-6 py-10 sm:px-10 sm:py-12">
+          <div className="flex items-center gap-4">
+            <span className="mono-label whitespace-nowrap">Section 06</span>
+            <DashedRule className="flex-1" />
+          </div>
 
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"
-      >
-        <div className="max-w-[46ch] space-y-3 text-[15px] leading-[1.7] text-foreground/80">
-          <p>Have a product, business system, or web application in mind?</p>
-          <p>Tell me what you&apos;re building and what you&apos;re trying to solve.</p>
-        </div>
+          <h2 className="mt-4 font-display text-[clamp(1.9rem,4.5vw,2.75rem)] leading-[1.05] tracking-[-0.015em] text-ink">
+            Let&apos;s build something.
+          </h2>
 
-        <div className="flex flex-col items-start gap-3 sm:items-end">
-          <a href="mailto:hello.ejaz@outlook.com" className="btn-solid">
-            Start a conversation <ArrowUpRight size={15} />
-          </a>
-          <p className="text-[13px] text-muted">hello.ejaz@outlook.com</p>
+          <p className="mt-3 max-w-[52ch] text-[15px] leading-[1.7] text-ink/75">
+            Have a product, booking system, or business application in mind? Tell
+            me what you&apos;re trying to solve, and I&apos;ll tell you how I&apos;d
+            build it.
+          </p>
+
+          <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
+            <a
+              href={`mailto:${contact.email}`}
+              className="btn-solid"
+            >
+              Email me
+              <ArrowUpRight size={15} />
+            </a>
+            <a
+              href={contact.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-underline inline-flex items-center gap-1.5 text-[13px] font-medium text-ink"
+            >
+              LinkedIn
+              <ArrowUpRight size={14} />
+            </a>
+          </div>
+
+          <DashedRule className="my-7" />
+
+          <div className="ledger">
+            <LedgerRow
+              label="Email"
+              value={contact.email}
+              href={`mailto:${contact.email}`}
+            />
+            <LedgerRow
+              label="LinkedIn"
+              value="in/hello-ejaz"
+              href={contact.linkedin}
+            />
+          </div>
         </div>
-      </motion.div>
+      </Reveal>
     </section>
   );
 }
