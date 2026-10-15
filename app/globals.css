@@ -1,51 +1,51 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-accent: var(--accent);
-  --color-accent-2: var(--accent-2);
-  --color-amber: var(--amber);
-  --color-orange: var(--orange);
-  --color-sage: var(--sage);
-  --color-sage-ink: var(--sage-ink);
-  --color-sage-soft: var(--sage-soft);
+  /* paper + print system (§7) */
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-teal: var(--teal);
+  --color-maize: var(--maize);
+  --color-sand: var(--sand);
+  --color-terracotta: var(--terracotta);
+  --color-rule: var(--rule);
   --color-muted: var(--muted);
   --color-muted-2: var(--muted-2);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
   --color-border: var(--border);
+  --color-accent: var(--accent);
   --font-sans: var(--font-geist);
-  --font-display: var(--font-serif);
+  --font-display: var(--font-bricolage);
+  --font-mono: var(--font-plex-mono);
   --z-skip: 100;
 }
 
 :root {
-  /* palette 1 — base surfaces */
-  --background: #f7f2eb;
-  --beige: #eae2d6;
-  --gray: #eeeeee;
-  /* warm charcoal, not pure black */
-  --foreground: #2a251f;
-  /* palette 2 — accent family */
-  --accent: #972828;
-  --accent-2: #e45742;
-  --orange: #eb7f31;
-  --amber: #fcad38;
-  /* palette 1 — sage, plus a darkened ink for text contrast */
-  --sage: #8b9a6e;
-  --sage-ink: #5d6a44;
-  --sage-soft: rgba(139, 154, 110, 0.18);
-  /* warm grays, one family */
-  --muted: #7b746a;
-  --muted-2: #a49b8e;
-  --border: #eae2d6;
-  --z-grain: 60;
-  /* tinted shadows: warm ink, never pure black */
-  --shadow-soft:
-    0 1px 2px rgba(43, 39, 31, 0.04),
-    0 18px 40px -18px rgba(43, 39, 31, 0.22);
-  --shadow-lift:
-    0 1px 2px rgba(43, 39, 31, 0.05),
-    0 24px 44px -18px rgba(43, 39, 31, 0.28);
+  /* ---------- §7.1 paper + ink palette (exact) ---------- */
+  --paper: #f7f2eb;
+  --paper-2: #fbf8f3;
+  --ink: #264653;
+  --teal: #2a9d8f;
+  --maize: #e9c46a;
+  --sand: #f4a261;
+  --terracotta: #e76f51;
+
+  /* ---------- derived from ink + paper ---------- */
+  /* secondary ink, lifted toward paper */
+  --ink-soft: #546c74;
+  /* hairline rule derived from ink */
+  --rule: rgba(38, 70, 83, 0.18);
+  /* ink mixed toward paper, two depths (muted passes WCAG AA on paper) */
+  --muted: #5a6f78;
+  --muted-2: #a3adae;
+
+  /* ---------- aliases still used by the skip-link / base layer ---------- */
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --accent: var(--terracotta);
+  --border: var(--rule);
 }
 
 html {
@@ -54,49 +54,20 @@ html {
 }
 
 body {
-  background-color: var(--background);
-  /* ambient sage + amber + faint red wash behind the frosted layers */
-  background-image:
-    radial-gradient(
-      1000px 540px at 82% -8%,
-      rgba(139, 154, 110, 0.22),
-      transparent 62%
-    ),
-    radial-gradient(
-      760px 460px at -14% 34%,
-      rgba(252, 173, 56, 0.16),
-      transparent 58%
-    ),
-    radial-gradient(
-      900px 620px at 55% 112%,
-      rgba(151, 40, 40, 0.07),
-      transparent 60%
-    );
-  background-attachment: fixed;
-  color: var(--foreground);
+  background-color: var(--paper);
+  color: var(--ink);
   font-family: var(--font-geist, system-ui, sans-serif);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* fixed grain layer: breaks digital flatness without swallowing clicks */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: var(--z-grain);
-  pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
 ::selection {
-  background: var(--accent);
-  color: var(--background);
+  background: var(--terracotta);
+  color: var(--paper-2);
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--terracotta);
   outline-offset: 3px;
   border-radius: 3px;
 }
@@ -134,151 +105,210 @@ a:active {
 }
 
 .font-display {
-  font-family: var(--font-serif, Georgia, serif);
+  font-family: var(--font-bricolage, Georgia, serif);
+  font-optical-sizing: auto;
 }
 
 .font-mono {
   font-family:
-    ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+    var(--font-plex-mono), ui-monospace, "SF Mono", SFMono-Regular, Menlo,
+    Consolas, monospace;
 }
 
-/* ---------- macOS-style frosted surfaces ---------- */
+/* ============================================================
+   Receipt / ledger primitives — §7 signature element
+   Print-on-paper: warm stock, cool ink, ruled margins, dashed
+   rules, perforations, stamps, order-ticket numbering.
+   ============================================================ */
 
-.panel {
-  background: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(28px) saturate(1.7);
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  border-radius: 22px;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.85),
-    var(--shadow-soft);
+/* single ruled margin line, ledger style */
+.rule-left {
+  border-left: 1px solid var(--rule);
 }
 
-.window {
-  background: rgba(255, 255, 255, 0.74);
-  backdrop-filter: blur(28px) saturate(1.7);
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    var(--shadow-soft);
+.rule-right {
+  border-right: 1px solid var(--rule);
 }
 
-.window-bar {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 14px;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.9),
-    rgba(234, 226, 214, 0.6)
+/* horizontal dashed tear rule */
+.rule-dashed {
+  height: 1px;
+  border: 0;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--rule) 0 7px,
+    transparent 7px 14px
   );
-  border-bottom: 1px solid rgba(43, 39, 31, 0.08);
 }
 
-.window-title {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: var(--muted);
-  white-space: nowrap;
+/* torn / cut-here perforation: a row of punched dots */
+.perforation {
+  height: 10px;
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    var(--rule) 1.6px,
+    transparent 2px
+  );
+  background-size: 11px 100%;
+  background-position: center;
+  background-repeat: repeat-x;
 }
 
-/* traffic lights — tuned to the supplied palette */
-.tl {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  box-shadow: inset 0 0 0 0.5px rgba(43, 39, 31, 0.15);
-}
-
-.tl-red {
-  background: var(--accent-2);
-}
-
-.tl-amber {
-  background: var(--amber);
-}
-
-.tl-green {
-  background: var(--sage);
-}
-
-/* window elevation on parent hover (group is the parent article) */
-.window-hover {
-  transition: box-shadow 300ms ease;
-}
-
-.group:hover .window-hover {
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    var(--shadow-lift);
-}
-
-/* terminal caret */
-@keyframes caret-blink {
-  0%,
-  45% {
-    opacity: 1;
-  }
-  50%,
-  100% {
-    opacity: 0;
-  }
-}
-
-.caret {
-  display: inline-block;
-  width: 7px;
-  height: 14px;
-  vertical-align: -2px;
-  background: var(--accent);
-  animation: caret-blink 1.1s steps(1) infinite;
-}
-
-/* segmented-control nav item (macOS) */
-.seg {
-  border-radius: 999px;
-  padding: 5px 11px;
-  font-size: 13px;
-  color: var(--muted);
-  transition:
-    color 200ms ease,
-    background-color 200ms ease,
-    box-shadow 200ms ease;
-}
-
-.seg:hover {
-  color: var(--foreground);
-}
-
-.seg[data-active="true"] {
-  background: rgba(255, 255, 255, 0.92);
-  color: var(--foreground);
-  font-weight: 500;
-  box-shadow:
-    0 1px 2px rgba(43, 39, 31, 0.14),
-    inset 0 1px 0 rgba(255, 255, 255, 0.95);
-}
-
-/* sage chip for tags and stacks */
-.tag {
+/* rotated, outlined rubber stamp */
+.stamp {
+  --stamp-ink: var(--terracotta);
   display: inline-flex;
   align-items: center;
-  border-radius: 999px;
-  padding: 2px 9px;
-  font-size: 11px;
+  gap: 0.35em;
+  padding: 0.32rem 0.68rem;
+  font-family:
+    var(--font-plex-mono), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.6875rem;
   font-weight: 500;
-  letter-spacing: 0.01em;
-  background: var(--sage-soft);
-  color: var(--sage-ink);
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--stamp-ink);
+  background: var(--paper);
+  border: 1.5px solid var(--stamp-ink);
+  border-radius: 2px;
+  box-shadow:
+    inset 0 0 0 2px var(--paper),
+    inset 0 0 0 3px var(--stamp-ink);
+  transform: rotate(-5deg);
+  opacity: 0.92;
 }
+
+.stamp[data-tone="teal"] {
+  --stamp-ink: var(--teal);
+}
+
+.stamp[data-tone="maize"] {
+  /* maize lifted toward ink so it stays legible as text */
+  --stamp-ink: #a9832c;
+}
+
+.stamp[data-tone="ink"] {
+  --stamp-ink: var(--ink);
+}
+
+/* ledger: stacked dot-leader rows with tabular figures */
+.ledger {
+  display: flex;
+  flex-direction: column;
+  font-variant-numeric: tabular-nums;
+}
+
+.ledger-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding-block: 0.4rem;
+  font-size: 0.9375rem;
+  color: var(--ink-soft);
+}
+
+.ledger-label {
+  flex: 0 0 auto;
+}
+
+.ledger-leader {
+  flex: 1 1 auto;
+  height: 0;
+  border-bottom: 1.5px dotted var(--rule);
+}
+
+.ledger-value {
+  flex: 0 0 auto;
+  margin-left: auto;
+  color: var(--ink);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* uppercase mono metadata */
+.mono-label {
+  font-family:
+    var(--font-plex-mono), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* order-ticket number */
+.ticket-no {
+  font-family:
+    var(--font-plex-mono), ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+/* tabular figures helper */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* printed record: paper card with a ruled margin, stamped label,
+   and a mono caption slot — replaces the macOS window chrome */
+.screenshot-frame {
+  position: relative;
+  display: block;
+  margin: 0;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding-left: 1.75rem;
+  box-shadow:
+    0 1px 0 rgba(38, 70, 83, 0.05),
+    0 22px 44px -30px rgba(38, 70, 83, 0.5);
+  overflow: hidden;
+}
+
+/* ruled left margin line, full bleed */
+.screenshot-frame::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 1rem;
+  width: 1px;
+  background: var(--rule);
+}
+
+.screenshot-frame-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 0.9rem 0.6rem 0.75rem;
+  border-bottom: 1px dashed var(--rule);
+}
+
+.screenshot-frame-body {
+  padding: 0.75rem 0.9rem 0.75rem 0.75rem;
+}
+
+.screenshot-frame-body :where(img, video) {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+}
+
+.screenshot-frame-caption {
+  padding: 0.55rem 0.9rem 0.7rem 0.75rem;
+  border-top: 1px dashed var(--rule);
+}
+
+/* ============================================================
+   Links + buttons, re-skinned to the paper palette
+   ============================================================ */
 
 /* underline link (kept for inline text links) */
 .link-underline {
@@ -304,35 +334,35 @@ a:active {
   transform-origin: left;
 }
 
-/* primary call-to-action: macOS-style pill in the accent red */
+/* primary call-to-action: solid ink block with paper text */
 .btn-solid {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: var(--accent);
-  color: var(--background);
-  padding: 0.75rem 1.4rem;
-  border-radius: 999px;
-  font-size: 14px;
+  background: var(--ink);
+  color: var(--paper-2);
+  padding: 0.7rem 1.25rem;
+  border: 1px solid var(--ink);
+  border-radius: 3px;
+  font-size: 0.875rem;
   font-weight: 500;
-  letter-spacing: -0.01em;
-  box-shadow:
-    0 1px 2px rgba(151, 40, 40, 0.3),
-    0 14px 26px -14px rgba(151, 40, 40, 0.55);
+  letter-spacing: 0.01em;
+  box-shadow: 3px 3px 0 var(--rule);
   transition:
-    transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 220ms ease,
-    background-color 220ms ease;
+    transform 200ms ease,
+    box-shadow 200ms ease,
+    background-color 200ms ease,
+    border-color 200ms ease;
 }
 
 .btn-solid:hover {
-  background: var(--accent-2);
-  transform: translateY(-2px);
-  box-shadow:
-    0 1px 2px rgba(228, 87, 66, 0.35),
-    0 20px 32px -14px rgba(228, 87, 66, 0.55);
+  background: var(--teal);
+  border-color: var(--teal);
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0 var(--rule);
 }
 
 .btn-solid:active {
-  transform: translateY(0) scale(0.98);
+  transform: translate(0, 0);
+  box-shadow: 1px 1px 0 var(--rule);
 }

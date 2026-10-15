@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowLeft } from "@/components/icons";
+import { DashedRule, MonoLabel } from "@/components/primitives";
 
 export default function LegalPage({
   title,
@@ -16,22 +17,27 @@ export default function LegalPage({
       <div className="mx-auto max-w-[680px]">
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-[13px] text-muted transition-colors hover:text-accent"
+          className="inline-flex items-center gap-1.5 text-[13px] text-muted transition-colors hover:text-terracotta"
         >
           <ArrowLeft size={14} />
           Back to home
         </Link>
 
-        <div className="panel mt-6 px-6 py-8 sm:px-9 sm:py-10">
-          <h1 className="font-display text-[34px] leading-tight tracking-[-0.01em] text-foreground">
+        <article className="mt-8 border border-rule bg-paper-2 px-6 py-10 sm:px-10 sm:py-12">
+          <MonoLabel>Legal record</MonoLabel>
+
+          <h1 className="mt-4 font-display text-[34px] leading-tight tracking-[-0.01em] text-ink">
             {title}
           </h1>
-          <p className="mt-2 text-[12px] text-sage-ink">Last updated — {updated}</p>
 
-          <div className="mt-8 space-y-6 border-t border-border pt-7 text-[14px] leading-relaxed text-muted [&_h2]:text-[16px] [&_h2]:font-medium [&_h2]:text-foreground [&_h2]:mb-3 [&_p]:mb-4 [&_a]:text-accent [&_a]:underline [&_a]:underline-offset-4">
+          <p className="mono-label mt-3">Last updated — {updated}</p>
+
+          <DashedRule className="mt-7" />
+
+          <div className="mt-8 space-y-6 text-[14px] leading-relaxed text-muted [&_h2]:mb-3 [&_h2]:font-display [&_h2]:text-[17px] [&_h2]:text-ink [&_p]:mb-4 [&_a]:text-terracotta [&_a]:underline [&_a]:underline-offset-4">
             {children}
           </div>
-        </div>
+        </article>
       </div>
     </div>
   );

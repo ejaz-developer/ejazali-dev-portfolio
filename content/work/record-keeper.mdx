@@ -1,0 +1,59 @@
+---
+title: Record Keeper
+slug: record-keeper
+summary: A point-of-sale app for tracking sales, customers, invoices, and cash flow.
+status: Live
+stack:
+  - Next.js
+  - TypeScript
+  - Prisma
+  - PostgreSQL
+images:
+  - src: /project-images/RecordKeeper-.avif
+    alt: 'Record Keeper sign-in screen pairing the headline "Simplify Your Business Management" with the dashboard features it covers'
+demo: https://recordkeeper-pink.vercel.app/
+---
+
+## Challenge
+
+Small businesses in emerging markets tend to run on notebooks and memory. Sales
+get recorded, customers get remembered, and invoices get chased by phone — until
+the owner needs to know how a month actually went. Then the numbers are scattered
+across ledgers, chat threads, and loose receipts, and nobody can say what the
+cash flow really is.
+
+The hard part is not adding features. It is giving a business one place where the
+everyday record-keeping it already does is captured as it happens.
+
+## Approach
+
+I started from the records a business keeps every day rather than from a feature
+list: sales, customers, invoices, and cash flow. If those four are reliable, the
+reporting on top of them is trustworthy.
+
+The app is a single authenticated workspace built on Next.js with Prisma over
+PostgreSQL, so the schema is explicit and every screen reads from the same data.
+Auth and Google sign-in come first because a business app is only useful once a
+real account is holding the data.
+
+## What I built
+
+- Sales entry that builds a running record of what was sold.
+- Customer ledgers that keep a history per buyer.
+- Invoice management for what is owed and paid.
+- Cash-flow tracking that shows money in and out over time.
+- A dashboard that summarizes the business at a glance.
+
+## Stack
+
+- **Next.js** with the App Router for the application and its server paths.
+- **TypeScript** for typed records end to end.
+- **Prisma** for the data model and queries.
+- **PostgreSQL** as the store for sales, customers, invoices, and cash flow.
+
+## Result & status
+
+Record Keeper is **live**, and honest about its size: it is a thin product. The
+account and sign-in flow and the core record-keeping features work, and the app
+is deployed and reachable at its demo URL. It is not yet a finished commercial
+product — the interfaces are being strengthened and the reporting deepened.

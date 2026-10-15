@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Instrument_Serif } from "next/font/google";
+import { Bricolage_Grotesque, Geist, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { siteUrl, siteTitle, siteName, siteDescription } from "@/lib/site";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -10,55 +11,48 @@ const geist = Geist({
   display: "swap",
 });
 
-const instrumentSerif = Instrument_Serif({
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-  variable: "--font-serif",
+  variable: "--font-bricolage",
   display: "swap",
 });
 
-const siteUrl = "https://helloejaz.dev";
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-plex-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Ejaz Ali — Full-stack Web Engineer",
+    default: siteTitle,
     template: "%s · Ejaz Ali",
   },
-  description:
-    "Full-stack web engineer building web products from Skardu, Pakistan. Next.js, TypeScript, Node.js, and PostgreSQL.",
+  description: siteDescription,
   keywords: [
-    "full stack engineer",
+    "web developer",
+    "freelance web developer",
+    "booking platforms",
+    "business web apps",
     "Next.js",
     "React",
     "TypeScript",
-    "Node.js",
-    "PostgreSQL",
   ],
   authors: [{ name: "Ejaz Ali", url: siteUrl }],
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "Ejaz Ali",
-    title: "Ejaz Ali — Full-stack Web Engineer",
-    description:
-      "Full-stack web engineer building web products from Skardu, Pakistan.",
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: "Ejaz Ali — full-stack web engineer",
-      },
-    ],
+    siteName,
+    title: siteTitle,
+    description: siteDescription,
   },
   twitter: {
-    card: "summary",
-    title: "Ejaz Ali — Full-stack Web Engineer",
-    description:
-      "Full-stack web engineer building web products from Skardu, Pakistan.",
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
     creator: "@helloejazoff",
   },
   robots: { index: true, follow: true },
@@ -70,7 +64,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geist.variable} ${instrumentSerif.variable}`}>
+    <html
+      lang="en"
+      className={`${geist.variable} ${bricolage.variable} ${plexMono.variable}`}
+    >
       <body>
         <div className="relative z-10">
           <a
