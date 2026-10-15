@@ -22,7 +22,7 @@ export default function HowIWork() {
             <h3 className="mt-3 text-[16px] font-medium tracking-tight text-ink">
               {item.title}
             </h3>
-            <p className="mt-2 max-w-[46ch] text-[14px] leading-[1.65] text-ink/70">
+            <p className="mt-2 max-w-[46ch] text-[14px] leading-[1.65] text-ink/75">
               {item.description}
             </p>
           </Reveal>

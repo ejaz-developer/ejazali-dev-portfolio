@@ -3,6 +3,7 @@ import { Bricolage_Grotesque, Geist, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { siteUrl, siteTitle, siteName, siteDescription } from "@/lib/site";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -23,16 +24,13 @@ const plexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-const siteUrl = "https://helloejaz.dev";
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Ejaz Ali — Full-stack Web Engineer",
+    default: siteTitle,
     template: "%s · Ejaz Ali",
   },
-  description:
-    "Full-stack web engineer building web products from Skardu, Pakistan. Next.js, TypeScript, Node.js, and PostgreSQL.",
+  description: siteDescription,
   keywords: [
     "full stack engineer",
     "Next.js",
@@ -46,24 +44,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "Ejaz Ali",
-    title: "Ejaz Ali — Full-stack Web Engineer",
-    description:
-      "Full-stack web engineer building web products from Skardu, Pakistan.",
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: "Ejaz Ali — full-stack web engineer",
-      },
-    ],
+    siteName,
+    title: siteTitle,
+    description: siteDescription,
   },
   twitter: {
-    card: "summary",
-    title: "Ejaz Ali — Full-stack Web Engineer",
-    description:
-      "Full-stack web engineer building web products from Skardu, Pakistan.",
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
     creator: "@helloejazoff",
   },
   robots: { index: true, follow: true },

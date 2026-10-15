@@ -71,7 +71,7 @@ export const mdxComponents: MDXComponents = {
   ),
   blockquote: ({ children, ...props }: HTMLAttributes<HTMLQuoteElement>) => (
     <blockquote
-      className="mt-6 border-l-2 border-terracotta pl-4 text-[15px] leading-[1.8] text-ink/70 italic"
+      className="mt-6 border-l-2 border-terracotta pl-4 text-[15px] leading-[1.8] text-ink/75 italic"
       {...props}
     >
       {children}

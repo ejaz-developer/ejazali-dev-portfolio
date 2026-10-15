@@ -67,9 +67,10 @@ export const projects: Project[] = [
     summary:
       "Ticket booking for Skardu — operator, user, and super-admin roles in one system.",
     status: "In development",
-    stack: ["Next.js", "TypeScript", "PostgreSQL"],
-    image: "/project-images/bookmygb-placeholder.avif",
-    imageAlt: "BookMyGB ticket booking screens — screenshots pending launch",
+    stack: ["React", "Node.js", "Express", "MongoDB", "Redux"],
+    image: "/project-images/BookMyGB.avif",
+    imageAlt:
+      "BookMyGB landing page with the headline \"Seamless tickets for the mountains and beyond\" and status badges reading zero operators live and zero seats open",
     order: 1,
   },
   {

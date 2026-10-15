@@ -110,7 +110,7 @@ export default async function CaseStudyPage({
             {frontmatter.stack.map((item) => (
               <span
                 key={item}
-                className="rounded-[2px] border border-rule bg-paper-2 px-2.5 py-1 font-mono text-[11px] tracking-[0.08em] text-ink/70 uppercase"
+                className="rounded-[2px] border border-rule bg-paper-2 px-2.5 py-1 font-mono text-[11px] tracking-[0.08em] text-ink/75 uppercase"
               >
                 {item}
               </span>
