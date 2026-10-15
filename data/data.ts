@@ -1,105 +1,144 @@
-import {
-  Github,
-  Twitter,
-  Mail,
-  WindowApp,
-  Receipt,
-  Chip,
-} from "@/components/icons";
 import type { IconProps } from "@/components/icons";
+import { WindowApp, Receipt, Chip, Layers } from "@/components/icons";
 import type { ComponentType } from "react";
+
+export { socials as socialLinks } from "@/lib/site";
 
 export const navLinks = [
   { name: "Home", href: "#hero" },
-  { name: "Work", href: "#projects" },
+  { name: "Work", href: "#work" },
   { name: "About", href: "#about" },
   { name: "Contact", href: "#contact" },
 ];
 
-export const socialLinks = [
-  {
-    icon: Github,
-    href: "https://github.com/ejaz-developer",
-    label: "GitHub",
-  },
-  {
-    icon: Twitter,
-    href: "https://x.com/helloejazoff",
-    label: "X",
-  },
-  {
-    icon: Mail,
-    href: "mailto:hello.ejaz@outlook.com",
-    label: "Email",
-  },
-];
-
-export const thingsIBuild: {
+export const whatIDo: {
   title: string;
   description: string;
   icon: ComponentType<IconProps>;
 }[] = [
   {
-    title: "Web applications",
+    title: "Business websites",
     description:
-      "SaaS products, dashboards, internal tools, and business applications.",
+      "Websites that bring in more customers and make it easy to reach you.",
     icon: WindowApp,
   },
   {
-    title: "Business systems",
+    title: "Booking platforms",
     description:
-      "POS, booking, inventory, and workflow software built around real business needs.",
+      "Booking systems and business applications that remove manual work.",
     icon: Receipt,
   },
   {
-    title: "AI-powered products",
+    title: "Web tools for SaaS",
     description:
-      "Web applications where AI genuinely improves the product.",
+      "Practical tools for SaaS founders, built fast and built to last.",
     icon: Chip,
+  },
+  {
+    title: "Requirements to software",
+    description:
+      "From interface to backend, turning requirements into working software.",
+    icon: Layers,
   },
 ];
 
+export type ProjectStatus = "Live" | "In development";
+
 export interface Project {
+  slug: string;
   title: string;
-  description: string;
-  preview?: string;
-  github: string;
-  tags: string[];
+  summary: string;
+  status: ProjectStatus;
+  stack: string[];
   image: string;
   imageAlt: string;
+  demo?: string;
+  order: number;
 }
 
+/**
+ * Featured roster in spec §5 order (flagship-first).
+ * Only Live projects carry a `demo`; every URL below is known to resolve.
+ */
 export const projects: Project[] = [
   {
-    title: "AudioThought",
-    description:
-      "Turns rambling voice recordings into structured notes and actionable tasks.",
-    github: "https://github.com/ejaz-developer/AudioThought",
-    tags: ["Next.js", "TypeScript", "Node.js"],
-    image: "/project-images/AudioThought.avif",
-    imageAlt:
-      "AudioThought interface turning a voice recording into structured notes",
+    slug: "bookmygb",
+    title: "BookMyGB",
+    summary:
+      "Ticket booking for Skardu — operator, user, and super-admin roles in one system.",
+    status: "In development",
+    stack: ["Next.js", "TypeScript", "PostgreSQL"],
+    image: "/project-images/bookmygb-placeholder.avif",
+    imageAlt: "BookMyGB ticket booking screens — screenshots pending launch",
+    order: 1,
   },
   {
+    slug: "record-keeper",
     title: "Record Keeper",
-    description:
-      "A simple POS system for managing products, inventory, and daily sales.",
-    preview: "https://recordkeeper-pink.vercel.app/",
-    github: "https://github.com/ejaz-developer/recordkeeper",
-    tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
+    summary:
+      "Point-of-sale app for sales, customers, invoices, and cash flow.",
+    status: "Live",
+    stack: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
     image: "/project-images/RecordKeeper-.avif",
     imageAlt:
       "Record Keeper point-of-sale screen listing products and daily sales",
+    demo: "https://recordkeeper-pink.vercel.app/",
+    order: 2,
   },
   {
+    slug: "cogniclick",
     title: "CogniClick",
-    description:
-      "Helps YouTube creators test thumbnails and titles before publishing instead of relying on guesswork.",
-    preview: "https://cogniclick-three.vercel.app/",
-    github: "https://github.com/ejaz-developer/cogniclick",
-    tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
+    summary:
+      "Test YouTube thumbnails and titles before publishing, instead of guessing.",
+    status: "Live",
+    stack: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
     image: "/project-images/CogniClick.avif",
     imageAlt:
       "CogniClick comparing YouTube thumbnail and title variants side by side",
+    demo: "https://cogniclick-three.vercel.app/",
+    order: 3,
+  },
+  {
+    slug: "audiothought",
+    title: "AudioThought",
+    summary:
+      "Turns voice recordings into structured notes and flowcharts.",
+    status: "In development",
+    stack: ["Next.js", "TypeScript", "Supabase", "AssemblyAI"],
+    image: "/project-images/AudioThought.avif",
+    imageAlt:
+      "AudioThought interface turning a voice recording into structured notes",
+    order: 4,
+  },
+];
+
+export const howIWork: {
+  step: string;
+  title: string;
+  description: string;
+}[] = [
+  {
+    step: "01",
+    title: "Understand the problem",
+    description:
+      "Start with the work behind the software — who does what today, and where it breaks down.",
+  },
+  {
+    step: "02",
+    title: "Design the build",
+    description:
+      "Turn requirements into a scope, a data model, and screens before writing much code.",
+  },
+  {
+    step: "03",
+    title: "Build the system",
+    description:
+      "Interface through to backend and database, in reviewable pieces rather than one big drop.",
+  },
+  {
+    step: "04",
+    title: "Ship and hand over",
+    description:
+      "Deploy, walk through what was built, and leave documentation for what comes next.",
   },
 ];
