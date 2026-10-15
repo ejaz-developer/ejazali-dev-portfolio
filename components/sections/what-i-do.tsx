@@ -32,7 +32,7 @@ export default function WhatIDo() {
                       {item.title}
                     </h3>
                   </div>
-                  <p className="mt-1.5 max-w-[60ch] text-[14px] leading-[1.65] text-ink/70">
+                  <p className="mt-1.5 max-w-[60ch] text-[14px] leading-[1.65] text-ink/75">
                     {item.description}
                   </p>
                 </div>
