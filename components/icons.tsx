@@ -87,6 +87,24 @@ export function ArrowLeft(props: IconProps) {
   );
 }
 
+export function ArrowRight(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M5 12h14" />
+      <path d="m13 6 6 6-6 6" />
+    </Stroke>
+  );
+}
+
+export function ArrowDown(props: IconProps) {
+  return (
+    <Stroke {...props}>
+      <path d="M12 5v14" />
+      <path d="m6 13 6 6 6-6" />
+    </Stroke>
+  );
+}
+
 export function Mail(props: IconProps) {
   return (
     <Stroke {...props}>
