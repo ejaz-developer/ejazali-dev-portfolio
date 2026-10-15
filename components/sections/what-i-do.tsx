@@ -1,4 +1,5 @@
 import { whatIDo } from "@/data/data";
+import { pad2 } from "@/lib/utils";
 import SectionHeading from "./section-heading";
 import Reveal from "./reveal";
 
@@ -22,7 +23,7 @@ export default function WhatIDo() {
             >
               <div className="grid grid-cols-[auto_1fr] gap-4 px-5 py-5 sm:gap-6 sm:px-7 sm:py-6">
                 <span className="ticket-no pt-0.5 tabular-nums">
-                  {String(i + 1).padStart(2, "0")}
+                  {pad2(i + 1)}
                 </span>
 
                 <div>

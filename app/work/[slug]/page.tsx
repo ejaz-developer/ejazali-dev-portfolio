@@ -10,7 +10,8 @@ import {
   Stamp,
 } from "@/components/primitives";
 import { getAllSlugs, getCaseStudy } from "@/lib/mdx";
-import { siteName } from "@/lib/site";
+import { siteName, statusTone } from "@/lib/site";
+import { pad2 } from "@/lib/utils";
 
 export const dynamicParams = false;
 
@@ -57,7 +58,6 @@ export default async function CaseStudyPage({
   if (!study) notFound();
 
   const { frontmatter, content } = study;
-  const isLive = frontmatter.status === "Live";
   const slugs = await getAllSlugs();
   const position = slugs.indexOf(slug) + 1;
 
@@ -74,8 +74,7 @@ export default async function CaseStudyPage({
 
         <header className="mt-8">
           <MonoLabel>
-            Case study — {String(position).padStart(2, "0")} /{" "}
-            {String(slugs.length).padStart(2, "0")}
+            Case study — {pad2(position)} / {pad2(slugs.length)}
           </MonoLabel>
 
           <h1 className="mt-4 font-display text-[36px] leading-[1.05] tracking-[-0.02em] text-ink sm:text-[46px]">
@@ -87,7 +86,7 @@ export default async function CaseStudyPage({
           </p>
 
           <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-4">
-            <Stamp tone={isLive ? "teal" : "terracotta"}>
+            <Stamp tone={statusTone(frontmatter.status)}>
               {frontmatter.status}
             </Stamp>
 
@@ -118,19 +117,23 @@ export default async function CaseStudyPage({
           </div>
         </header>
 
+        <DashedRule className="mt-14" />
+
+        <article className="mt-10">{content}</article>
+
         {frontmatter.images.length > 0 ? (
           <div className="mt-12 space-y-8">
-            {frontmatter.images.map((src, index) => (
+            {frontmatter.images.map((image, index) => (
               <ScreenshotFrame
-                key={src}
+                key={image.src}
                 label={frontmatter.title}
-                ticket={`FIG. ${String(index + 1).padStart(2, "0")}`}
-                caption={frontmatter.imageAlts[index]}
+                ticket={`FIG. ${pad2(index + 1)}`}
+                caption={image.alt}
               >
                 <div className="relative aspect-[16/9] w-full bg-paper">
                   <Image
-                    src={src}
-                    alt={frontmatter.imageAlts[index] ?? `${frontmatter.title} screenshot`}
+                    src={image.src}
+                    alt={image.alt}
                     fill
                     sizes="(max-width: 820px) 100vw, 760px"
                     className="object-contain"
@@ -140,10 +143,6 @@ export default async function CaseStudyPage({
             ))}
           </div>
         ) : null}
-
-        <DashedRule className="mt-14" />
-
-        <article className="mt-10">{content}</article>
       </div>
     </div>
   );

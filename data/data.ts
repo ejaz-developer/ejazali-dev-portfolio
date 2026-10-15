@@ -1,6 +1,7 @@
 import type { IconProps } from "@/components/icons";
 import { WindowApp, Receipt, Chip, Layers } from "@/components/icons";
 import type { ComponentType } from "react";
+import type { ProjectStatus } from "@/lib/site";
 
 export { socials as socialLinks } from "@/lib/site";
 
@@ -41,8 +42,6 @@ export const whatIDo: {
     icon: Layers,
   },
 ];
-
-export type ProjectStatus = "Live" | "In development";
 
 export interface Project {
   slug: string;

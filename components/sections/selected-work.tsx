@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { projects } from "@/data/data";
+import { statusTone } from "@/lib/site";
+import { pad2 } from "@/lib/utils";
 import { ScreenshotFrame, Stamp, TicketNo } from "@/components/primitives";
 import { ArrowRight, ArrowUpRight } from "@/components/icons";
 import SectionHeading from "./section-heading";
@@ -23,8 +25,8 @@ export default function SelectedWork() {
             <article className="group grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,400px)] lg:items-start lg:gap-10">
               <div className="min-w-0">
                 <div className="flex items-center justify-between gap-4">
-                  <TicketNo value={`NO. ${String(i + 1).padStart(2, "0")}`} />
-                  <Stamp tone={project.status === "Live" ? "teal" : "maize"}>
+                  <TicketNo value={`NO. ${pad2(i + 1)}`} />
+                  <Stamp tone={statusTone(project.status)}>
                     {project.status}
                   </Stamp>
                 </div>
@@ -77,7 +79,7 @@ export default function SelectedWork() {
               </div>
 
               <ScreenshotFrame
-                ticket={`NO. ${String(i + 1).padStart(2, "0")}`}
+                ticket={`NO. ${pad2(i + 1)}`}
                 caption={`${project.title} — ${project.status}`}
                 className="lg:sticky lg:top-24"
               >

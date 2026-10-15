@@ -3,17 +3,21 @@ import path from "node:path";
 import type { ReactElement } from "react";
 import { compileMDX } from "next-mdx-remote/rsc";
 import { mdxComponents } from "@/components/mdx-components";
+import { caseStudyOrder } from "@/lib/site";
+import type { ProjectStatus } from "@/lib/site";
 
-export type CaseStudyStatus = "Live" | "In development";
+export interface CaseStudyImage {
+  src: string;
+  alt: string;
+}
 
 export interface CaseStudyFrontmatter {
   title: string;
   slug: string;
   summary: string;
-  status: CaseStudyStatus;
+  status: ProjectStatus;
   stack: string[];
-  images: string[];
-  imageAlts: string[];
+  images: CaseStudyImage[];
   demo?: string;
 }
 
@@ -28,10 +32,18 @@ const slugPattern = /^[a-z0-9-]+$/;
 
 export async function getAllSlugs(): Promise<string[]> {
   const entries = await readdir(contentDir);
-  return entries
+  const slugs = entries
     .filter((entry) => entry.endsWith(".mdx"))
-    .map((entry) => entry.replace(/\.mdx$/, ""))
-    .sort();
+    .map((entry) => entry.replace(/\.mdx$/, ""));
+
+  return slugs.sort((a, b) => {
+    const ai = caseStudyOrder.indexOf(a as (typeof caseStudyOrder)[number]);
+    const bi = caseStudyOrder.indexOf(b as (typeof caseStudyOrder)[number]);
+    if (ai === -1 && bi === -1) return a.localeCompare(b);
+    if (ai === -1) return 1;
+    if (bi === -1) return -1;
+    return ai - bi;
+  });
 }
 
 export async function getCaseStudy(slug: string): Promise<CaseStudy | null> {

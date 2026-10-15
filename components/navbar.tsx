@@ -2,7 +2,7 @@
 
 import { navLinks, socialLinks } from "@/data/data";
 import { useCallback, useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
+import { cn, externalLinkProps } from "@/lib/utils";
 
 function useActiveSection(ids: string[]) {
   const [active, setActive] = useState("");
@@ -97,13 +97,11 @@ export default function Navbar() {
         <ul className="hidden items-center gap-0.5 sm:flex">
           {socialLinks.map((link) => {
             const Icon = link.icon;
-            const external = !link.href.startsWith("mailto:");
             return (
               <li key={link.label}>
                 <a
                   href={link.href}
-                  target={external ? "_blank" : undefined}
-                  rel={external ? "noopener noreferrer" : undefined}
+                  {...externalLinkProps(link.href)}
                   aria-label={link.label}
                   className="flex items-center rounded-[3px] p-1.5 text-muted transition-colors hover:text-ink"
                 >

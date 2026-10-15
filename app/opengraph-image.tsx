@@ -1,49 +1,18 @@
 import { ImageResponse } from "next/og";
-import { siteName, siteUrl } from "@/lib/site";
+import { ogContentType, ogPalette, OgFrame, ogSize } from "@/lib/og";
 
 export const alt =
   "Ejaz Ali — booking platforms and business web apps for founders and business owners";
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
-
-const paper = "#f7f2eb";
-const paper2 = "#fbf8f3";
-const ink = "#264653";
-const muted = "#7a8b90";
-const teal = "#2a9d8f";
+export const size = ogSize;
+export const contentType = ogContentType;
 
 export default function Image() {
-  const host = siteUrl.replace(/^https?:\/\//, "");
-
   return new ImageResponse(
     (
-      <div
-        style={{
-          height: "100%",
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          backgroundColor: paper,
-          color: ink,
-          padding: "68px 80px",
-        }}
+      <OgFrame
+        headerRight="Web Developer"
+        footerLeft="Freelance web development · remote"
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            fontSize: 22,
-            letterSpacing: 5,
-            textTransform: "uppercase",
-            color: muted,
-          }}
-        >
-          <span>{siteName}</span>
-          <span>Web Developer</span>
-        </div>
-
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
@@ -65,9 +34,9 @@ export default function Image() {
                 fontSize: 24,
                 letterSpacing: 5,
                 textTransform: "uppercase",
-                color: teal,
-                backgroundColor: paper2,
-                border: `3px solid ${teal}`,
+                color: ogPalette.teal,
+                backgroundColor: ogPalette.paper2,
+                border: `3px solid ${ogPalette.teal}`,
                 borderRadius: 4,
                 padding: "12px 24px",
               }}
@@ -76,20 +45,7 @@ export default function Image() {
             </span>
           </div>
         </div>
-
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            fontSize: 22,
-            color: muted,
-          }}
-        >
-          <span>Freelance web development · remote</span>
-          <span>{host}</span>
-        </div>
-      </div>
+      </OgFrame>
     ),
     { ...size }
   );

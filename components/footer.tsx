@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { socialLinks } from "@/data/data";
 import { siteTagline } from "@/lib/site";
+import { externalLinkProps } from "@/lib/utils";
 import { DashedRule } from "@/components/primitives";
 
 export default function Footer() {
@@ -21,21 +22,17 @@ export default function Footer() {
           </div>
 
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
-            {socialLinks.map((link) => {
-              const external = !link.href.startsWith("mailto:");
-              return (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    target={external ? "_blank" : undefined}
-                    rel={external ? "noopener noreferrer" : undefined}
-                    className="link-underline text-[13px] text-muted transition-colors hover:text-ink"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              );
-            })}
+            {socialLinks.map((link) => (
+              <li key={link.label}>
+                <a
+                  href={link.href}
+                  {...externalLinkProps(link.href)}
+                  className="link-underline text-[13px] text-muted transition-colors hover:text-ink"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
 

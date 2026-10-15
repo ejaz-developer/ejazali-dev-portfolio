@@ -19,6 +19,28 @@ export const contact = {
   linkedin: "https://www.linkedin.com/in/hello-ejaz/",
 } as const;
 
+/**
+ * The one status vocabulary for wherever a product is described (§4/§5).
+ */
+export type ProjectStatus = "Live" | "In development";
+
+export type StatusTone = "teal" | "maize";
+
+export function statusTone(status: ProjectStatus): StatusTone {
+  return status === "Live" ? "teal" : "maize";
+}
+
+/**
+ * Canonical flagship-first order (§5). Drives case-study numbering so the
+ * counter tracks the roster, not the alphabet.
+ */
+export const caseStudyOrder = [
+  "bookmygb",
+  "record-keeper",
+  "cogniclick",
+  "audiothought",
+] as const;
+
 export interface Social {
   label: string;
   href: string;
