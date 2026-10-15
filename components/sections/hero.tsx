@@ -24,23 +24,23 @@ const orderItems = [
 
 export default function Hero() {
   const reducedMotion = useReducedMotion();
-  const d = (value: number) => (reducedMotion ? 0 : value);
+  const dur = (value: number) => (reducedMotion ? 0 : value);
 
   const stageVariants: Variants = {
     hidden: {},
     show: {
-      transition: { staggerChildren: d(0.09), delayChildren: d(0.08) },
+      transition: { staggerChildren: dur(0.09), delayChildren: dur(0.08) },
     },
   };
 
   const riseVariants: Variants = {
     hidden: { opacity: 0, y: 12 },
-    show: { opacity: 1, y: 0, transition: { duration: d(0.32), ease: EASE } },
+    show: { opacity: 1, y: 0, transition: { duration: dur(0.32), ease: EASE } },
   };
 
   const lineVariants: Variants = {
     hidden: { opacity: 0, y: 6 },
-    show: { opacity: 1, y: 0, transition: { duration: d(0.24), ease: EASE } },
+    show: { opacity: 1, y: 0, transition: { duration: dur(0.24), ease: EASE } },
   };
 
   const cardVariants: Variants = {
@@ -49,18 +49,18 @@ export default function Hero() {
       opacity: 1,
       y: 0,
       transition: {
-        duration: d(0.34),
+        duration: dur(0.34),
         ease: EASE,
         when: "beforeChildren",
-        staggerChildren: d(0.09),
-        delayChildren: d(0.06),
+        staggerChildren: dur(0.09),
+        delayChildren: dur(0.06),
       },
     },
   };
 
   const totalVariants: Variants = {
     hidden: { opacity: 0, y: 8 },
-    show: { opacity: 1, y: 0, transition: { duration: d(0.3), ease: EASE } },
+    show: { opacity: 1, y: 0, transition: { duration: dur(0.3), ease: EASE } },
   };
 
   const stampVariants: Variants = {
@@ -71,7 +71,7 @@ export default function Hero() {
       opacity: 1,
       scale: 1,
       rotate: -5,
-      transition: { duration: d(0.34), ease: EASE },
+      transition: { duration: dur(0.34), ease: EASE },
     },
   };
 

@@ -32,12 +32,13 @@ export const metadata: Metadata = {
   },
   description: siteDescription,
   keywords: [
-    "full stack engineer",
+    "web developer",
+    "freelance web developer",
+    "booking platforms",
+    "business web apps",
     "Next.js",
     "React",
     "TypeScript",
-    "Node.js",
-    "PostgreSQL",
   ],
   authors: [{ name: "Ejaz Ali", url: siteUrl }],
   openGraph: {
