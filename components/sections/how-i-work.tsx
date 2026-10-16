@@ -11,11 +11,10 @@ export default function HowIWork() {
         lede="A predictable process, so you always know what is happening and what comes next."
       />
 
-      <div className="mt-8 grid gap-px overflow-hidden rounded-[3px] border border-rule bg-rule sm:grid-cols-2">
-        {howIWork.map((item, i) => (
+      <div className="mt-8 grid gap-px overflow-clip rounded-[3px] border border-rule bg-rule sm:grid-cols-2">
+        {howIWork.map((item) => (
           <Reveal
             key={item.step}
-            delay={i * 0.05}
             className="bg-paper-2 p-6 sm:p-7"
           >
             <span className="ticket-no">STEP {item.step}</span>

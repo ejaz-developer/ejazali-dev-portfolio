@@ -21,7 +21,7 @@ export default function SelectedWork() {
 
       <div className="mt-10 space-y-16">
         {roster.map((project, i) => (
-          <Reveal key={project.slug} delay={i * 0.04}>
+          <Reveal key={project.slug}>
             <article className="group grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,400px)] lg:items-start lg:gap-10">
               <div className="min-w-0">
                 <div className="flex items-center justify-between gap-4">
