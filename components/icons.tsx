@@ -1,16 +1,14 @@
 import { HugeiconsIcon } from "@hugeicons/react";
 import type { IconSvgElement } from "@hugeicons/react";
-import {
-  ArrowDown01Icon,
-  ArrowLeft01Icon,
-  ArrowRight01Icon,
-  ArrowUpRight01Icon,
-  CpuIcon,
-  DashboardBrowsingIcon,
-  Layers01Icon,
-  Mail01Icon,
-  ReceiptIcon,
-} from "@hugeicons/core-free-icons";
+import ArrowDown01Icon from "@hugeicons/core-free-icons/ArrowDown01Icon";
+import ArrowLeft01Icon from "@hugeicons/core-free-icons/ArrowLeft01Icon";
+import ArrowRight01Icon from "@hugeicons/core-free-icons/ArrowRight01Icon";
+import ArrowUpRight01Icon from "@hugeicons/core-free-icons/ArrowUpRight01Icon";
+import CpuIcon from "@hugeicons/core-free-icons/CpuIcon";
+import DashboardBrowsingIcon from "@hugeicons/core-free-icons/DashboardBrowsingIcon";
+import Layers01Icon from "@hugeicons/core-free-icons/Layers01Icon";
+import Mail01Icon from "@hugeicons/core-free-icons/Mail01Icon";
+import ReceiptIcon from "@hugeicons/core-free-icons/ReceiptIcon";
 
 export type IconProps = {
   size?: number;

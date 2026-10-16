@@ -307,6 +307,56 @@ a:active {
 }
 
 /* ============================================================
+   Motion — CSS only, no runtime.
+   Above the fold animates `transform` alone (opacity stays 1) so
+   first paint is immediate and never blocked on hydration. Below
+   the fold reveals on scroll through the compositor-driven view
+   timeline, falling back to a static, fully-visible render where
+   that API is unsupported.
+   ============================================================ */
+
+@keyframes rise-in {
+  from {
+    transform: translateY(12px);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise {
+  animation: rise-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .reveal {
+    animation: none !important;
+  }
+}
+
+/* ============================================================
    Links + buttons, re-skinned to the paper palette
    ============================================================ */
 
