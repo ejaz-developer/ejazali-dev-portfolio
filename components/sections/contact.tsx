@@ -9,7 +9,7 @@ export default function Contact() {
       <Reveal>
         <div className="rounded-[3px] border border-rule bg-paper-2 px-6 py-10 sm:px-10 sm:py-12">
           <div className="flex items-center gap-4">
-            <span className="mono-label whitespace-nowrap">Section 06</span>
+            <span className="mono-label whitespace-nowrap">Section 07</span>
             <DashedRule className="flex-1" />
           </div>
 

@@ -19,7 +19,7 @@ export default function SelectedWork() {
         lede="Four products I have designed and built end to end. Status labels are current and every demo below resolves."
       />
 
-      <div className="mt-10 space-y-16">
+      <div className="mt-10 space-y-10">
         {roster.map((project, i) => (
           <Reveal key={project.slug}>
             <article className="group grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,400px)] lg:items-start lg:gap-10">
@@ -34,7 +34,7 @@ export default function SelectedWork() {
                 <h3 className="mt-4">
                   <Link
                     href={`/work/${project.slug}`}
-                    className="font-display text-[clamp(1.6rem,3.4vw,2.15rem)] leading-[1.05] tracking-[-0.015em] text-ink transition-colors hover:text-terracotta"
+                    className="font-display text-[clamp(1.6rem,3.4vw,2.15rem)] leading-[1.05] tracking-[-0.015em] text-ink transition-colors hover:text-teal"
                   >
                     {project.title}
                   </Link>

@@ -8,7 +8,7 @@ export default function NotFound() {
       <div className="w-full max-w-[420px] border border-rule bg-paper-2 px-8 py-12 text-center">
         <MonoLabel>Error / not found</MonoLabel>
 
-        <h1 className="mt-4 font-display text-[64px] leading-none tracking-[-0.01em] text-terracotta">
+        <h1 className="mt-4 font-display text-[64px] leading-none tracking-[-0.01em] text-teal">
           404
         </h1>
 
@@ -20,7 +20,7 @@ export default function NotFound() {
 
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-[13px] text-muted transition-colors hover:text-terracotta"
+          className="inline-flex items-center gap-1.5 text-[13px] text-muted transition-colors hover:text-teal"
         >
           <ArrowLeft size={14} />
           Back to home

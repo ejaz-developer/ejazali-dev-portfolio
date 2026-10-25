@@ -1,28 +1,10 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, Geist, IBM_Plex_Mono } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { siteUrl, siteTitle, siteName, siteDescription } from "@/lib/site";
-
-const geist = Geist({
-  subsets: ["latin"],
-  variable: "--font-geist",
-  display: "swap",
-});
-
-const bricolage = Bricolage_Grotesque({
-  subsets: ["latin"],
-  variable: "--font-bricolage",
-  display: "swap",
-});
-
-const plexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-plex-mono",
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -66,13 +48,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${bricolage.variable} ${plexMono.variable}`}
+      className={`${GeistSans.variable} ${GeistMono.variable}`}
     >
       <body>
         <div className="relative z-10">
           <a
             href="#main"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-skip focus:rounded-md focus:bg-foreground focus:px-4 focus:py-2.5 focus:text-sm focus:text-background"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-skip focus:rounded-md focus:bg-ink focus:px-4 focus:py-2.5 focus:text-sm focus:text-bg"
           >
             Skip to content
           </a>
