@@ -1,0 +1,46 @@
+---
+import {
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconBrandX,
+} from "@tabler/icons-react";
+import { site } from "../data/site";
+
+const icons = {
+  github: IconBrandGithub,
+  linkedin: IconBrandLinkedin,
+  x: IconBrandX,
+} as const;
+
+const year = new Date().getFullYear();
+---
+
+<footer class="px-4 pb-10 sm:px-6">
+  <div
+    class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 rounded-2xl border border-border/70 bg-card/70 px-6 py-5 shadow-soft sm:flex-row"
+  >
+    <p class="text-sm text-muted-foreground">
+      © {year} {site.name}. Built with Astro.
+    </p>
+    <ul class="flex items-center gap-2">
+      {
+        site.socials.map((social) => {
+          const Icon = icons[social.id];
+          return (
+            <li>
+              <a
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                class="flex size-9 items-center justify-center rounded-2xl text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-muted hover:text-primary hover:shadow-soft"
+              >
+                <Icon size={18} stroke={1.75} />
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</footer>

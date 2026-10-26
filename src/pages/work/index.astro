@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import WorkCard from "../../components/work/WorkCard.astro";
+
+const entries = (await getCollection("work")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<Base title="Work" description="Case studies of web apps and MVPs built by Ejaz.">
+  <section class="py-16 sm:py-20">
+    <SectionHeading id="work" title="Work" />
+    <div class="grid gap-4 sm:grid-cols-2">
+      {entries.map((entry) => <WorkCard entry={entry} />)}
+    </div>
+  </section>
+</Base>

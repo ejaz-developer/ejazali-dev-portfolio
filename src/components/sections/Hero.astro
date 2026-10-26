@@ -1,0 +1,23 @@
+---
+import HeroTagline from "../react/HeroTagline";
+---
+
+<section class="relative overflow-hidden pt-20 pb-16 sm:pt-28 sm:pb-20">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="relative">
+    <HeroTagline client:load />
+  </div>
+</section>
+
+<style>
+  .hero-grid {
+    position: absolute;
+    inset: -1px calc(50% - 50vw);
+    background-image:
+      linear-gradient(to right, rgb(0 48 73 / 0.7) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(0 48 73 / 0.7) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse 85% 75% at 50% 0%, black 25%, transparent 78%);
+    pointer-events: none;
+  }
+</style>
