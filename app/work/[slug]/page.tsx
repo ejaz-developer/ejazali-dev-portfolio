@@ -66,7 +66,7 @@ export default async function CaseStudyPage({
       <div className="mx-auto max-w-[820px]">
         <Link
           href="/#work"
-          className="inline-flex items-center gap-1.5 text-[13px] text-muted transition-colors hover:text-terracotta"
+          className="inline-flex items-center gap-1.5 text-[13px] text-muted transition-colors hover:text-teal"
         >
           <ArrowLeft size={14} />
           Back to work

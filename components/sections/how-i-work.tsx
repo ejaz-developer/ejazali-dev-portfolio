@@ -6,7 +6,7 @@ export default function HowIWork() {
   return (
     <section id="how-i-work" className="scroll-mt-24">
       <SectionHeading
-        index="05"
+        index="04"
         title="How I work"
         lede="A predictable process, so you always know what is happening and what comes next."
       />

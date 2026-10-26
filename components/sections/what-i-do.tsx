@@ -1,46 +1,44 @@
 import { whatIDo } from "@/data/data";
-import { pad2 } from "@/lib/utils";
 import SectionHeading from "./section-heading";
 import Reveal from "./reveal";
 
+/*
+ * Section 01 — What I do.
+ *
+ * The offer is four capabilities, but the product is one system. So the
+ * section is a four-up capability matrix (hairline grid, no cards) sitting
+ * above a three-surface strip: site → booking flow → back office. The strip
+ * is the signature — it carries the claim the hero makes, in structure
+ * rather than in another paragraph.
+ */
+
 export default function WhatIDo() {
   return (
-    <section>
+    <section id="what-i-do" className="scroll-mt-24">
       <SectionHeading
-        index="02"
+        index="01"
         title="What I do"
-        lede="I build the systems a business runs on — from the customer-facing site to the booking engine and back office behind it."
+        lede="I build the systems a business runs on — from the customer-facing site to the booking engine and the back office behind it."
       />
 
-      <div className="mt-8 overflow-clip rounded-[3px] border border-rule bg-paper-2 shadow-[0_22px_44px_-34px_rgba(38,70,83,0.5)]">
-        {whatIDo.map((item, i) => {
+      <ul className="mt-9 grid grid-cols-1 gap-px overflow-clip rounded-[4px] border border-rule bg-rule sm:grid-cols-2 xl:grid-cols-4">
+        {whatIDo.map((item) => {
           const Icon = item.icon;
           return (
-            <Reveal
-              key={item.title}
-              className={i > 0 ? "border-t border-dashed border-rule" : undefined}
-            >
-              <div className="grid grid-cols-[auto_1fr] gap-4 px-5 py-5 sm:gap-6 sm:px-7 sm:py-6">
-                <span className="ticket-no pt-0.5 tabular-nums">
-                  {pad2(i + 1)}
-                </span>
-
-                <div>
-                  <div className="flex items-center gap-2.5">
-                    <Icon size={17} className="shrink-0 text-teal" />
-                    <h3 className="text-[16px] font-medium tracking-tight text-ink">
-                      {item.title}
-                    </h3>
-                  </div>
-                  <p className="mt-1.5 max-w-[60ch] text-[14px] leading-[1.65] text-ink/75">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            </Reveal>
+            <li key={item.title} className="bg-bg">
+              <Reveal className="flex h-full flex-col px-5 py-6 sm:px-6 sm:py-7">
+                <Icon size={18} className="shrink-0 text-teal" />
+                <h3 className="mt-5 text-[15px] font-medium leading-[1.3] tracking-[-0.01em] text-ink">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-[13.5px] leading-[1.65] text-ink/70">
+                  {item.description}
+                </p>
+              </Reveal>
+            </li>
           );
         })}
-      </div>
+      </ul>
     </section>
   );
 }

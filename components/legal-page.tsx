@@ -17,7 +17,7 @@ export default function LegalPage({
       <div className="mx-auto max-w-[680px]">
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-[13px] text-muted transition-colors hover:text-terracotta"
+          className="inline-flex items-center gap-1.5 text-[13px] text-muted transition-colors hover:text-teal"
         >
           <ArrowLeft size={14} />
           Back to home
@@ -34,7 +34,7 @@ export default function LegalPage({
 
           <DashedRule className="mt-7" />
 
-          <div className="mt-8 space-y-6 text-[14px] leading-relaxed text-muted [&_h2]:mb-3 [&_h2]:font-display [&_h2]:text-[17px] [&_h2]:text-ink [&_p]:mb-4 [&_a]:text-terracotta [&_a]:underline [&_a]:underline-offset-4">
+          <div className="mt-8 space-y-6 text-[14px] leading-relaxed text-muted [&_h2]:mb-3 [&_h2]:font-display [&_h2]:text-[17px] [&_h2]:text-ink [&_p]:mb-4 [&_a]:text-teal [&_a]:underline [&_a]:underline-offset-4">
             {children}
           </div>
         </article>

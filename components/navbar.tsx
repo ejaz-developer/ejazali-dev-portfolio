@@ -1,57 +1,53 @@
 "use client";
 
-import { navLinks, socialLinks } from "@/data/data";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { socialLinks } from "@/data/data";
 import { cn, externalLinkProps } from "@/lib/utils";
+import { Cancel, Menu } from "@/components/icons";
 
-function useActiveSection(ids: string[]) {
-  const [active, setActive] = useState("");
+const navItems = [
+  { label: "What I do", href: "#what-i-do" },
+  { label: "Packages", href: "#packages" },
+  { label: "Selected work", href: "#work" },
+  { label: "How I work", href: "#how-i-work" },
+  { label: "FAQ", href: "#faq" },
+];
 
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-    for (const id of ids) {
-      const el = document.getElementById(id);
-      if (!el) continue;
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActive(id);
-        },
-        // activate whichever section crosses a band below the fixed nav,
-        // independent of how tall the section is
-        { threshold: 0, rootMargin: "-100px 0px -60% 0px" },
-      );
-      observer.observe(el);
-      observers.push(observer);
-    }
-    return () => observers.forEach((o) => o.disconnect());
-  }, [ids]);
-
-  return active;
-}
+const linkBase =
+  "relative inline-block font-mono text-[11px] uppercase tracking-[0.14em] transition-colors sm:text-[12px]";
 
 export default function Navbar() {
-  const sectionIds = navLinks.map((l) => l.href.replace("#", ""));
-  const active = useActiveSection(sectionIds);
+  const [open, setOpen] = useState(false);
 
-  const handleNav = useCallback((href: string) => {
+  useEffect(() => {
+    if (!open) return;
+
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  const handleNav = (href: string) => {
+    setOpen(false);
     const el = document.querySelector(href);
     if (!el) return;
-    const reduce = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     el.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
-  }, []);
+  };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-rule bg-paper/85 backdrop-blur-sm">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-rule bg-bg-subtle/95 backdrop-blur-sm">
       <nav
         aria-label="Main"
-        className="mx-auto flex h-16 max-w-[1000px] items-center justify-between gap-3 px-4 sm:px-6"
+        className="mx-auto flex h-16 max-w-[1000px] items-center justify-between gap-4 px-4 sm:px-6"
       >
         <a
           href="#hero"
-          onClick={(e) => {
-            e.preventDefault();
+          onClick={(event) => {
+            event.preventDefault();
             handleNav("#hero");
           }}
           className="flex shrink-0 items-baseline gap-2.5"
@@ -59,59 +55,97 @@ export default function Navbar() {
           <span className="font-display text-[16px] font-semibold tracking-[-0.01em] text-ink">
             Ejaz Ali
           </span>
-          <span className="mono-label hidden md:inline">Web Developer</span>
+          <span className="mono-label hidden xl:inline">Web Developer</span>
         </a>
 
-        <ul className="flex items-center gap-0.5 sm:gap-1">
-          {navLinks.map((link) => {
-            const id = link.href.replace("#", "");
-            const isActive = active === id;
-            return (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNav(link.href);
-                  }}
-                  aria-current={isActive ? "true" : undefined}
-                  className={cn(
-                    "relative inline-block px-2 py-1.5 font-mono text-[11px] uppercase tracking-[0.14em] transition-colors sm:px-2.5 sm:text-[12px]",
-                    isActive ? "text-ink" : "text-muted hover:text-ink",
-                  )}
-                >
-                  {link.name}
-                  <span
-                    aria-hidden="true"
-                    className={cn(
-                      "absolute inset-x-2 -bottom-px h-px bg-terracotta transition-transform duration-200",
-                      isActive ? "scale-x-100" : "scale-x-0",
-                    )}
-                  />
-                </a>
-              </li>
-            );
-          })}
+        <ul className="hidden items-center gap-1 lg:flex">
+          {navItems.map((item) => (
+            <li key={item.href}>
+              <a
+                href={item.href}
+                onClick={(event) => {
+                  event.preventDefault();
+                  handleNav(item.href);
+                }}
+                className={cn(linkBase, "px-2.5 text-muted hover:text-ink")}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
         </ul>
 
-        <ul className="hidden items-center gap-0.5 sm:flex">
-          {socialLinks.map((link) => {
-            const Icon = link.icon;
-            return (
-              <li key={link.label}>
-                <a
-                  href={link.href}
-                  {...externalLinkProps(link.href)}
-                  aria-label={link.label}
-                  className="flex items-center rounded-[3px] p-1.5 text-muted transition-colors hover:text-ink"
-                >
-                  <Icon size={16} />
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+        <div className="flex items-center gap-1">
+          <ul className="hidden items-center gap-0.5 sm:flex">
+            {socialLinks.map((link) => {
+              const Icon = link.icon;
+              return (
+                <li key={link.label}>
+                  <a
+                    href={link.href}
+                    {...externalLinkProps(link.href)}
+                    aria-label={link.label}
+                    className="flex items-center rounded-[3px] p-1.5 text-ink transition-colors hover:text-teal"
+                  >
+                    <Icon size={16} />
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+
+          <button
+            type="button"
+            onClick={() => setOpen((value) => !value)}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label={open ? "Close menu" : "Open menu"}
+            className="-mr-2 flex h-9 w-9 items-center justify-center rounded-[3px] text-ink transition-colors hover:bg-bg-2 lg:hidden"
+          >
+            {open ? <Cancel size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </nav>
+
+      <div
+        id="mobile-nav"
+        hidden={!open}
+        className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-rule bg-bg lg:hidden"
+      >
+        <ul className="mx-auto max-w-[1000px] px-4 py-2 sm:px-6">
+          {navItems.map((item) => (
+            <li key={item.href}>
+              <a
+                href={item.href}
+                onClick={(event) => {
+                  event.preventDefault();
+                  handleNav(item.href);
+                }}
+                className={cn(
+                  linkBase,
+                  "w-full border-b border-rule py-3.5 text-ink-subtle hover:text-ink",
+                )}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <ul className="mx-auto flex max-w-[1000px] flex-wrap items-center gap-x-5 gap-y-2 px-4 pb-5 pt-2 sm:px-6">
+          {socialLinks.map((link) => (
+            <li key={link.label}>
+              <a
+                href={link.href}
+                {...externalLinkProps(link.href)}
+                className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted transition-colors hover:text-ink"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </header>
   );
 }
