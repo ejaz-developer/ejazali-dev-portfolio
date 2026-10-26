@@ -1,0 +1,55 @@
+---
+import {
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconBrandX,
+} from "@tabler/icons-react";
+import SectionHeading from "../SectionHeading.astro";
+import ContactForm from "../react/ContactForm";
+import { site } from "../../data/site";
+
+const icons = {
+  github: IconBrandGithub,
+  linkedin: IconBrandLinkedin,
+  x: IconBrandX,
+} as const;
+---
+
+<section class="pb-20">
+  <SectionHeading id="contact" title="Contact" />
+  <div class="grid gap-8 lg:grid-cols-[1fr_auto]">
+    <div class="relative rounded-3xl border border-border/70 bg-card/80 p-6 shadow-card before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:h-px before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent sm:p-8">
+      <ContactForm client:visible />
+    </div>
+    <div class="flex flex-col gap-4 lg:w-56">
+      <p class="text-sm leading-relaxed text-muted-foreground">
+        Prefer async? Reach me anywhere below — I read every channel.
+      </p>
+      <ul class="flex flex-col gap-2">
+        {
+          site.socials.map((social) => {
+            const Icon = icons[social.id];
+            return (
+              <li>
+                <a
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group flex items-center gap-3 rounded-2xl border border-border/70 bg-card/60 px-4 py-3 text-sm font-medium text-foreground shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary hover:shadow-card-hover"
+                >
+                  <Icon size={18} stroke={1.75} className="transition-transform duration-300 group-hover:scale-110" />
+                  {social.label}
+                  <span
+                    aria-hidden
+                    class="ml-auto translate-x-0.5 text-muted-foreground transition-transform duration-300 group-hover:translate-x-1.5 group-hover:text-primary"
+                    >↗</span
+                  >
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </div>
+  </div>
+</section>

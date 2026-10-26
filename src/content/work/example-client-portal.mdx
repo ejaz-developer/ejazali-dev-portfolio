@@ -1,0 +1,28 @@
+---
+title: "Example — Client Portal"
+description: "Placeholder case study. Replace with a real project: a client-facing portal that replaced a chaotic email-and-spreadsheet workflow."
+status: finished
+stack: ["Next.js", "MongoDB", "Tailwind CSS"]
+date: 2025-11-01
+---
+
+> **Placeholder content.** This case study is scaffolding — replace it with a real project when the project list arrives. Follow the same section structure.
+
+## The Problem
+
+Businesses often run client work through inboxes and shared spreadsheets: requests arrive by email, status lives in someone's head, and clients keep asking "where are we on this?" A portal fixes that — one place where clients see progress, submit requests, and find files.
+
+## The Build
+
+Built end to end as a single developer: auth, role-based access, request lifecycle, and a clean client-facing UI. Key decisions, and why:
+
+- **MongoDB over Postgres** — the data was document-shaped (requests with nested comments and attachments) and the rest of the stack was already JS-only.
+- **Server-rendered dashboard** — clients open the portal on slow connections; first paint had to be fast with no client-side waterfalls.
+
+## Challenges
+
+The hard part is never the CRUD. It is making the lifecycle obvious to a non-technical client: what "submitted", "in progress", and "done" look like from the outside, and making sure no state exists only in the admin's head.
+
+## Effect
+
+*(Technical and business outcomes go here once the project is real: users served, response time improved, hours of manual coordination removed. Effort alone does not count — see the Effect rule.)*

@@ -1,0 +1,16 @@
+---
+import { getCollection } from "astro:content";
+import SectionHeading from "../SectionHeading.astro";
+import WorkCard from "../work/WorkCard.astro";
+
+const entries = (await getCollection("work")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+---
+
+<section class="pb-16 sm:pb-20">
+  <SectionHeading id="work" title="Work" />
+  <div class="grid gap-4 sm:grid-cols-2">
+    {entries.map((entry) => <WorkCard entry={entry} />)}
+  </div>
+</section>
