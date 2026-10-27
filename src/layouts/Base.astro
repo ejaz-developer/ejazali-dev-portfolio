@@ -15,7 +15,7 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
 ---
 
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -31,26 +31,18 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={pageTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="theme-color" content="#00090e" />
+    <meta name="theme-color" content="#ffffff" />
   </head>
   <body class="relative min-h-dvh bg-background text-foreground antialiased">
-    <div class="site-pattern" aria-hidden="true"></div>
+    <!-- THESIS: the category-standard personal-brand site, played straight at full craft — refuses both the dark-neon dev portfolio and any invented visual world. -->
+    <!-- OWN-WORLD: white ground with navy ink (#0e1424 / #16337a) as the only accent; Bricolage Grotesque display over Instrument Sans; soft navy-tinted shadows, pill buttons, rounded-2xl cards; one continuous skills ticker. -->
+    <!-- STORY: a founder meets the claim, the proof, the services, then the navy contact panel — and starts a project. -->
+    <!-- FIRST VIEWPORT: soft navy-tinted white wash; the claim set large with a marker stroke drawing under "manual work"; sub-line, navy pill CTA "Start a project", ghost "See the work", availability chip. -->
+    <!-- FORM: canon (category standard), standing exit, seed 71e9af8e. FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, and DESIGN.md. -->
     <Nav />
-    <main class="mx-auto max-w-5xl px-4 sm:px-6">
+    <main class="wall mx-auto w-full max-w-[80rem] px-5 sm:px-8">
       <slot />
     </main>
     <Footer />
   </body>
 </html>
-
-<style>
-  .site-pattern {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Cpath d='M48 44v8M44 48h8' stroke='%23003049' stroke-opacity='0.7' stroke-width='1.25' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-size: 96px 96px;
-    mask-image: linear-gradient(to bottom, black 0%, black 75%, transparent 100%);
-  }
-</style>

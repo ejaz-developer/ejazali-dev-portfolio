@@ -6,7 +6,9 @@ const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
 type Status = "idle" | "sending" | "sent" | "error";
 
 const inputClass =
-  "w-full rounded-2xl border border-input bg-background/60 px-4 py-2.5 text-sm text-foreground shadow-[inset_0_1px_2px_rgb(0_0_0/0.35)] placeholder:text-muted-foreground transition-all duration-300 focus-visible:border-ring focus-visible:shadow-[inset_0_1px_2px_rgb(0_0_0/0.35),0_0_0_3px_rgb(247_127_0/0.18)] focus-visible:ring-3 focus-visible:ring-ring/50 outline-none";
+  "w-full rounded-xl border border-line bg-white px-4 py-3 text-[0.95rem] text-ink placeholder:text-ink-muted/70 transition-all duration-200 hover:border-navy/30 focus-visible:border-navy focus-visible:outline-2 focus-visible:outline-ring/30";
+
+const labelClass = "text-sm font-semibold text-ink";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -36,9 +38,9 @@ export default function ContactForm() {
 
   if (status === "sent") {
     return (
-      <div className="rounded-2xl border border-sunflower-gold-400/40 bg-sunflower-gold-100/40 px-6 py-8 text-center">
-        <p className="font-heading text-lg font-semibold text-foreground">Message sent.</p>
-        <p className="mt-1.5 text-sm text-muted-foreground">
+      <div className="rounded-2xl bg-navy-wash px-6 py-10 text-center">
+        <p className="font-heading text-2xl font-semibold tracking-tight text-ink">Message sent.</p>
+        <p className="mt-2 text-sm text-ink-muted">
           Thanks for reaching out — I&apos;ll get back to you soon.
         </p>
       </div>
@@ -46,16 +48,16 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="name" className="text-sm font-medium text-foreground">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div className="flex flex-col gap-2">
+          <label htmlFor="name" className={labelClass}>
             Name
           </label>
           <input id="name" name="name" type="text" required placeholder="Your name" className={inputClass} />
         </div>
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="email" className="text-sm font-medium text-foreground">
+        <div className="flex flex-col gap-2">
+          <label htmlFor="email" className={labelClass}>
             Email
           </label>
           <input
@@ -68,8 +70,8 @@ export default function ContactForm() {
           />
         </div>
       </div>
-      <div className="flex flex-col gap-1.5">
-        <label htmlFor="message" className="text-sm font-medium text-foreground">
+      <div className="flex flex-col gap-2">
+        <label htmlFor="message" className={labelClass}>
           Project
         </label>
         <textarea
@@ -82,7 +84,7 @@ export default function ContactForm() {
         />
       </div>
       {status === "error" && (
-        <p className="text-sm text-flag-red-500" role="alert">
+        <p className="text-sm font-medium text-destructive" role="alert">
           Something went wrong — please email me directly or try again.
         </p>
       )}
@@ -91,9 +93,14 @@ export default function ContactForm() {
           type="submit"
           size="lg"
           disabled={status === "sending"}
-          className="h-10 rounded-2xl px-6 text-base"
+          className="mt-1"
         >
           {status === "sending" ? "Sending…" : "Send message"}
+          {status !== "sending" && (
+            <svg width="15" height="15" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+              <path d="M1 7h11M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.7" />
+            </svg>
+          )}
         </Button>
       </div>
     </form>

@@ -1,23 +1,71 @@
 ---
-import HeroTagline from "../react/HeroTagline";
+const servicesLine = "Web apps · Founder MVPs · Automation";
 ---
 
-<section class="relative overflow-hidden pt-20 pb-16 sm:pt-28 sm:pb-20">
-  <div class="hero-grid" aria-hidden="true"></div>
-  <div class="relative">
-    <HeroTagline client:load />
+<section class="relative overflow-hidden rounded-3xl" aria-label="Introduction">
+  <div
+    class="pointer-events-none absolute inset-0 -z-10"
+    aria-hidden="true"
+    style="background:
+      radial-gradient(ellipse 90% 80% at 75% -20%, #dde5f8 0%, transparent 55%),
+      linear-gradient(180deg, #f5f7fc 0%, #ffffff 70%);"
+  >
+  </div>
+
+  <div class="rise flex flex-col gap-8 px-1 pb-4 pt-14 sm:pt-20 lg:pt-24">
+    <h1
+      class="display max-w-[15ch] text-[clamp(2.7rem,7vw,5.6rem)] text-ink"
+    >
+      I build web apps that
+      <span class="relative inline-block whitespace-nowrap">
+        kill manual work
+        <svg
+          class="marker pointer-events-none absolute -bottom-1.5 left-0 h-[0.32em] w-full overflow-visible"
+          viewBox="0 0 200 14"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+          fill="none"
+        >
+          <path
+            d="M2 9.5C42 4.5 118 3 198 7.5"
+            stroke="#16337a"
+            stroke-width="5"
+            stroke-linecap="round"
+            pathLength="1"></path>
+        </svg>
+      </span>.
+    </h1>
+
+    <p class="max-w-[54ch] text-lg leading-relaxed text-ink-muted sm:text-xl">
+      I&apos;m Ejaz — a full-stack developer helping founders and businesses turn
+      spreadsheets, copy-paste, and busywork into software that runs the business.
+    </p>
+
+    <div class="flex flex-wrap items-center gap-3">
+      <a
+        href="#contact"
+        class="inline-flex h-13 items-center gap-2 rounded-full bg-navy px-7 py-4 text-base font-semibold text-on-navy shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:bg-navy-deep hover:shadow-lift focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+      >
+        Start a project
+        <svg width="16" height="16" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M1 7h11M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.7"></path>
+        </svg>
+      </a>
+      <a
+        href="#work"
+        class="inline-flex h-13 items-center rounded-full border border-line bg-white px-7 py-4 text-base font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-navy/40 hover:shadow-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+      >
+        See the work
+      </a>
+      <p
+        class="ml-1 inline-flex items-center gap-2.5 rounded-full border border-line bg-white px-4 py-2.5 text-sm font-medium text-ink-muted"
+      >
+        <span class="availability-dot inline-block size-2 rounded-full bg-live" aria-hidden="true"
+        ></span>
+        Available for new projects
+      </p>
+    </div>
+
+    <p class="pt-2 text-sm text-ink-muted">{servicesLine}</p>
   </div>
 </section>
-
-<style>
-  .hero-grid {
-    position: absolute;
-    inset: -1px calc(50% - 50vw);
-    background-image:
-      linear-gradient(to right, rgb(0 48 73 / 0.7) 1px, transparent 1px),
-      linear-gradient(to bottom, rgb(0 48 73 / 0.7) 1px, transparent 1px);
-    background-size: 44px 44px;
-    mask-image: radial-gradient(ellipse 85% 75% at 50% 0%, black 25%, transparent 78%);
-    pointer-events: none;
-  }
-</style>

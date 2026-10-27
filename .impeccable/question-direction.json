@@ -1,0 +1,67 @@
+{
+  "title": "Choose the visual world",
+  "question": "The roll assigned Standards Manual — Night Edition. Keep it, take a challenger, re-roll for a fresh hand, or play the category standard straight.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Standards Manual — Night Edition",
+      "kicker": "THE ROLL",
+      "lineage": "identity standards manuals (Unimark, NASA '75) · night edition",
+      "thesis": "The whole site is Ejaz's practice manual: numbered spec plates on matte black stock, white ink, one signal-yellow spot color.",
+      "palette": ["#0C0C0E", "#F2F0EB", "#FFD400", "#8A8A93"],
+      "materials": ["matte black stock", "enamel white ink", "spot color", "hairline rules"],
+      "viewport": "Plate 00: a masthead name-plate — EJAZ ALI set large in expanded grotesque, the tagline as a specimen line beneath, plate number and revision stamp in mono at the corners.",
+      "risk": "Executed timidly it collapses into 'minimal dark portfolio'; the numbering, rules, and stamp details must carry real information or the manual is cosplay."
+    },
+    {
+      "id": "challenger-glazier",
+      "label": "Color-Field Glass Partition",
+      "case": "Fuses cleanly: one pane one statement, backlit panes for state — strong agency-office identification, loses the plate-numbering grammar.",
+      "lineage": "glazier workshop color-field partition walls",
+      "thesis": "The page is a black-glazed partition wall: every section a pane of glass, most clear, a few saturated fields lighting up for what matters now.",
+      "palette": ["#0A0A0B", "#E8E6E1", "#2B4CFF", "#7A2E2E"],
+      "materials": ["black glazing bars", "hand-rolled sheet glass", "backlit color fields"],
+      "viewport": "A wall elevation: thin black mullions dividing the first screen into rectilinear panes; the name sits inside one clear pane, the tagline in another, one cobalt pane holds the primary action.",
+      "risk": "Glass metaphors drift into generic 'card grid with better borders' if pane sizes and the single lit note aren't ruthless.",
+      "hero": "https://impeccable.style/worlds/cards/craft-making-glazier-colorfield-partition-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/craft-making-glazier-colorfield-partition.webp"
+    },
+    {
+      "id": "challenger-darkroom",
+      "label": "Safelight Darkroom",
+      "case": "Beautiful narrative fit — work emerges into light, stations map to shape→build→ship — but the amber monochrome and moody pace trade 'clean agency' for art project.",
+      "lineage": "printing darkrooms under amber safelight",
+      "thesis": "The practice as a darkroom: projects move compose → expose → develop → fix → wash → dry, and case studies literally emerge on the page.",
+      "palette": ["#120C08", "#F0B060", "#C8C4BC", "#1A1A1E"],
+      "materials": ["amber safelight", "wet print silver", "enamel trays"],
+      "viewport": "Under amber wash: station names as grease-pencil labels down the left, one print mid-development center frame, timer digits ticking in mono.",
+      "risk": "One-hue amber across a full persuade page can tire the eye; B2B founders may read art piece before vendor.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-darkroom-safelight-bay-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/signals-instruments-darkroom-safelight-bay.webp"
+    },
+    {
+      "id": "challenger-ascii",
+      "label": "Live ASCII Scene",
+      "case": "Fuses poorly: glyph texture fights the 'very clean' mandate and B2B legibility; wins novelty, loses the founder's five-second read.",
+      "lineage": "phosphor ASCII live-scene rendering",
+      "thesis": "The hero is a live character-grid rendering — a business dashboard dissolving from manual chaos into running software, drawn in one mono alphabet.",
+      "palette": ["#050805", "#B6FF7A", "#4C7A3D"],
+      "materials": ["phosphor mono grid", "glyph density tone"],
+      "viewport": "A 40×24-ish character field animating a before/after workflow in green phosphor, name and tagline as selectable text inside the same grid.",
+      "risk": "Developer-toy energy: recruiters smile, cautious founders bounce.",
+      "hero": "https://impeccable.style/worlds/cards/medium-native-ascii-live-scene-render-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/medium-native-ascii-live-scene-render.webp"
+    }
+  ],
+  "reroll": true,
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "What every developer portfolio ships: near-black ground, one neon accent, gradient headline, pill nav, glowing project cards.",
+    "palette": ["#0A0A0B", "#F5F5F5", "#38BDF8"],
+    "materials": ["dark UI kit", "glow effects"],
+    "viewport": "Centered headline with a soft glow, subhead, two buttons, a marquee of tech logos below.",
+    "risk": "Memorable for an hour, indistinguishable by lunch — exactly the template feeling you named as failure."
+  },
+  "steer": true
+}

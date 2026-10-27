@@ -2,22 +2,38 @@
 import SectionHeading from "../SectionHeading.astro";
 ---
 
-<section class="pb-16 sm:pb-20">
-  <SectionHeading id="about" title="About" />
-  <div class="flex flex-col gap-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
-    <p>
-      I&apos;m a full-stack developer. I build <strong class="font-medium text-foreground">business web apps</strong>
-      and <strong class="font-medium text-foreground">founder MVPs</strong> — software that takes a manual
-      process and makes it run itself.
+<section class="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-14">
+  <div class="lg:col-span-12">
+    <SectionHeading id="about" title="About" note="Practice" />
+  </div>
+
+  <div class="lg:col-span-7">
+    <p class="display text-[clamp(1.6rem,3vw,2.6rem)] text-ink">
+      Most teams don&apos;t need more software. They need the right software.
     </p>
-    <p>
-      Most teams don&apos;t need more software. They need the right software: the spreadsheet
-      that becomes a real tool, the workflow that stops living in someone&apos;s head, the MVP
-      that finally gets in front of users. I work end to end — shaping the product, building
-      it, and shipping it.
-    </p>
-    <p class="text-primary">
-      Available for new projects. <a href="#contact" class="underline-offset-4 hover:underline">Let&apos;s talk →</a>
-    </p>
+  </div>
+
+  <div class="flex flex-col gap-6 lg:col-span-5">
+    <div class="flex flex-col gap-4 text-base leading-relaxed text-ink-muted">
+      <p>
+        I&apos;m a full-stack developer. I build <strong class="font-semibold text-ink">business
+        web apps</strong> and <strong class="font-semibold text-ink">founder MVPs</strong> —
+        software that takes a manual process and makes it run itself.
+      </p>
+      <p>
+        The spreadsheet becomes a real tool. The workflow stops living in someone&apos;s head. The
+        MVP finally gets in front of users. I work end to end — shaping the product, building it,
+        and shipping it.
+      </p>
+    </div>
+    <a
+      href="#contact"
+      class="link-arrow inline-flex w-fit items-center gap-2 text-sm font-semibold text-navy underline-offset-4 hover:underline"
+    >
+      Let&apos;s talk
+      <svg width="15" height="15" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M1 7h11M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.7"></path>
+      </svg>
+    </a>
   </div>
 </section>

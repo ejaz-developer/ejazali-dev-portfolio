@@ -8,9 +8,9 @@ const entries = (await getCollection("work")).sort(
 );
 ---
 
-<section class="pb-16 sm:pb-20">
-  <SectionHeading id="work" title="Work" />
-  <div class="grid gap-4 sm:grid-cols-2">
-    {entries.map((entry) => <WorkCard entry={entry} />)}
+<section class="flex flex-col gap-8">
+  <SectionHeading id="work" title="Work" note="Case studies" />
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    {entries.map((entry, i) => <WorkCard entry={entry} index={i} />)}
   </div>
 </section>

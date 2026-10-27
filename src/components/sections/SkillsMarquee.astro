@@ -24,53 +24,21 @@ const icons = {
   agentic: IconRobot,
 } as const;
 
-const doubled = [...skills, ...skills];
+const items = [
+  ...skills.map((s) => ({ ...s, Icon: icons[s.icon] })),
+  ...skills.map((s) => ({ ...s, Icon: icons[s.icon] })),
+];
 ---
 
-<section aria-label="Skills" class="pb-16 sm:pb-20">
-  <div
-    class="relative overflow-hidden rounded-2xl border border-border/70 bg-card/50 py-4 shadow-soft"
-    style={{
-      maskImage:
-        "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
-      WebkitMaskImage:
-        "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
-    }}
-  >
-    <div class="skills-marquee flex w-max items-center gap-3">
-      {
-        doubled.map((skill) => {
-          const Icon = icons[skill.icon];
-          return (
-            <span class="inline-flex shrink-0 items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:text-primary hover:shadow-soft">
-              <Icon size={15} stroke={1.75} />
-              {skill.label}
-            </span>
-          );
-        })
-      }
-    </div>
+<section aria-label="Toolkit" class="marquee overflow-hidden py-1">
+  <div class="marquee-track flex gap-3 pr-3">
+    {
+      items.map((item, i) => (
+        <span class="chip" aria-hidden={i >= skills.length ? "true" : undefined}>
+          <item.Icon size={17} stroke={1.7} aria-hidden="true" className="text-navy" />
+          {item.label}
+        </span>
+      ))
+    }
   </div>
 </section>
-
-<style>
-  .skills-marquee {
-    animation: marquee 32s linear infinite;
-  }
-  .skills-marquee:hover {
-    animation-play-state: paused;
-  }
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .skills-marquee {
-      animation: none;
-    }
-  }
-</style>

@@ -3,14 +3,17 @@ import Base from "../layouts/Base.astro";
 ---
 
 <Base title="Not found">
-  <section class="flex flex-col items-start py-28">
-    <p class="font-heading text-sm font-semibold tracking-widest text-primary uppercase">404</p>
-    <h1 class="mt-3 font-heading text-4xl font-semibold text-foreground sm:text-5xl">
+  <section class="flex flex-col items-start py-24 sm:py-32">
+    <p class="text-sm font-semibold tracking-wide text-navy uppercase">404</p>
+    <h1 class="display mt-3 text-[clamp(2rem,5vw,3.5rem)] text-ink">
       This page doesn&apos;t exist.
     </h1>
+    <p class="mt-4 max-w-md text-lg text-ink-muted">
+      The link may be out of date — everything else lives on the home page.
+    </p>
     <a
       href="/"
-      class="mt-8 inline-flex h-10 items-center rounded-2xl bg-primary px-6 text-base font-medium text-primary-foreground transition-colors hover:bg-primary/80"
+      class="mt-8 inline-flex h-12 items-center rounded-full bg-navy px-7 text-base font-semibold text-on-navy shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:bg-navy-deep hover:shadow-lift"
     >
       Back home
     </a>
