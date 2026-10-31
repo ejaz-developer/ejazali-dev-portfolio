@@ -33,11 +33,17 @@ export function formatDate(date: Date): string {
 
 /** True when the post was revised after publication (drives the "Updated" note). */
 export function isUpdated(entry: PostEntry): boolean {
-  return entry.data.updated != null && entry.data.updated.valueOf() > entry.data.date.valueOf();
+  return (
+    entry.data.updated != null &&
+    entry.data.updated.valueOf() > entry.data.date.valueOf()
+  );
 }
 
 /** Absolute URL for an site-relative path, using the configured site origin. */
-export function absoluteUrl(path: string, site: string | URL | undefined): string {
-  const base = site?.toString() ?? "https://helo-ejaz.vercel.app";
+export function absoluteUrl(
+  path: string,
+  site: string | URL | undefined,
+): string {
+  const base = site?.toString() ?? "https://hello-ejaz.vercel.app";
   return new URL(path, base).href;
 }

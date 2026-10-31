@@ -4,6 +4,6 @@ The site's job is winning clients through case studies and (later) a blog, which
 
 ## Consequences
 
-- The contact form cannot use a server runtime or provider-verified sending domain (`helo-ejaz.vercel.app` is on Vercel's shared domain, unverifiable in Resend), so it posts to Formspree — no server code at all.
+- The contact form cannot use a server runtime or provider-verified sending domain (`hello-ejaz.vercel.app` is on Vercel's shared domain, unverifiable in Resend), so it posts to Formspree — no server code at all.
 - Interactive UI (animated hero, contact form) ships as React islands; everything else is zero-JS Astro.
 - Blog support is "add an MDX collection", not a migration.

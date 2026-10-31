@@ -19,6 +19,7 @@ are drafted directly as MDX in the repo for speed; one real Notion export
 validates the converter before post #4.
 
 **Launch content** — 3 cornerstone posts, one per top service line:
+
 1. How much does it cost to build an MVP? (Founder MVPs)
 2. Signs your business has outgrown spreadsheets (Process Automation)
 3. Build vs buy: custom software vs off-the-shelf SaaS (Business Web Apps)
@@ -29,10 +30,11 @@ schema + llms.txt summary), `date`, `updated?`, `tags[]`, `draft`,
 `canonical?`, `ogImage?`. Slug from filename, stable from first draft.
 
 **Post template** — Tier-1 contract enforced on every post:
+
 - Answer-first opening paragraph (3–4 quotable sentences).
 - FAQ section (3–4 Q&As) wired to `FAQPage` JSON-LD, driven by frontmatter `faq[]`.
 - ≥1 internal link to `/` services or `/work`.
-Tier-2 (guidance, not a gate): H2s lead with the answer before elaborating.
+  Tier-2 (guidance, not a gate): H2s lead with the answer before elaborating.
 
 **Surfaces** — `/blog` listing, `/blog/<slug>` post pages, `@astrojs/rss` feed
 at `/rss.xml`, sitemap (already wired), links-only `llms.txt`. Tag pages
@@ -41,6 +43,7 @@ time + tag chips + author line + prev/next. No TOC, share buttons, or
 related-posts yet.
 
 **AI SEO (all three layers)**
+
 - `robots.txt` allows every AI crawler (GPTBot, ClaudeBot, PerplexityBot,
   CCBot, Google-Extended).
 - `llms.txt` is a links-only index (title + description + canonical URL).
@@ -54,7 +57,7 @@ override. GSC via meta tag. Analytics = GSC only (no on-site analytics yet).
 llms.txt at build. Nav "Blog" link ships in the same commit as the launch
 posts — nothing public until all 3 are live.
 
-**Domain** — staying on `helo-ejaz.vercel.app` for now. A later domain
+**Domain** — staying on `hello-ejaz.vercel.app` for now. A later domain
 migration means new canonical domain, sitemap regen, GSC property move, and
 301s — tracked as a separate issue (see `issues/06-domain-migration.md`).
 GSC starts on the vercel.app property.
