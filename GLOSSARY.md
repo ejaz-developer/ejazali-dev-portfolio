@@ -28,6 +28,10 @@ _Avoid_: build, gig, job (for self-built work)
 A narrative document about one Project covering why it was built, the challenges faced, the decisions made, and the effect achieved.
 _Avoid_: showcase, portfolio piece, success story
 
+**Post**:
+A published article on the blog. Written to answer a real search query a Client would type, structured to be quotable by AI answer engines (answer-first opening, FAQ section, internal links). Distinct from a Case Study, which documents one specific Project.
+_Avoid_: article, blog piece, entry
+
 **Effect**:
 What a Project achieved, as claimed in its Case Study. Technical outcomes (users, performance, problems eliminated) and business outcomes (revenue, hours saved) count; effort alone does not.
 _Avoid_: impact level, effort story

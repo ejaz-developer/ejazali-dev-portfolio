@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import SectionHeading from "../../components/SectionHeading.astro";
+import PostCard from "../../components/blog/PostCard.astro";
+import { isPublished, byDateDesc } from "../../lib/blog";
+
+const posts = (await getCollection("blog")).filter(isPublished).sort(byDateDesc);
+---
+
+<Base
+  title="Blog"
+  description="Practical writing on MVP costs, replacing spreadsheets, and build-vs-buy decisions — by Ejaz, full-stack developer."
+>
+  <section class="flex flex-col gap-8 py-12 sm:py-16">
+    <SectionHeading id="blog" title="Blog" note="Notes on building the right software" />
+    {
+      posts.length > 0 ? (
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {posts.map((entry, i) => (
+            <PostCard entry={entry} index={i} />
+          ))}
+        </div>
+      ) : (
+        <p class="text-ink-muted">Posts are on the way. Check back soon.</p>
+      )
+    }
+  </section>
+</Base>
