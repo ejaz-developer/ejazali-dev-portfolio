@@ -42,7 +42,7 @@ rank on Google for Client-intent queries, and be quotable by AI answer engines.
   schema enforces `faq` is non-empty, so a post cannot ship without it.
 - Tag pages are deferred until ~10 posts; with 3 launch posts a taxonomy is dead
   weight. Tag chips render but are not yet links.
-- The site stays on `helo-ejaz.vercel.app` for now. A later domain migration
+- The site stays on `hello-ejaz.vercel.app` for now. A later domain migration
   means a new canonical domain, sitemap regen, a GSC property move, and 301s —
   tracked as a separate issue.
 - GSC (meta-tag verification) is the only measurement for now; no on-site

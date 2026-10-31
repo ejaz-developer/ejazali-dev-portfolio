@@ -40,4 +40,4 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
-Sitemap: https://helo-ejaz.vercel.app/sitemap-index.xml
+Sitemap: https://hello-ejaz.vercel.app/sitemap-index.xml

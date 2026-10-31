@@ -4,10 +4,18 @@ export const site = {
   tagline: "I build web apps that kill manual work.",
   description:
     "Full-stack developer building business web apps and founder MVPs that replace manual processes. Available for new projects.",
-  url: "https://helo-ejaz.vercel.app",
+  url: "https://hello-ejaz.vercel.app",
   socials: [
-    { id: "github", label: "GitHub", href: "https://github.com/ejaz-developer" },
-    { id: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/hello-ejaz/" },
+    {
+      id: "github",
+      label: "GitHub",
+      href: "https://github.com/ejaz-developer",
+    },
+    {
+      id: "linkedin",
+      label: "LinkedIn",
+      href: "https://www.linkedin.com/in/hello-ejaz/",
+    },
     { id: "x", label: "X", href: "https://x.com/helloejazoff" },
   ],
 } as const;

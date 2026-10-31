@@ -22,7 +22,7 @@ Ejaz Ali's personal brand website and the storefront for his upcoming digital ag
 
 ## Operating Context
 
-- Static Astro site deployed on Vercel (`helo-ejaz.vercel.app`); pure static build, no server runtime.
+- Static Astro site deployed on Vercel (`hello-ejaz.vercel.app`); pure static build, no server runtime.
 - Contact form posts to Formspree (Vercel shared domain cannot verify a sending domain for Resend).
 - Interactive pieces (animated hero, contact form) ship as React islands; the rest is zero-JS Astro.
 - Blog support is an MDX content collection at `src/content/blog/` (see ADR 0002), not a migration; Ejaz writes in Notion and a local `import:notion` script converts exports to clean MDX + assets.
@@ -43,7 +43,7 @@ Ejaz Ali's personal brand website and the storefront for his upcoming digital ag
 - Tagline: "I build web apps that kill manual work."
 - Voice: direct, plain-spoken, outcome-first; no jargon inflation ("Most teams don't need more software. They need the right software.").
 - Socials: GitHub (`ejaz-developer`), LinkedIn (`hello-ejaz`), X (`helloejazoff`).
-- Domain/URL: https://helo-ejaz.vercel.app.
+- Domain/URL: https://hello-ejaz.vercel.app.
 - Visual direction preference (standing): the familiar category-standard personal-brand/agency site, executed at full craft — no invented visual worlds, no subversive quirks. Craft bar set by reference products Ejaz names.
 
 ## Evidence on Hand
