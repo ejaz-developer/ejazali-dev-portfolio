@@ -14,7 +14,7 @@ web
 
 ## Product Purpose
 
-Ejaz Ali's personal brand website and the storefront for his upcoming digital agency (web development). It wins client work by presenting proof — case studies of built software — and making contact effortless. Success means a qualified visitor (client first, recruiter second) leaves convinced of competence and able to reach out. A future blog extends the proof engine with written substance.
+Ejaz Ali's personal brand website and the storefront for his upcoming digital agency (web development). It wins client work by presenting proof — case studies of built software — and making contact effortless. Success means a qualified visitor (client first, recruiter second) leaves convinced of competence and able to reach out. The blog extends the proof engine with written substance: Posts that answer real search queries to win Clients via Google and AI answer engines.
 
 ## Positioning
 
@@ -25,14 +25,15 @@ Ejaz Ali's personal brand website and the storefront for his upcoming digital ag
 - Static Astro site deployed on Vercel (`helo-ejaz.vercel.app`); pure static build, no server runtime.
 - Contact form posts to Formspree (Vercel shared domain cannot verify a sending domain for Resend).
 - Interactive pieces (animated hero, contact form) ship as React islands; the rest is zero-JS Astro.
-- Blog support is planned as an MDX collection, not a migration.
+- Blog support is an MDX content collection at `src/content/blog/` (see ADR 0002), not a migration; Ejaz writes in Notion and a local `import:notion` script converts exports to clean MDX + assets.
 - Case-study content lives in `src/content/work/` as an MDX collection; all current entries are explicit placeholders.
 
 ## Capabilities and Constraints
 
 - Home page sections: Hero, Skills Marquee, About, Work, Services, Contact.
+- Blog lives at `/blog` with post pages at `/blog/[slug]`, an RSS feed at `/rss.xml`, a `robots.txt` that allows all AI crawlers, and a links-only `llms.txt`. Posts carry `BlogPosting` + `FAQPage` + `BreadcrumbList` JSON-LD. Tag pages are deferred until ~10 posts.
 - Case-study detail pages at `/work/[slug]`; In-Progress projects are labeled with screenshots and never have case-study pages until they ship.
-- Terminology is fixed by `GLOSSARY.md`: Client, Founder MVP, Business Web App, Project, Case Study, Effect, In Progress, Agentic Engineering.
+- Terminology is fixed by `GLOSSARY.md`: Client, Founder MVP, Business Web App, Project, Case Study, Post, Effect, In Progress, Agentic Engineering.
 - Effects (technical or business outcomes) count only when real; effort alone never counts. No fabricated users, revenue, hours, testimonials, clients, or benchmarks — real case studies and effects are forthcoming, none in hand yet.
 - Availability claim is factual: available for new projects; no geography, timezone, language, or work-type constraints recorded.
 

@@ -1,0 +1,175 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import { site } from "../../data/site";
+import {
+  isPublished,
+  byDateDesc,
+  readingTimeMinutes,
+  formatDate,
+  isUpdated,
+  absoluteUrl,
+} from "../../lib/blog";
+
+export const getStaticPaths = (async () => {
+  const posts = (await getCollection("blog")).filter(isPublished).sort(byDateDesc);
+  return posts.map((entry, i) => ({
+    params: { slug: entry.id },
+    props: {
+      entry,
+      prev: posts[i + 1] ?? null,
+      next: posts[i - 1] ?? null,
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { entry, prev, next } = Astro.props;
+const { title, description, tags, date, updated, canonical, faq } = entry.data;
+const { Content } = await render(entry);
+
+const url = canonical ?? absoluteUrl(`/blog/${entry.id}`, Astro.site);
+const ogImage = absoluteUrl(entry.data.ogImage ?? "/og-default.png", Astro.site);
+const minutes = readingTimeMinutes(entry.body);
+const showUpdated = isUpdated(entry);
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((item) => ({
+    "@type": "Question",
+    name: item.question,
+    acceptedAnswer: { "@type": "Answer", text: item.answer },
+  })),
+};
+
+const breadcrumbJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/", Astro.site) },
+    { "@type": "ListItem", position: 2, name: "Blog", item: absoluteUrl("/blog", Astro.site) },
+    { "@type": "ListItem", position: 3, name: title, item: url },
+  ],
+};
+
+const blogPostingJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  mainEntityOfPage: { "@type": "WebPage", "@id": url },
+  headline: title,
+  description,
+  image: ogImage,
+  datePublished: date.toISOString(),
+  ...(showUpdated ? { dateModified: updated?.toISOString() } : {}),
+  author: { "@type": "Person", name: site.name, url: absoluteUrl("/", Astro.site) },
+  publisher: {
+    "@type": "Person",
+    name: site.name,
+    url: absoluteUrl("/", Astro.site),
+  },
+  keywords: tags.join(", "),
+  inLanguage: "en",
+};
+---
+
+<Base title={title} description={description} ogImage={ogImage} ogType="article" url={url}>
+  <script type="application/ld+json" set:html={JSON.stringify(blogPostingJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+
+  <article class="py-12 sm:py-16">
+    <header class="mb-12 flex flex-col gap-6">
+      <a
+        href="/blog"
+        class="link-arrow inline-flex w-fit items-center gap-2 text-sm font-semibold text-navy hover:underline"
+      >
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M13 7H3M6 3L2 7l4 4" stroke="currentColor" stroke-width="1.7"></path>
+        </svg>
+        Back to blog
+      </a>
+      <h1 class="display max-w-[18ch] text-[clamp(2rem,5vw,3.5rem)] text-ink">{title}</h1>
+      <p class="max-w-2xl text-lg leading-relaxed text-ink-muted">{description}</p>
+      <div class="flex flex-wrap items-center gap-x-5 gap-y-3">
+        <span class="text-sm text-ink-muted">
+          <time datetime={date.toISOString()}>{formatDate(date)}</time>
+        </span>
+        {
+          showUpdated && (
+            <span class="text-sm text-ink-muted">
+              Updated{" "}
+              <time datetime={updated!.toISOString()}>{formatDate(updated!)}</time>
+            </span>
+          )
+        }
+        <span class="text-sm text-ink-muted">{minutes} min read</span>
+        <span class="text-sm text-ink-muted">By {site.name}</span>
+        {
+          tags.length > 0 && (
+            <ul class="flex flex-wrap gap-1.5">
+              {tags.map((tag) => (
+                <li class="rounded-full bg-surface px-3 py-1 text-xs font-medium text-ink-muted">
+                  {tag}
+                </li>
+              ))}
+            </ul>
+          )
+        }
+      </div>
+    </header>
+
+    <div class="prose prose-lg max-w-none">
+      <Content />
+    </div>
+
+    {
+      faq.length > 0 && (
+        <section class="prose prose-lg mt-12 max-w-none" aria-labelledby="faq-heading">
+          <h2 id="faq-heading">Frequently asked questions</h2>
+          <dl>
+            {faq.map((item) => (
+              <div>
+                <dt>{item.question}</dt>
+                <dd>{item.answer}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      )
+    }
+
+    {
+      (prev || next) && (
+        <nav class="mt-14 flex flex-col gap-4 border-t border-line pt-8 sm:flex-row sm:justify-between" aria-label="More posts">
+          {prev ? (
+            <a href={`/blog/${prev.id}`} class="group flex max-w-sm flex-col gap-1">
+              <span class="text-xs font-medium tracking-wide text-ink-muted uppercase">Previous</span>
+              <span class="font-heading text-base font-semibold text-ink group-hover:text-navy">{prev.data.title}</span>
+            </a>
+          ) : (
+            <span />
+          )}
+          {next && (
+            <a href={`/blog/${next.id}`} class="group flex max-w-sm flex-col gap-1 sm:items-end sm:text-right">
+              <span class="text-xs font-medium tracking-wide text-ink-muted uppercase">Next</span>
+              <span class="font-heading text-base font-semibold text-ink group-hover:text-navy">{next.data.title}</span>
+            </a>
+          )}
+        </nav>
+      )
+    }
+
+    <div class="mt-14 rounded-2xl bg-navy-wash p-6 sm:p-8">
+      <p class="font-heading text-lg font-semibold text-ink">
+        Have a manual process worth replacing?
+      </p>
+      <p class="mt-2 text-sm text-ink-muted">
+        I build web apps and MVPs that kill manual work.{" "}
+        <a href="/#contact" class="font-semibold text-navy underline-offset-4 hover:underline">
+          Start a project →
+        </a>
+      </p>
+    </div>
+  </article>
+</Base>
