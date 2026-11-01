@@ -36,12 +36,12 @@ export const services = [
   {
     title: "Founder MVPs",
     description:
-      "Zero to launched product: scope, build, and ship a working MVP your first users can pay for.",
+      "Zero to launched product. I scope, build, and ship a working MVP your first users can pay for.",
   },
   {
     title: "Business Web Apps",
     description:
-      "Custom internal tools and web apps that replace spreadsheets, copy-paste, and manual workflows.",
+      "Custom internal tools that replace spreadsheets, copy-paste, and manual workflows.",
   },
   {
     title: "Process Automation",

@@ -10,6 +10,8 @@ const work = defineCollection({
     status: z.enum(["finished", "in-progress"]),
     stack: z.array(z.string()),
     liveUrl: z.url().optional(),
+    /** Project screenshot hosted in /public/projects-images. Falls back to the card wash when absent. */
+    image: z.string().optional(),
     date: z.coerce.date(),
   }),
 });
