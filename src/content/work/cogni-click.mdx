@@ -1,0 +1,25 @@
+---
+title: "CogniClick"
+description: "Predict which thumbnail will perform for a title before publishing."
+status: finished
+stack: ["Next.js", "Gemini", "Supabase"]
+liveUrl: "https://cogniclick-three.vercel.app/"
+image: "/projects-images/Cogni-click.png"
+date: 2026-09-01
+---
+
+## The Problem
+
+Small creators publish a video, pick a thumbnail, and hope it performs. There's no cheap way to test which thumbnail will click for a given title before the video goes live, so views are left to guesswork.
+
+## The Build
+
+CogniClick lets a creator enter a title and compare thumbnail options, using the Gemini API to score how well each thumbnail is likely to perform for that title. Next.js handles the frontend and API routes, and Supabase stores creator projects and scores.
+
+## Challenges
+
+Translating visual design into a performance score that actually correlates with clicks, and keeping the comparison fast enough to use before hitting publish.
+
+## Effect
+
+Effects will be added once creators have used it long enough to measure real click-through differences.
